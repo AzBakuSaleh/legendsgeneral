@@ -2149,6 +2149,9 @@ h2.section-title {
   color: white;
   border-top: 3px solid var(--orange);
 }
+.hero [data-autoplay][hidden] {
+  display: none;
+}
 .partner-banner-inner {
   display: flex;
   align-items: center;
