@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { withSiteBasePath } from "@/lib/site-path";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
 import {
@@ -20,7 +21,7 @@ const slides = [
     description: "Dolablar, rəflər, seyflər və iş məkanınız üçün metal mebel.",
     href: "/kataloq/",
     cta: "Kataloqa bax",
-    image: "/images/hero-showroom.webp",
+    image: withSiteBasePath("/images/hero-showroom.webp"),
     alt: "Metal dolablar, rəflər və iş masasının nümunə görüntüsü",
     kind: "scene",
   },
@@ -35,7 +36,7 @@ const slides = [
     description: "Anbar və arxivlər üçün məkanınıza uyğun saxlama sistemləri.",
     href: "/kataloq/?kateqoriya=refler",
     cta: "Rəflərə bax",
-    image: "/images/warehouse-shelving.webp",
+    image: withSiteBasePath("/images/warehouse-shelving.webp"),
     alt: "Metal anbar rəfinin nümunə görüntüsü",
     kind: "product",
   },
@@ -50,7 +51,7 @@ const slides = [
     description: "Emalatxana və istehsal sahələri üçün funksional metal mebel.",
     href: "/kataloq/?kateqoriya=istehsalat",
     cta: "Məhsullara bax",
-    image: "/images/metal-workbench.webp",
+    image: withSiteBasePath("/images/metal-workbench.webp"),
     alt: "Metal iş masasının nümunə görüntüsü",
     kind: "product",
   },
