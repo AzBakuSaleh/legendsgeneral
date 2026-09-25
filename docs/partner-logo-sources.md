@@ -1,0 +1,16 @@
+# Official partner logo sources
+
+All files downloaded 2026-09-26 from the official brand websites. This establishes asset provenance only, not any commercial partnership. All eight recommended files were rasterized together and visually inspected in `inspection.png`.
+
+| Brand | Recommended file | Direct official source | Notes |
+|---|---|---|---|
+| Crescent Mall | `crescent-mall.svg` | https://crescentmall.az/images/svg-icons/logo-gold.svg | Original transparent SVG, gold gradient; 152 × 38 viewBox. Referenced by official homepage https://crescentmall.az/az. |
+| Sea Breeze | `sea-breeze.svg` | https://seabreeze.az/assets/images/icons.svg?v=1789570253#logo | Exact `symbol#logo` paths extracted from official sprite. Symbol wrapper changed to standalone SVG, using the official header's 0 0 124 14 viewBox. `currentColor` is original and renders black by default. Official page https://seabreeze.az/en/ opened successfully in browser; direct HTML requests were 403, but source sprite downloaded normally. Source saved as `seabreeze-icons.svg`. Also saved original gold footer mark `seabreeze-footer.svg` from https://seabreeze.az/assets/images/common/logo-footer.svg?v=1789570253. |
+| Ralph Lauren | `ralph-lauren.jpg` | https://corporate.ralphlauren.com/on/demandware.static/-/Sites-RalphLauren_Corporate-Library/default/dwa762b67f/assets/images/MEDIA_ASSETS/Ralph_Lauren_navy_on_white_logo.jpg.zip | Original navy-on-white 2268 × 164 JPG extracted from the official downloadable archive, no image alterations. Source page https://corporate.ralphlauren.com/logos. |
+| Emporium | `emporium.svg` | https://emporium.az/assets/images/icons.svg#icon-logo | Exact `symbol#icon-logo` extracted from official sprite; wrapper changed to standalone SVG with original 15 7 173 35 viewBox, paths unchanged. Black transparent wordmark. Source sprite saved as `emporium-icons.svg`. |
+| LEGO | `lego.svg` | https://assets.lego.com/logos/v8.5.0/brand-lego.svg | Unchanged official red/yellow/white SVG; 180 × 180 viewBox. |
+| Embawood | `embawood.png` | https://embawood.az/image/catalog/logo.png | Original green PNG, transparent, 180 × 35. The official header SVG `embawood.svg` from https://embawood.az/catalog/view/theme/embawood/images/logo.svg is white and needs a dark tile. PNG is preferable for white tiles, but avoid enlarging it beyond original size. |
+| Gənclik Mall | `ganjlik-mall-horizontal.svg` | https://mallganjlik.az/site/templates/css/img/logo_mobile.svg | Original transparent colorful icon and gray wordmark, 200.7 × 36.8 viewBox. Referenced by official stylesheet https://mallganjlik.az/site/templates/css/main.css. Also saved stacked `ganjlik-mall.svg` from https://mallganjlik.az/site/templates/css/img/logo.svg. |
+| 28 Mall | `mall28.png` | https://mall28.az/front/images/logo-purple.png | Original transparent purple 28 mark, 97 × 100 PNG, used as official homepage logo and OG image. Use about 50–72 px high on website to preserve sharpness. |
+
+No logo was generated, redrawn, recolored, or reconstructed. Standalone Sea Breeze and Emporium SVG extraction preserves all original path data. HTML and CSS reference files in this folder are retained as provenance and are not site assets.

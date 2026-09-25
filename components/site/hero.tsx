@@ -2,7 +2,21 @@
 import Link from "next/link";
 import { withSiteBasePath } from "@/lib/site-path";
 import { useEffect, useState } from "react";
-import { ArrowUpRight, ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
+import {
+  ArrowUpRight,
+  ArrowLeft,
+  ArrowRight,
+  Pause,
+  Play,
+  Ruler,
+  Layers3,
+  Factory,
+  Warehouse,
+  Archive,
+  Wrench,
+  Settings2,
+  LockKeyhole,
+} from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -24,6 +38,12 @@ const slides = [
     image: withSiteBasePath("/images/hero-showroom.webp"),
     alt: "Metal dolablar, rəflər və iş masasının nümunə görüntüsü",
     kind: "scene",
+    badge: { icon: Factory, title: "YERLİ", detail: "İSTEHSAL" },
+    features: [
+      { icon: Ruler, label: "Fərdi ölçü" },
+      { icon: Layers3, label: "Metal mebel" },
+      { icon: LockKeyhole, label: "Dolab və seyflər" },
+    ],
   },
   {
     title: (
@@ -39,6 +59,12 @@ const slides = [
     image: withSiteBasePath("/images/warehouse-shelving.webp"),
     alt: "Metal anbar rəfinin nümunə görüntüsü",
     kind: "product",
+    badge: { icon: Ruler, title: "FƏRDİ", detail: "ÖLÇÜ" },
+    features: [
+      { icon: Warehouse, label: "Anbar rəfləri" },
+      { icon: Archive, label: "Arxiv sistemləri" },
+      { icon: Settings2, label: "Məkana uyğun" },
+    ],
   },
   {
     title: (
@@ -54,6 +80,12 @@ const slides = [
     image: withSiteBasePath("/images/metal-workbench.webp"),
     alt: "Metal iş masasının nümunə görüntüsü",
     kind: "product",
+    badge: { icon: Wrench, title: "İŞİNİZƏ", detail: "UYĞUN" },
+    features: [
+      { icon: Wrench, label: "İş masaları" },
+      { icon: Layers3, label: "Alət dolabları" },
+      { icon: Ruler, label: "Fərdi ölçü" },
+    ],
   },
 ];
 export function Hero() {
@@ -113,9 +145,34 @@ export function Hero() {
                     fetchPriority={i === 0 ? "high" : "auto"}
                   />
                 </div>
+                <div
+                  className="hero-emblem"
+                  aria-label={`${s.badge.title} ${s.badge.detail}`}
+                >
+                  <s.badge.icon aria-hidden="true" strokeWidth={1.5} />
+                  <strong>{s.badge.title}</strong>
+                  <span>{s.badge.detail}</span>
+                </div>
                 <div className="container hero-content">
                   {i === 0 ? <h1>{s.title}</h1> : <h2>{s.title}</h2>}
                   <p>{s.description}</p>
+                  <ul
+                    className="hero-features"
+                    aria-label="Məhsul xüsusiyyətləri"
+                  >
+                    {s.features.map((feature) => (
+                      <li key={feature.label}>
+                        <span className="hero-feature-icon">
+                          <feature.icon
+                            aria-hidden="true"
+                            size={23}
+                            strokeWidth={1.6}
+                          />
+                        </span>
+                        <span>{feature.label}</span>
+                      </li>
+                    ))}
+                  </ul>
                   <div className="hero-ctas">
                     <Link
                       tabIndex={index === i ? 0 : -1}

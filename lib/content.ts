@@ -200,12 +200,44 @@ export const nav = [
 
 // Names supplied by Legends General; keep this list limited to confirmed partners.
 export const partners = [
-  "Crescent Mall",
-  "Sea Breeze",
-  "Ralph Lauren",
-  "Emporium",
-  "LEGO",
-  "Embawood",
-  "Gənclik Mall",
-  "28 Mall",
+  {
+    name: "Crescent Mall",
+    id: "crescent-mall",
+    logo: withSiteBasePath("/images/partners/crescent-mall.svg"),
+  },
+  {
+    name: "Sea Breeze",
+    id: "sea-breeze",
+    logo: withSiteBasePath("/images/partners/sea-breeze.svg"),
+  },
+  {
+    name: "Ralph Lauren",
+    id: "ralph-lauren",
+    logo: withSiteBasePath("/images/partners/ralph-lauren.jpg"),
+  },
+  {
+    name: "Emporium",
+    id: "emporium",
+    logo: withSiteBasePath("/images/partners/emporium.svg"),
+  },
+  {
+    name: "LEGO",
+    id: "lego",
+    logo: withSiteBasePath("/images/partners/lego.svg"),
+  },
+  {
+    name: "Embawood",
+    id: "embawood",
+    logo: withSiteBasePath("/images/partners/embawood.png"),
+  },
+  {
+    name: "Gənclik Mall",
+    id: "ganjlik-mall-horizontal",
+    logo: withSiteBasePath("/images/partners/ganjlik-mall-horizontal.svg"),
+  },
+  {
+    name: "28 Mall",
+    id: "mall28",
+    logo: withSiteBasePath("/images/partners/mall28.png"),
+  },
 ];
