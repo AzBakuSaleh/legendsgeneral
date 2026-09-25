@@ -195,3 +195,15 @@ export const nav = [
   { href: "/haqqimizda/", label: "Haqqımızda" },
   { href: "/elaqe/", label: "Əlaqə" },
 ];
+
+// Names supplied by Legends General; keep this list limited to confirmed partners.
+export const partners = [
+  "Crescent Mall",
+  "Sea Breeze",
+  "Ralph Lauren",
+  "Emporium",
+  "LEGO",
+  "Embawood",
+  "Gənclik Mall",
+  "28 Mall",
+];
