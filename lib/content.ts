@@ -1,3 +1,5 @@
+import { withSiteBasePath } from "@/lib/site-path";
+
 export const phones = [
   { label: "055 240 81 65", number: "994552408165" },
   { label: "050 299 10 22", number: "994502991022" },
@@ -13,7 +15,7 @@ export const categories = [
     id: "dolablar",
     name: "Metal dolablar",
     short: "Səliqəli və rahat saxlama",
-    image: "/images/steel-lockers.webp",
+    image: withSiteBasePath("/images/steel-lockers.webp"),
     description:
       "İş geyimləri, şəxsi əşyalar və sənədlərin saxlanması üçün metal dolablar.",
   },
@@ -21,21 +23,21 @@ export const categories = [
     id: "refler",
     name: "Metal rəflər",
     short: "Məkanınızdan səmərəli istifadə",
-    image: "/images/warehouse-shelving.webp",
+    image: withSiteBasePath("/images/warehouse-shelving.webp"),
     description: "Anbar, arxiv və iş məkanları üçün metal rəf sistemləri.",
   },
   {
     id: "seyfler",
     name: "Seyflər",
     short: "Dəyərli əşyalar üçün",
-    image: "/images/money-safe.webp",
+    image: withSiteBasePath("/images/money-safe.webp"),
     description: "Pul, sənədlər və dəyərli əşyaların saxlanması üçün seyflər.",
   },
   {
     id: "tibbi",
     name: "Tibbi mebel",
     short: "Tibb məkanları üçün mebel",
-    image: "/images/medical-cabinet.webp",
+    image: withSiteBasePath("/images/medical-cabinet.webp"),
     description:
       "Tibb müəssisələrinin saxlama və təşkilati ehtiyacları üçün metal mebel.",
   },
@@ -43,14 +45,14 @@ export const categories = [
     id: "arxiv",
     name: "Arxiv sistemləri",
     short: "Sənədləriniz qaydasında",
-    image: "/images/mobile-archive.webp",
+    image: withSiteBasePath("/images/mobile-archive.webp"),
     description: "Sənəd və qovluqların sistemli saxlanması üçün arxiv həlləri.",
   },
   {
     id: "istehsalat",
     name: "İstehsalat mebeli",
     short: "İş yeriniz üçün funksionallıq",
-    image: "/images/metal-workbench.webp",
+    image: withSiteBasePath("/images/metal-workbench.webp"),
     description:
       "Emalatxana və istehsal məkanları üçün iş masaları və metal mebel.",
   },
@@ -154,37 +156,37 @@ export const projects = [
   {
     title: "Metal karkaslı yataq",
     tag: "Metal mebel",
-    image: "/images/25cd2abe20213f8a.jpg",
+    image: withSiteBasePath("/images/25cd2abe20213f8a.jpg"),
     url: instagram + "reel/Ddob8t2iHbE/",
   },
   {
     title: "Loft üslublu mebel",
     tag: "Metal mebel",
-    image: "/images/b8b3c9b4a7aae343.jpg",
+    image: withSiteBasePath("/images/b8b3c9b4a7aae343.jpg"),
     url: instagram + "reel/DdblDvjCIUi/",
   },
   {
     title: "Tor detallı metal rəf",
     tag: "Rəflər",
-    image: "/images/8e4bf7ea494f5784.jpg",
+    image: withSiteBasePath("/images/8e4bf7ea494f5784.jpg"),
     url: instagram + "reel/DdWalT9ga50/",
   },
   {
     title: "Metal karkaslı oturacaq",
     tag: "Metal mebel",
-    image: "/images/df7bbb6396722057.jpg",
+    image: withSiteBasePath("/images/df7bbb6396722057.jpg"),
     url: instagram + "reel/DdJjeW1DwpD/",
   },
   {
     title: "Loft üslublu ayaqqabılıq",
     tag: "Metal mebel",
-    image: "/images/4ef2a85abcc0564a.jpg",
+    image: withSiteBasePath("/images/4ef2a85abcc0564a.jpg"),
     url: instagram + "reel/Dc0_cdnD-Yg/",
   },
   {
     title: "Rəf və dolab sistemi",
     tag: "Rəflər",
-    image: "/images/9248c30c5ce9317e.jpg",
+    image: withSiteBasePath("/images/9248c30c5ce9317e.jpg"),
     url: instagram + "reel/DcdyRe_E0F1/",
   },
 ];
