@@ -4,11 +4,12 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Search, Menu, X, ArrowUpRight, MapPin } from "lucide-react";
 import { nav } from "@/lib/content";
+import { withSiteBasePath } from "@/lib/site-path";
 export function Logo() {
   return (
     <span className="brand-image">
       <img
-        src="/images/logo.jpg"
+        src={withSiteBasePath("/images/logo.jpg")}
         alt="Legends General — Professional Metal Works"
         width="897"
         height="954"
