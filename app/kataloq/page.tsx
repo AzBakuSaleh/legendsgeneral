@@ -3,16 +3,16 @@ import { Suspense } from "react";
 import { PageHeading } from "@/components/site/shared";
 import { Catalog } from "@/components/site/catalog";
 export const metadata: Metadata = {
-  title: "Məhsul kataloqu",
+  title: "Məhsullar və xidmətlər",
   description:
-    "Metal dolablar, rəflər, seyflər, tibbi və istehsalat mebeli, arxiv sistemləri. Legends General məhsul kataloqu.",
+    "Metal mebel, konstruksiyalar, dekorasiya, konteynerlər, soyuducu qapıları, kuzovlar və elektrostatik toz boyama.",
 };
 export default function CatalogPage() {
   return (
     <main id="main">
       <PageHeading
-        title="Məhsul kataloqu"
-        description="Ehtiyacınıza uyğun məhsulu tapın. Detalları birlikdə dəqiqləşdirək."
+        title="Məhsullar və xidmətlər"
+        description="İstiqaməti seçin, məhsul və xidmətlərlə tanış olun."
       />
       <Suspense
         fallback={

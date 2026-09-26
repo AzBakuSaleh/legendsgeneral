@@ -4,8 +4,9 @@ import { Hero } from "@/components/site/hero";
 import { AboutBand } from "@/components/site/shared";
 import { Gallery } from "@/components/site/gallery";
 import { ContactSection } from "@/components/site/contact";
-import { categories } from "@/lib/content";
+import { divisions } from "@/lib/content";
 import { Partners } from "@/components/site/partners";
+import { ServiceAnnotation } from "@/components/site/service-annotation";
 export default function Home() {
   return (
     <main id="main">
@@ -15,22 +16,23 @@ export default function Home() {
         <div className="container">
           <div className="section-heading">
             <div>
-              <h2 id="catalog-title">Məhsul kataloqu</h2>
-              <p>Hər məkan üçün düşünülmüş metal həllər.</p>
+              <h2 id="catalog-title">Məhsullar və xidmətlər</h2>
+              <p>
+                Metal mebeldən konstruksiyalara, sifarişinizə uyğun istehsal.
+              </p>
             </div>
             <Link className="text-link" href="/kataloq/">
-              Bütün məhsullar <ArrowUpRight />
+              Kataloqa bax <ArrowUpRight />
             </Link>
           </div>
-          <div className="category-grid">
-            {categories.map((c, i) => (
+          <div className="category-grid services-grid">
+            {divisions.map((c) => (
               <Link
                 className="category-card"
                 key={c.id}
                 href={`/kataloq/?kateqoriya=${c.id}`}
               >
                 <div className="category-image">
-                  <span className="category-number">0{i + 1}</span>
                   <img
                     src={c.image}
                     alt={c.name}
@@ -38,6 +40,7 @@ export default function Home() {
                     height="512"
                     loading="lazy"
                   />
+                  <ServiceAnnotation category={c.id} />
                 </div>
                 <div className="category-label">
                   <div>
@@ -52,7 +55,8 @@ export default function Home() {
             ))}
           </div>
           <p className="image-note">
-            Şəkillər məhsul tipini göstərən nümunə görüntülərdir.
+            Şəkillər məhsul və xidmət istiqamətlərini göstərən nümunə
+            görüntülərdir.
           </p>
         </div>
       </section>

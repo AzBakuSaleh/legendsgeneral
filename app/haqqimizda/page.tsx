@@ -3,11 +3,11 @@ import Link from "next/link";
 import { ArrowUpRight, MessageSquare, Ruler, Factory } from "lucide-react";
 import { PageHeading } from "@/components/site/shared";
 import { ContactSection } from "@/components/site/contact";
-import { categories, projects } from "@/lib/content";
+import { divisions, projects } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Haqqımızda",
   description:
-    "Legends General — Azərbaycanda metal mebel və saxlama sistemlərinin istehsalı.",
+    "Legends General MMC — Azərbaycanda metal mebel, konstruksiyalar, dekorativ metal işləri və istehsal xidmətləri.",
 };
 export default function AboutPage() {
   return (
@@ -29,20 +29,22 @@ export default function AboutPage() {
         <div className="about-copy">
           <span className="eyebrow">AZƏRBAYCANDA METAL İSTEHSALI</span>
           <h2>
-            Funksionallıq.
+            Metal mebeldən
             <br />
-            Nizam. Metal.
+            konstruksiyalara.
           </h2>
           <p>
-            Legends General metal mebel və saxlama sistemləri hazırlayan
-            Azərbaycan şirkətidir. İş məkanlarının fərqli ehtiyacları üçün metal
-            dolablar, rəflər, seyflər və digər metal mebel həlləri təqdim
-            edirik.
+            Legends General MMC Azərbaycanda metal mebel, tikinti
+            konstruksiyaları və dekorativ metal məmulatlar hazırlayır. Dolab,
+            stellaj, seyf və çarpayılardan anbar və anqar konstruksiyalarına,
+            pilləkən və darvazalara qədər müxtəlif istiqamətlər üzrə sifarişlər
+            qəbul edirik.
           </p>
           <p>
-            Məhsul seçiminə istifadə məqsədindən başlayırıq. Ölçü, bölmələr,
-            komplektasiya və digər detallar barədə bizimlə danışaraq
-            ehtiyacınıza uyğun variantı dəqiqləşdirə bilərsiniz.
+            Fəaliyyətimizə quru və soyuducu konteynerlərin, sənaye soyuducu
+            qapılarının və yük avtomobili kuzovlarının hazırlanması, həmçinin
+            elektrostatik toz boyama daxildir. Ölçü, material, komplektasiya və
+            iş həcmini sifarişin tələblərinə uyğun dəqiqləşdiririk.
           </p>
           <Link href="/gorulen-isler/" className="text-link">
             İşlərimizə baxın <ArrowUpRight />
@@ -54,7 +56,7 @@ export default function AboutPage() {
           <div className="section-heading">
             <div>
               <h2>Haradan başlayaq?</h2>
-              <p>Uyğun məhsulu seçmək üçün üç sadə addım.</p>
+              <p>Sifarişinizi müzakirə etmək üçün üç sadə addım.</p>
             </div>
           </div>
           <div className="process-grid">
@@ -62,7 +64,7 @@ export default function AboutPage() {
               {
                 icon: MessageSquare,
                 title: "Ehtiyacınızı bildirin",
-                text: "Hansı məhsulla maraqlandığınızı və harada istifadə edəcəyinizi bizimlə paylaşın.",
+                text: "Maraqlandığınız məhsul və ya xidməti, istifadə məqsədini bizimlə paylaşın.",
               },
               {
                 icon: Ruler,
@@ -89,13 +91,13 @@ export default function AboutPage() {
       </section>
       <section className="container section">
         <div className="section-heading">
-          <h2>İstehsal istiqamətlərimiz</h2>
+          <h2>Fəaliyyət istiqamətlərimiz</h2>
           <Link href="/kataloq/" className="text-link">
             Kataloqa keç <ArrowUpRight />
           </Link>
         </div>
         <div className="about-categories">
-          {categories.map((c) => (
+          {divisions.map((c) => (
             <Link key={c.id} href={`/kataloq/?kateqoriya=${c.id}`}>
               <h3>{c.name}</h3>
               <p>{c.description}</p>

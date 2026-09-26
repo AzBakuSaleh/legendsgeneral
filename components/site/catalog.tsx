@@ -1,8 +1,14 @@
 "use client";
 import Link from "next/link";
+import { ServiceAnnotation } from "./service-annotation";
 import { useSearchParams } from "next/navigation";
 import { Search, ArrowUpRight, ArrowRight, X } from "lucide-react";
-import { categories, products } from "@/lib/content";
+import {
+  categories,
+  divisions,
+  products,
+  categoryMatches,
+} from "@/lib/content";
 import { Input } from "@/components/ui/input";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
@@ -22,14 +28,24 @@ const normalize = (s: string) =>
 export function Catalog() {
   const params = useSearchParams();
   const requested = params.get("kateqoriya");
-  const category = categories.some((c) => c.id === requested)
+  const category = [...divisions, ...categories].some((c) => c.id === requested)
     ? requested!
     : "all";
   const query = params.get("q") ?? "";
+  const furnitureSelected =
+    category === "metal-mebel" ||
+    categories.some(
+      (c) => c.id === category && categoryMatches(c.id, "metal-mebel"),
+    );
+  const selectedArea = [...divisions, ...categories].find(
+    (c) => c.id === category,
+  );
   const results = products.filter(
     (p) =>
-      (category === "all" || p.category === category) &&
-      normalize(p.name + " " + p.description).includes(normalize(query.trim())),
+      categoryMatches(p.category, category) &&
+      normalize(
+        p.name + " " + p.description + " " + (p.offerings ?? []).join(" "),
+      ).includes(normalize(query.trim())),
   );
   function setQuery(value: string) {
     const url = new URL(window.location.href);
@@ -47,19 +63,19 @@ export function Catalog() {
   return (
     <section className="container section catalog-layout">
       <aside className="catalog-sidebar">
-        <h2>Kateqoriyalar</h2>
+        <h2>İstiqamətlər</h2>
         <ToggleGroup
           type="single"
           orientation="vertical"
-          value={category}
+          value={furnitureSelected ? "metal-mebel" : category}
           onValueChange={select}
-          aria-label="Məhsul kateqoriyaları"
+          aria-label="Məhsul və xidmət istiqamətləri"
           className="category-filter"
         >
           <ToggleGroupItem value="all">
-            Bütün məhsullar <span>{products.length}</span>
+            Hamısı <span>{products.length}</span>
           </ToggleGroupItem>
-          {categories.map((c) => (
+          {divisions.map((c) => (
             <ToggleGroupItem value={c.id} key={c.id}>
               {c.name}
               <ArrowRight size={16} />
@@ -68,13 +84,39 @@ export function Catalog() {
         </ToggleGroup>
         <div className="catalog-help">
           <h3>Seçimdə kömək lazımdır?</h3>
-          <p>Ehtiyacınızı bildirin, uyğun məhsulu birlikdə seçək.</p>
+          <p>Məhsul və ya xidmətlə bağlı ehtiyacınızı bizə bildirin.</p>
           <Link href="/elaqe/" className="text-link">
             Məlumat al <ArrowUpRight />
           </Link>
         </div>
       </aside>
       <div className="catalog-main">
+        {selectedArea && (
+          <div className="catalog-intro">
+            <h2>{selectedArea.name}</h2>
+            <p>{selectedArea.description}</p>
+          </div>
+        )}
+        {furnitureSelected && (
+          <ToggleGroup
+            type="single"
+            value={category}
+            onValueChange={select}
+            className="furniture-filters"
+            aria-label="Metal mebel növləri"
+          >
+            <ToggleGroupItem value="metal-mebel">
+              Bütün metal mebel
+            </ToggleGroupItem>
+            {categories
+              .filter((c) => categoryMatches(c.id, "metal-mebel"))
+              .map((c) => (
+                <ToggleGroupItem key={c.id} value={c.id}>
+                  {c.name}
+                </ToggleGroupItem>
+              ))}
+          </ToggleGroup>
+        )}
         <div className="catalog-toolbar">
           <label className="search-input" htmlFor="axtaris">
             <Search size={19} />
@@ -83,8 +125,8 @@ export function Catalog() {
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Məhsul axtar..."
-              aria-label="Məhsul axtar"
+              placeholder="Məhsul və ya xidmət axtar..."
+              aria-label="Məhsul və ya xidmət axtar"
             />
             {query && (
               <button
@@ -96,13 +138,16 @@ export function Catalog() {
               </button>
             )}
           </label>
-          <span aria-live="polite">{results.length} məhsul</span>
+          <span aria-live="polite">{results.length} nəticə</span>
         </div>
         {results.length ? (
           <div className="product-grid">
             {results.map((p) => (
               <article className="product-card" key={p.slug}>
-                <Link href={`/mehsullar/${p.slug}/`} className="product-image">
+                <Link
+                  href={`/mehsullar/${p.slug}/`}
+                  className={`product-image${p.kind === "service" ? " service-photo" : ""}`}
+                >
                   <img
                     src={p.image}
                     alt={p.name}
@@ -110,6 +155,9 @@ export function Catalog() {
                     height="512"
                     loading="lazy"
                   />
+                  {p.kind === "service" && (
+                    <ServiceAnnotation category={p.category} />
+                  )}
                 </Link>
                 <div className="product-card-content">
                   <span className="product-category">
@@ -118,7 +166,11 @@ export function Catalog() {
                   <h2>
                     <Link href={`/mehsullar/${p.slug}/`}>{p.name}</Link>
                   </h2>
-                  <p>Ölçü və komplektasiya barədə məlumat alın.</p>
+                  <p>
+                    {p.kind === "service"
+                      ? "İş həcmi və tələblər barədə məlumat alın."
+                      : "Ölçü və komplektasiya barədə məlumat alın."}
+                  </p>
                   <Link href={`/mehsullar/${p.slug}/`} className="text-link">
                     Ətraflı bax <ArrowUpRight />
                   </Link>
@@ -129,7 +181,7 @@ export function Catalog() {
         ) : (
           <Empty className="catalog-empty">
             <EmptyHeader>
-              <EmptyTitle>Məhsul tapılmadı</EmptyTitle>
+              <EmptyTitle>Nəticə tapılmadı</EmptyTitle>
               <EmptyDescription>
                 Başqa sözlə axtarın və ya kateqoriya seçimini dəyişin.
               </EmptyDescription>
@@ -142,14 +194,14 @@ export function Catalog() {
                   select("all");
                 }}
               >
-                Bütün məhsulları göstər
+                Bütün nəticələri göstər
               </button>
             </EmptyContent>
           </Empty>
         )}
         <p className="image-note">
-          Kataloq şəkilləri məhsul tipini göstərən nümunə görüntülərdir. Dəqiq
-          görünüş və texniki xüsusiyyətlər sifariş zamanı təsdiqlənir.
+          Kataloqda nümunə görüntülər və real işlərimizdən şəkillər yer alır.
+          Dəqiq görünüş və texniki xüsusiyyətlər sifariş zamanı təsdiqlənir.
         </p>
       </div>
     </section>

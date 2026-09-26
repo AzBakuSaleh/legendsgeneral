@@ -1,0 +1,43 @@
+{
+  "mode": "Built-in image_gen; six separate original generations; no reference images",
+  "purpose": "AI-generated illustrative category imagery, not actual Legends General projects",
+  "generated": "2026-09-26",
+  "assets": [
+    {
+      "file": "public/images/services/metal-construction.webp",
+      "prompt": "Use case: photorealistic-natural\nAsset type: illustrative category photography for an Azerbaijani industrial manufacturing website, a fictional representative scene, not a documented company project.\nStyle/medium: premium realistic industrial architectural/product photography, precise believable engineering, natural material textures, restrained cool light-gray and navy palette with subtle orange accents where appropriate, crisp natural lighting, visually consistent series.\nConstraints: no people, no text, lettering, numbers, logos, brands, signs, watermarks or borders. No montage. Create one finished photograph.\nPrimary request: clean steel portal-frame industrial warehouse (hangar) interior with structural steel columns and roof trusses, daylight entering a spacious clean empty hall.\nComposition/framing: wide 16:9 landscape, main structural emphasis on the right half, left half less busy and darker for potential webpage copy overlay; architectural photography at human eye level. Cool gray steel and navy shadows, subtle orange accents.",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "public/images/services/metal-decoration.webp",
+      "prompt": "Use case: photorealistic-natural\nAsset type: illustrative category photography for an Azerbaijani industrial manufacturing website, a fictional representative scene, not a documented company project.\nStyle/medium: premium realistic industrial architectural/product photography, precise believable engineering, natural material textures, restrained cool light-gray and navy palette with subtle orange accents where appropriate, crisp natural lighting, visually consistent series.\nConstraints: no people, no text, lettering, numbers, logos, brands, signs, watermarks or borders. No montage. Create one finished photograph.\nPrimary request: premium modern fabricated black metal staircase and refined metal railing in a minimal neutral commercial interior; restrained elegant architectural workmanship.\nComposition/framing: wide 16:9 landscape, main stair and railing on the right, left half less busy with neutral wall and soft navy-gray shadows for potential webpage copy overlay. Realistic construction and continuous handrails, soft daylight.",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "public/images/services/containers.webp",
+      "prompt": "Use case: photorealistic-natural\nAsset type: illustrative category photography for an Azerbaijani industrial manufacturing website, a fictional representative scene, not a documented company project.\nStyle/medium: premium realistic industrial architectural/product photography, precise believable engineering, natural material textures, restrained cool light-gray and navy palette with subtle orange accents where appropriate, crisp natural lighting, visually consistent series.\nConstraints: no people, no text, lettering, numbers, logos, brands, signs, watermarks or borders. No montage. Create one finished photograph.\nPrimary request: original industrial product photograph of two unbranded shipping containers together, one navy corrugated dry cargo shipping container and one light-gray insulated reefer container with visible refrigeration machinery, arranged in a pale-gray clean industrial yard.\nComposition/framing: landscape 4:3, clear three-quarter product view showing both distinct container types, balanced space, soft overcast daylight, realistic container proportions. All surfaces blank without labels or codes.",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "public/images/services/cold-room-doors.webp",
+      "prompt": "Use case: photorealistic-natural\nAsset type: illustrative category photography for an Azerbaijani industrial manufacturing website, a fictional representative scene, not a documented company project.\nStyle/medium: premium realistic industrial architectural/product photography, precise believable engineering, natural material textures, restrained cool light-gray and navy palette with subtle orange accents where appropriate, crisp natural lighting, visually consistent series.\nConstraints: no people, no text, lettering, numbers, logos, brands, signs, watermarks or borders. No montage. Create one finished photograph.\nPrimary request: isolated industrial insulated cold-storage sliding door installed on a neutral clean light-gray insulated wall; substantial white insulated door panel, visible metallic sliding overhead rail and practical door handle, clean professional industrial setting.\nComposition/framing: landscape 4:3, clear three-quarter frontal view, entire door and track visible, simple uncluttered background, soft cool diffuse daylight. No person, no signage.",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "public/images/services/truck-bodies.webp",
+      "prompt": "Use case: photorealistic-natural\nAsset type: illustrative category photography for an Azerbaijani industrial manufacturing website, a fictional representative scene, not a documented company project.\nStyle/medium: premium realistic industrial architectural/product photography, precise believable engineering, natural material textures, restrained cool light-gray and navy palette with subtle orange accents where appropriate, crisp natural lighting, visually consistent series.\nConstraints: no people, no text, lettering, numbers, logos, brands, signs, watermarks or borders. No montage. Create one finished photograph.\nPrimary request: unbranded small commercial truck with light-gray rear box cargo body on a dark chassis, three-quarter rear view in a pale-gray clean industrial yard; focus on fabricated cargo body, rear twin doors and hinges, believable metal fittings, truck cab secondary and partly visible.\nComposition/framing: landscape 4:3 product photograph, entire truck within frame, natural perspective, soft overcast daylight, crisp manufactured surfaces. No license text, vehicle labels or branding.",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "public/images/services/powder-coating.webp",
+      "prompt": "Use case: photorealistic-natural\nAsset type: illustrative category photography for an Azerbaijani industrial manufacturing website, a fictional representative scene, not a documented company project.\nStyle/medium: premium realistic industrial architectural/product photography, precise believable engineering, natural material textures, restrained cool light-gray and navy palette with subtle orange accents where appropriate, crisp natural lighting, visually consistent series.\nConstraints: no people, no text, lettering, numbers, logos, brands, signs, watermarks or borders. No montage. Create one finished photograph.\nPrimary request: clean industrial powder-coating booth with suspended fabricated steel brackets and frames, finished orange painted parts, visible electrostatic powder spray equipment parked safely inside the booth, no people. Realistic fabrication finishing workshop, safe orderly clean environment with proper booth ventilation.\nComposition/framing: landscape 4:3 industrial photograph, orange coated parts as main subject against cool light-gray booth and navy shadows, crisp details, realistic even factory lighting.",
+      "width": 1448,
+      "height": 1086
+    }
+  ]
+}

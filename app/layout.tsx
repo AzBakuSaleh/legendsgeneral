@@ -5,11 +5,11 @@ import { withSiteBasePath } from "@/lib/site-path";
 import "./globals.css";
 export const metadata: Metadata = {
   title: {
-    default: "Legends General | Metal mebel və saxlama sistemləri",
+    default: "Legends General | Metal istehsalı və xidmətlər",
     template: "%s | Legends General",
   },
   description:
-    "Azərbaycanda metal dolab, rəf, seyf, tibbi mebel və arxiv sistemləri istehsalı. Məhsullara baxın və Legends General ilə əlaqə saxlayın.",
+    "Azərbaycanda metal mebel və konstruksiyalar, dekorativ metal işləri, konteynerlər, sənaye soyuducu qapıları, kuzovlar və elektrostatik toz boyama.",
   icons: { icon: withSiteBasePath("/favicon.svg") },
   openGraph: { locale: "az_AZ", type: "website", siteName: "Legends General" },
   robots: { index: false, follow: false },

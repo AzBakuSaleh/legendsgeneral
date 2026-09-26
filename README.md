@@ -1,6 +1,6 @@
 # Legends General
 
-Azərbaycan dilində metal mebel və saxlama sistemləri saytı. React, Next.js və TypeScript ilə hazırlanıb. Kompüter və telefon ekranlarına uyğunlaşır. Server bazası tələb etmir; hazır nəticə adi statik hostinqdə işləyir.
+Azərbaycan dilində metal istehsalı, məhsullar və xidmətlər saytı. React, Next.js və TypeScript ilə hazırlanıb. Kompüter və telefon ekranlarına uyğunlaşır. Server bazası tələb etmir; hazır nəticə adi statik hostinqdə işləyir.
 
 ## Hazır sayta baxmaq
 
@@ -29,7 +29,7 @@ npm start
 
 ## Məzmunu dəyişmək
 
-- `lib/content.ts`: telefonlar, ünvan, məhsullar, kateqoriyalar, görülən işlər və Instagram keçidləri.
+- `lib/content.ts`: telefonlar, ünvan, yeddi fəaliyyət istiqaməti, məhsul və xidmətlər, müraciət seçimləri, görülən işlər və Instagram keçidləri.
 - `app/page.tsx`: ana səhifənin bölmələri.
 - `components/site/hero.tsx`: slaydların mətn və şəkilləri.
 - `components/site/contact.tsx`: müraciət forması.
@@ -40,16 +40,16 @@ Məhsul səhifələri `lib/content.ts` siyahısından avtomatik yaranır. Məhsu
 
 ## Müraciət forması
 
-Forma adı, əlaqə nömrəsini, məhsulu, üç şirkət nömrəsindən birini və sualı qəbul edir. Daxiletməni yoxlayır, mesaj önizləməsini göstərir və seçilmiş nömrə üçün WhatsApp keçidi yaradır. Mesaj yalnız müştəri WhatsApp-da göndərməyi tamamladıqda göndərilir. Sayt məlumatı bazada saxlamır və elektron məktub göndərmir. Heç bir API açarı tələb olunmur.
+Forma adı, əlaqə nömrəsini, məhsul və ya xidməti, üç şirkət nömrəsindən birini və sualı qəbul edir. Daxiletməni yoxlayır, mesaj önizləməsini göstərir və seçilmiş nömrə üçün WhatsApp keçidi yaradır. Mesaj yalnız müştəri WhatsApp-da göndərməyi tamamladıqda göndərilir. Sayt məlumatı bazada saxlamır və elektron məktub göndərmir. Heç bir API açarı tələb olunmur.
 
 ## Dillər və məzmun
 
 Hazırkı razılaşmaya əsasən yalnız Azərbaycan dili aktivdir. Rus və ingilis tərcümələri hələ əlavə edilməyib; eyni komponentlər tərcümə lüğəti ilə istifadə oluna bilər. İşləməyən dil düymələri qoyulmayıb.
 
-Kataloqdakı altı məhsul istiqamət üçün nümunə təqdimatdır; şirkətin tam model siyahısı deyil. Dəqiq ölçülər, qiymətlər, kilid seçimləri, hazırlanma müddətləri və sertifikat göstəriciləri təsdiqlənmədiyi üçün uydurulmayıb.
+Kataloqda 7 əsas istiqamət üzrə 14 məhsul və xidmət təqdimatı var. Metal mebel daxilində əvvəlki dolab, rəf, seyf, tibbi mebel, arxiv və istehsalat mebeli bölmələri saxlanılıb; çarpayı və masa/oturacaq əlavə olunub. Təqdimatlar şirkətin tam model siyahısı deyil. Məzmun müştərinin təqdimatı ilə genişləndirilib (`docs/content-sources.md`). Dəqiq ölçülər, qiymətlər, kilid seçimləri, hazırlanma müddətləri və sertifikat göstəriciləri təsdiqlənmədiyi üçün uydurulmayıb.
 
 İlkin baxış versiyasında axtarış sistemlərində indeksləmə bağlıdır (`app/layout.tsx`, `robots`). Rəsmi domenə çıxarılarkən təsdiqlənmiş domen üçün canonical, sayt xəritəsi və indeksləmə əlavə olunmalıdır.
 
 ## Şəkillərin mənbələri
 
-Loqo istifadəçinin təqdim etdiyi orijinal şəkildir; fayl dəyişdirilmədən yerləşdirilib. Kataloq və ilk slayd şəkilləri xüsusi yaradılmış məhsul illüstrasiyalarıdır, faktiki istehsal fotosu deyil. Saytda nümunə görüntü kimi qeyd olunur. Görülən işlər yalnız şirkətin açıq Instagram səhifəsindəki faktiki paylaşımlardan götürülüb; hər şəkildən orijinal paylaşımı açmaq mümkündür. `safe.ru` saytının loqosu, mətnləri və fotoları istifadə edilməyib.
+Loqo istifadəçinin təqdim etdiyi orijinal şəkildir; fayl dəyişdirilmədən yerləşdirilib. Kataloq və slaydların nümunə şəkilləri xüsusi yaradılmış illüstrasiyalardır. Çarpayı və masa/oturacaq səhifələrində şirkətin real Instagram işlərindən istifadə olunur. Yeni xidmət şəkillərinin təsvirləri və mənbə qeydləri `docs/service-image-sources.json` faylındadır. Saytda nümunə görüntü kimi qeyd olunur. Görülən işlər yalnız şirkətin açıq Instagram səhifəsindəki faktiki paylaşımlardan götürülüb; hər şəkildən orijinal paylaşımı açmaq mümkündür. `safe.ru` saytının loqosu, mətnləri və fotoları istifadə edilməyib.

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, Check, ArrowLeft } from "lucide-react";
-import { products, categories } from "@/lib/content";
+import { products, categories, categoryMatches } from "@/lib/content";
+import { ServiceAnnotation } from "@/components/site/service-annotation";
 import { ProductPhoto } from "@/components/site/product-photo";
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -29,7 +30,14 @@ export default async function ProductPage({
   const product = products.find((p) => p.slug === slug);
   if (!product) notFound();
   const category = categories.find((c) => c.id === product.category)!;
-  const related = products.filter((p) => p.slug !== slug).slice(0, 3);
+  const candidates = products.filter((p) => p.slug !== slug);
+  const area = categoryMatches(product.category, "metal-mebel")
+    ? "metal-mebel"
+    : product.category;
+  const related = [
+    ...candidates.filter((p) => categoryMatches(p.category, area)),
+    ...candidates.filter((p) => !categoryMatches(p.category, area)),
+  ].slice(0, 3);
   return (
     <main id="main">
       <div className="container product-breadcrumbs">
@@ -42,7 +50,12 @@ export default async function ProductPage({
         </nav>
       </div>
       <section className="container product-detail">
-        <ProductPhoto src={product.image} name={product.name} />
+        <ProductPhoto
+          src={product.image}
+          name={product.name}
+          real={product.imageKind === "real"}
+          category={product.kind === "service" ? product.category : undefined}
+        />
         <div className="product-info">
           <Link
             className="eyebrow"
@@ -52,7 +65,24 @@ export default async function ProductPage({
           </Link>
           <h1>{product.name}</h1>
           <p className="product-description">{product.description}</p>
-          <h2>İstifadə sahələri</h2>
+          {product.offerings && (
+            <div className="service-offerings">
+              <h2>Bu istiqamətdə hazırlayırıq</h2>
+              <ul className="usage-list">
+                {product.offerings.map((item) => (
+                  <li key={item}>
+                    <Check size={16} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <h2>
+            {product.kind === "service"
+              ? "Uyğun olduğu sahələr"
+              : "İstifadə sahələri"}
+          </h2>
           <ul className="usage-list">
             {product.uses.map((use) => (
               <li key={use}>
@@ -88,7 +118,7 @@ export default async function ProductPage({
       </section>
       <section className="container section">
         <div className="section-heading">
-          <h2>Digər məhsullar</h2>
+          <h2>Digər məhsul və xidmətlər</h2>
           <Link href="/kataloq/" className="text-link">
             <ArrowLeft />
             Kataloqa qayıt
@@ -109,6 +139,9 @@ export default async function ProductPage({
                   height="512"
                   loading="lazy"
                 />
+                {p.kind === "service" && (
+                  <ServiceAnnotation category={p.category} />
+                )}
               </div>
               <div className="category-label">
                 <h3>{p.name}</h3>

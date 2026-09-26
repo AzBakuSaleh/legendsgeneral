@@ -2,7 +2,12 @@
 import { Suspense, useEffect, useRef, useState, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowUpRight, Check, ArrowLeft } from "lucide-react";
-import { phones, products } from "@/lib/content";
+import {
+  phones,
+  inquiryOptions,
+  divisions,
+  categoryMatches,
+} from "@/lib/content";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,12 +18,15 @@ import {
   SelectContent,
   SelectItem,
   SelectGroup,
+  SelectLabel,
 } from "@/components/ui/select";
 import { ContactDetails } from "./shared";
 export function ContactForm() {
   const params = useSearchParams();
   const id = params.get("mehsul");
-  const initialProduct = products.some((p) => p.slug === id) ? id! : "general";
+  const initialProduct = inquiryOptions.some((p) => p.id === id)
+    ? id!
+    : "general";
   return <InquiryForm key={initialProduct} initialProduct={initialProduct} />;
 }
 function InquiryForm({ initialProduct }: { initialProduct: string }) {
@@ -54,8 +62,8 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
       return;
     }
     const selected =
-      products.find((p) => p.slug === product)?.name ?? "Ümumi məlumat";
-    const text = `Salam, Legends General!\n\nAd: ${name.trim()}\nƏlaqə nömrəsi: ${phone.trim()}\nMəhsul: ${selected}\n\nSual: ${message.trim()}`;
+      inquiryOptions.find((p) => p.id === product)?.name ?? "Ümumi məlumat";
+    const text = `Salam, Legends General!\n\nAd: ${name.trim()}\nƏlaqə nömrəsi: ${phone.trim()}\nMəhsul / xidmət: ${selected}\n\nSual: ${message.trim()}`;
     setPrepared({
       text,
       url: `https://wa.me/${recipient}?text=${encodeURIComponent(text)}`,
@@ -147,7 +155,7 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
         </div>
         <Field>
           <FieldLabel htmlFor="inquiry-product">
-            Maraqlandığınız məhsul
+            Maraqlandığınız məhsul və ya xidmət
           </FieldLabel>
           <Select value={product} onValueChange={setProduct}>
             <SelectTrigger id="inquiry-product">
@@ -156,12 +164,19 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
             <SelectContent>
               <SelectGroup>
                 <SelectItem value="general">Ümumi məlumat</SelectItem>
-                {products.map((p) => (
-                  <SelectItem key={p.slug} value={p.slug}>
-                    {p.name}
-                  </SelectItem>
-                ))}
               </SelectGroup>
+              {divisions.map((area) => (
+                <SelectGroup key={area.id}>
+                  <SelectLabel>{area.name}</SelectLabel>
+                  {inquiryOptions
+                    .filter((p) => categoryMatches(p.category, area.id))
+                    .map((p) => (
+                      <SelectItem key={p.id} value={p.id}>
+                        {p.name}
+                      </SelectItem>
+                    ))}
+                </SelectGroup>
+              ))}
             </SelectContent>
           </Select>
         </Field>
@@ -209,7 +224,7 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
             required
             aria-invalid={!!errors.message}
             aria-describedby={errors.message ? "error-message" : undefined}
-            placeholder="Məhsul, ölçü, say və ya digər sualınızı yazın..."
+            placeholder="Məhsul və ya xidmət, ölçü, say və digər tələblərinizi yazın..."
           />
           {errors.message && (
             <p id="error-message" className="field-error">
@@ -239,7 +254,7 @@ export function ContactSection() {
             Bizə yazın.
           </h2>
           <p className="contact-intro">
-            Məhsul seçimi, ölçülər və sifarişlə bağlı suallarınızı
+            Məhsul və xidmət seçimi, ölçülər və sifarişlə bağlı suallarınızı
             cavablandırmağa hazırıq.
           </p>
           <ContactDetails />

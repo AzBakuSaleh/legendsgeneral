@@ -27,7 +27,7 @@ export function Header() {
       </a>
       <div className="utility">
         <div className="container">
-          <span>Metal mebel və saxlama sistemləri</span>
+          <span>Metal istehsalı və xidmətlər</span>
           <span>
             <MapPin size={13} /> Bakı, Azərbaycan
           </span>

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { ServiceAnnotation } from "./service-annotation";
 import { withSiteBasePath } from "@/lib/site-path";
 import { useEffect, useState } from "react";
 import {
@@ -12,9 +13,9 @@ import {
   Layers3,
   Factory,
   Warehouse,
-  Archive,
+  DoorOpen,
   Wrench,
-  Settings2,
+  Fence,
   LockKeyhole,
 } from "lucide-react";
 import {
@@ -33,8 +34,8 @@ const slides = [
       </>
     ),
     description: "Dolablar, rəflər, seyflər və iş məkanınız üçün metal mebel.",
-    href: "/kataloq/",
-    cta: "Kataloqa bax",
+    href: "/kataloq/?kateqoriya=metal-mebel",
+    cta: "Metal mebelə bax",
     image: withSiteBasePath("/images/hero-showroom.webp"),
     alt: "Metal dolablar, rəflər və iş masasının nümunə görüntüsü",
     kind: "scene",
@@ -48,42 +49,44 @@ const slides = [
   {
     title: (
       <>
-        Hər əşyanın
+        Metal karkas
         <br />
-        öz yeri var.
+        hazırlayırıq.
       </>
     ),
-    description: "Anbar və arxivlər üçün məkanınıza uyğun saxlama sistemləri.",
-    href: "/kataloq/?kateqoriya=refler",
-    cta: "Rəflərə bax",
-    image: withSiteBasePath("/images/warehouse-shelving.webp"),
-    alt: "Metal anbar rəfinin nümunə görüntüsü",
-    kind: "product",
+    description:
+      "Anbar, anqar və digər obyektlər üçün metal konstruksiyaların hazırlanması və quraşdırılması.",
+    href: "/kataloq/?kateqoriya=konstruksiyalar",
+    cta: "Ətraflı bax",
+    image: withSiteBasePath("/images/services/metal-construction.webp"),
+    alt: "Metal anqar konstruksiyasının nümunə görüntüsü",
+    kind: "scene",
     badge: { icon: Ruler, title: "FƏRDİ", detail: "ÖLÇÜ" },
     features: [
-      { icon: Warehouse, label: "Anbar rəfləri" },
-      { icon: Archive, label: "Arxiv sistemləri" },
-      { icon: Settings2, label: "Məkana uyğun" },
+      { icon: Warehouse, label: "Anbar və anqar" },
+      { icon: Factory, label: "Metal karkas" },
+      { icon: Wrench, label: "Quraşdırılma" },
     ],
   },
   {
     title: (
       <>
-        İş yerinizə
+        Pilləkən və
         <br />
-        uyğun həllər.
+        məhəccər.
       </>
     ),
-    description: "Emalatxana və istehsal sahələri üçün funksional metal mebel.",
-    href: "/kataloq/?kateqoriya=istehsalat",
-    cta: "Məhsullara bax",
-    image: withSiteBasePath("/images/metal-workbench.webp"),
-    alt: "Metal iş masasının nümunə görüntüsü",
-    kind: "product",
+    description:
+      "Metal pilləkən, məhəccər, qapı və darvazaları ölçüyə uyğun hazırlayırıq.",
+    href: "/kataloq/?kateqoriya=dekorasiya",
+    cta: "Metal işlərinə bax",
+    image: withSiteBasePath("/images/services/metal-decoration.webp"),
+    alt: "Metal pilləkən və məhəccərin nümunə görüntüsü",
+    kind: "scene",
     badge: { icon: Wrench, title: "İŞİNİZƏ", detail: "UYĞUN" },
     features: [
-      { icon: Wrench, label: "İş masaları" },
-      { icon: Layers3, label: "Alət dolabları" },
+      { icon: Fence, label: "Pilləkən və məhəccər" },
+      { icon: DoorOpen, label: "Qapı və darvaza" },
       { icon: Ruler, label: "Fərdi ölçü" },
     ],
   },
@@ -145,6 +148,14 @@ export function Hero() {
                     fetchPriority={i === 0 ? "high" : "auto"}
                   />
                 </div>
+                {i > 0 && (
+                  <div className="hero-service-note">
+                    <ServiceAnnotation
+                      compact
+                      category={i === 1 ? "konstruksiyalar" : "dekorasiya"}
+                    />
+                  </div>
+                )}
                 <div
                   className="hero-emblem"
                   aria-label={`${s.badge.title} ${s.badge.detail}`}

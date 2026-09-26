@@ -6,7 +6,7 @@ import {
   mapUrl,
   instagram,
   nav,
-  categories,
+  divisions,
 } from "@/lib/content";
 export function PageHeading({
   title,
@@ -84,7 +84,7 @@ export function Footer() {
             LEGENDS<span>GENERAL</span>
           </Link>
           <p>
-            Metal mebel və saxlama sistemləri.
+            Metal mebel, konstruksiyalar və sifarişlə metal işləri.
             <br />
             Azərbaycanda istehsal.
           </p>
@@ -107,8 +107,8 @@ export function Footer() {
           ))}
         </div>
         <div>
-          <h2>Məhsullar</h2>
-          {categories.map((c) => (
+          <h2>Məhsullar və xidmətlər</h2>
+          {divisions.map((c) => (
             <Link key={c.id} href={`/kataloq/?kateqoriya=${c.id}`}>
               {c.name}
             </Link>
@@ -151,9 +151,10 @@ export function AboutBand() {
         </h2>
         <div>
           <p>
-            Legends General Azərbaycanda metal mebel və saxlama sistemləri
-            istehsal edir. Məhsul çeşidləri ilə tanış olun, ehtiyacınıza uyğun
-            həlli birlikdə müəyyənləşdirək.
+            Legends General MMC Azərbaycanda metal mebel, konstruksiyalar və
+            dekorativ metal məmulatlar hazırlayır. Konteynerlər, sənaye soyuducu
+            qapıları, yük avtomobili kuzovları və toz boyama xidmətləri ilə də
+            tanış olun.
           </p>
           <Link href="/haqqimizda/" className="button white-outline">
             Haqqımızda <ArrowUpRight size={18} />
