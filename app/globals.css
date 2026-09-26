@@ -1190,6 +1190,7 @@ h2.section-title {
 }
 .search-input {
   display: flex;
+  min-width: 0;
   align-items: center;
   position: relative;
   width: 360px;
@@ -1678,7 +1679,7 @@ h2.section-title {
     flex-wrap: wrap;
   }
   .catalog-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding-top: 30px;
     gap: 30px;
   }
