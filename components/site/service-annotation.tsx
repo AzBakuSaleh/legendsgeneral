@@ -12,7 +12,7 @@ const annotations = {
   "metal-mebel": {
     icon: Factory,
     action: "ÖLÇÜYƏ UYĞUN İSTEHSAL",
-    title: "Metal mebel hazırlayırıq",
+    title: "Metal mebel istehsalı",
     detail: "Dolab · stellaj · seyf",
   },
   konstruksiyalar: {
@@ -23,25 +23,25 @@ const annotations = {
   },
   dekorasiya: {
     icon: Fence,
-    action: "SİFARİŞLƏ HAZIRLAYIRIQ",
+    action: "SİFARİŞLƏ HAZIRLANIR",
     title: "Metal pilləkən və məhəccər",
     detail: "Qapı, darvaza və dekorativ metal işləri",
   },
   konteynerler: {
     icon: Snowflake,
-    action: "KONTEYNER HAZIRLAYIRIQ",
+    action: "KONTEYNER İSTEHSALI",
     title: "Soyuduculu konteynerlər",
     detail: "Quru konteynerlərin istehsalı da mövcuddur",
   },
   "soyuducu-qapilari": {
     icon: DoorOpen,
-    action: "ÖLÇÜYƏ UYĞUN HAZIRLAYIRIQ",
+    action: "ÖLÇÜYƏ UYĞUN HAZIRLANIR",
     title: "Soyuducu kameralar üçün qapılar",
     detail: "Sənaye soyuducularına uyğun",
   },
   kuzovlar: {
     icon: Truck,
-    action: "KUZOV HAZIRLAYIRIQ",
+    action: "KUZOV İSTEHSALI",
     title: "Yük avtomobiliniz üçün kuzov",
     detail: "Avtomobilə və yükün növünə uyğun",
   },
