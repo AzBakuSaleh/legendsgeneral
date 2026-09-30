@@ -12,10 +12,9 @@ import {
   Ruler,
   Layers3,
   Factory,
-  Warehouse,
-  DoorOpen,
-  Wrench,
-  Fence,
+  Sun,
+  Lightbulb,
+  Camera,
   LockKeyhole,
 } from "lucide-react";
 import {
@@ -28,66 +27,69 @@ const slides = [
   {
     title: (
       <>
-        Metalda güc.
+        Yükünüzə uyğun
         <br />
-        İşinizdə nizam.
+        metal stellajlar.
       </>
     ),
-    description: "Dolablar, rəflər, seyflər və iş məkanınız üçün metal mebel.",
-    href: "/kataloq/?kateqoriya=metal-mebel",
-    cta: "Metal mebelə bax",
-    image: withSiteBasePath("/images/hero-showroom.webp"),
-    alt: "Metal dolablar, rəflər və iş masasının nümunə görüntüsü",
-    kind: "scene",
-    badge: { icon: Factory, title: "YERLİ", detail: "İSTEHSAL" },
+    description: "120, 200, 500 və 1500 kq/rəf yük sinifləri. Anbar, arxiv və iş məkanları üçün sifarişlə hazırlanır.",
+    href: "/kataloq/?kateqoriya=refler",
+    cta: "Stellajları seç",
+    image: withSiteBasePath("/images/warehouse-shelving.webp"),
+    alt: "Metal stellajın nümunə görüntüsü",
+    kind: "product",
+    category: "refler",
+    badge: { icon: Layers3, title: "4", detail: "YÜK SİNFİ" },
     features: [
       { icon: Ruler, label: "Fərdi ölçü" },
-      { icon: Layers3, label: "Metal mebel" },
-      { icon: LockKeyhole, label: "Dolab və seyflər" },
+      { icon: Layers3, label: "Rəf sayı seçimi" },
+      { icon: Factory, label: "Yerli istehsal" },
     ],
   },
   {
     title: (
       <>
-        Metal karkas
+        İş yerində
         <br />
-        hazırlayırıq.
+        hər şey yerində.
       </>
     ),
     description:
-      "Anbar, anqar və digər obyektlər üçün metal konstruksiyaların hazırlanması və quraşdırılması.",
-    href: "/kataloq/?kateqoriya=konstruksiyalar",
-    cta: "Ətraflı bax",
-    image: withSiteBasePath("/images/services/metal-construction.webp"),
-    alt: "Metal anqar konstruksiyasının nümunə görüntüsü",
-    kind: "scene",
-    badge: { icon: Ruler, title: "FƏRDİ", detail: "ÖLÇÜ" },
+      "Geyim, sənəd və şəxsi əşyalar üçün metal dolablar. Ölçü və bölmələr ehtiyacınıza uyğun seçilir.",
+    href: "/kataloq/?kateqoriya=dolablar",
+    cta: "Dolablara bax",
+    image: withSiteBasePath("/images/steel-lockers.webp"),
+    alt: "Metal geyim dolablarının nümunə görüntüsü",
+    kind: "product",
+    category: "dolablar",
+    badge: { icon: LockKeyhole, title: "FƏRDİ", detail: "BÖLMƏLƏR" },
     features: [
-      { icon: Warehouse, label: "Anbar və anqar" },
-      { icon: Factory, label: "Metal karkas" },
-      { icon: Wrench, label: "Quraşdırılma" },
+      { icon: Ruler, label: "Fərdi ölçü" },
+      { icon: LockKeyhole, label: "Kilid seçimi" },
+      { icon: Layers3, label: "Bölmə sayı" },
     ],
   },
   {
     title: (
       <>
-        Pilləkən və
+        Açıq məkanlar üçün
         <br />
-        məhəccər.
+        metal dirəklər.
       </>
     ),
     description:
-      "Metal pilləkən, məhəccər, qapı və darvazaları ölçüyə uyğun hazırlayırıq.",
-    href: "/kataloq/?kateqoriya=dekorasiya",
-    cta: "Metal işlərinə bax",
-    image: withSiteBasePath("/images/services/metal-decoration.webp"),
-    alt: "Metal pilləkən və məhəccərin nümunə görüntüsü",
+      "İşıqlandırma, müşahidə kameraları və yol nişanları üçün layihəyə uyğun dirək istehsalı.",
+    href: "/kataloq/?kateqoriya=direkler",
+    cta: "Dirəklərə bax",
+    image: withSiteBasePath("/images/services/lighting-poles.webp"),
+    alt: "Elektrik və günəş panelli işıqlandırma dirəklərinin nümunə görüntüsü",
     kind: "scene",
-    badge: { icon: Wrench, title: "İŞİNİZƏ", detail: "UYĞUN" },
+    category: "direkler",
+    badge: { icon: Lightbulb, title: "METAL", detail: "DİRƏK İSTEHSALI" },
     features: [
-      { icon: Fence, label: "Pilləkən və məhəccər" },
-      { icon: DoorOpen, label: "Qapı və darvaza" },
-      { icon: Ruler, label: "Fərdi ölçü" },
+      { icon: Lightbulb, label: "Elektrik" },
+      { icon: Sun, label: "Günəş paneli" },
+      { icon: Camera, label: "Müşahidə" },
     ],
   },
 ];
@@ -148,14 +150,15 @@ export function Hero() {
                     fetchPriority={i === 0 ? "high" : "auto"}
                   />
                 </div>
-                {i > 0 && (
+                {s.kind === "scene" && (
                   <div className="hero-service-note">
                     <ServiceAnnotation
                       compact
-                      category={i === 1 ? "konstruksiyalar" : "dekorasiya"}
+                      category={s.category}
                     />
                   </div>
                 )}
+                <span className="hero-sample-label">Nümunə görüntü</span>
                 <div
                   className="hero-emblem"
                   aria-label={`${s.badge.title} ${s.badge.detail}`}

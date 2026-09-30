@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
+import { useState } from "react";
 import { ServiceAnnotation } from "./service-annotation";
+import { ShelfNavigation } from "./shelf-navigation";
 import { useSearchParams } from "next/navigation";
-import { Search, ArrowUpRight, ArrowRight, X } from "lucide-react";
+import { Search, ArrowUpRight, X } from "lucide-react";
 import {
   categories,
   divisions,
@@ -26,6 +28,7 @@ const normalize = (s: string) =>
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
 export function Catalog() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const params = useSearchParams();
   const requested = params.get("kateqoriya");
   const category = [...divisions, ...categories].some((c) => c.id === requested)
@@ -34,14 +37,15 @@ export function Catalog() {
   const query = params.get("q") ?? "";
   const furnitureSelected =
     category === "metal-mebel" ||
-    categories.some(
+    (category !== "refler" && category !== "dolablar" && categories.some(
       (c) => c.id === category && categoryMatches(c.id, "metal-mebel"),
-    );
+    ));
   const selectedArea = [...divisions, ...categories].find(
     (c) => c.id === category,
   );
   const results = products.filter(
     (p) =>
+      !p.catalogHidden &&
       categoryMatches(p.category, category) &&
       normalize(
         p.name + " " + p.description + " " + (p.offerings ?? []).join(" "),
@@ -64,24 +68,25 @@ export function Catalog() {
     <section className="container section catalog-layout">
       <aside className="catalog-sidebar">
         <h2>İstiqamətlər</h2>
-        <ToggleGroup
-          type="single"
-          orientation="vertical"
-          value={furnitureSelected ? "metal-mebel" : category}
-          onValueChange={select}
-          aria-label="Məhsul və xidmət istiqamətləri"
-          className="category-filter"
-        >
-          <ToggleGroupItem value="all">
-            Hamısı <span>{products.length}</span>
-          </ToggleGroupItem>
-          {divisions.map((c) => (
-            <ToggleGroupItem value={c.id} key={c.id}>
+        <button type="button" className="mobile-category-toggle" aria-expanded={menuOpen} aria-controls="catalog-categories" onClick={() => setMenuOpen(!menuOpen)}>
+          <span>{selectedArea?.name ?? "Kateqoriyaları seç"}</span><span aria-hidden="true">{menuOpen ? "−" : "+"}</span>
+        </button>
+        <nav id="catalog-categories" className={`catalog-category-nav${menuOpen ? " is-open" : ""}`} aria-label="Məhsul və xidmət istiqamətləri">
+          <Link href="/kataloq/" aria-current={category === "all" ? "page" : undefined}>
+            Hamısı <span>{products.filter((p) => !p.catalogHidden).length}</span>
+          </Link>
+          <details className="shelf-menu" open>
+            <summary>Metal stellajlar</summary>
+            <Link href="/kataloq/?kateqoriya=refler" className="shelf-overview">Bütün stellajlar</Link>
+            <ShelfNavigation />
+          </details>
+          {divisions.filter((c) => c.id !== "refler").map((c) => (
+            <Link href={`/kataloq/?kateqoriya=${c.id}`} key={c.id}
+              aria-current={(furnitureSelected ? "metal-mebel" : category) === c.id ? "page" : undefined}>
               {c.name}
-              <ArrowRight size={16} />
-            </ToggleGroupItem>
+            </Link>
           ))}
-        </ToggleGroup>
+        </nav>
         <div className="catalog-help">
           <h3>Seçimdə kömək lazımdır?</h3>
           <p>Məhsul və ya xidmətlə bağlı ehtiyacınızı bizə bildirin.</p>
@@ -97,6 +102,7 @@ export function Catalog() {
             <p>{selectedArea.description}</p>
           </div>
         )}
+        {category === "refler" && <div className="mobile-shelf-shortcuts"><ShelfNavigation /></div>}
         {furnitureSelected && (
           <ToggleGroup
             type="single"
@@ -158,6 +164,7 @@ export function Catalog() {
                   {p.kind === "service" && (
                     <ServiceAnnotation category={p.category} />
                   )}
+                  {p.capacity && <span className="shelf-card-load">{p.capacity.perShelf} <small>kq / rəf</small></span>}
                 </Link>
                 <div className="product-card-content">
                   <span className="product-category">
@@ -167,7 +174,9 @@ export function Catalog() {
                     <Link href={`/mehsullar/${p.slug}/`}>{p.name}</Link>
                   </h2>
                   <p>
-                    {p.kind === "service"
+                    {p.capacity
+                      ? `Bütöv stellaj: ${p.capacity.total} kq-a qədər.`
+                      : p.kind === "service"
                       ? "İş həcmi və tələblər barədə məlumat alın."
                       : "Ölçü və komplektasiya barədə məlumat alın."}
                   </p>

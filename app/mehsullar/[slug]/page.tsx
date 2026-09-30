@@ -5,6 +5,7 @@ import { ArrowUpRight, Check, ArrowLeft } from "lucide-react";
 import { products, categories, categoryMatches } from "@/lib/content";
 import { ServiceAnnotation } from "@/components/site/service-annotation";
 import { ProductPhoto } from "@/components/site/product-photo";
+import { ShelfNavigation } from "@/components/site/shelf-navigation";
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
 }
@@ -30,7 +31,7 @@ export default async function ProductPage({
   const product = products.find((p) => p.slug === slug);
   if (!product) notFound();
   const category = categories.find((c) => c.id === product.category)!;
-  const candidates = products.filter((p) => p.slug !== slug);
+  const candidates = products.filter((p) => p.slug !== slug && !p.catalogHidden);
   const area = categoryMatches(product.category, "metal-mebel")
     ? "metal-mebel"
     : product.category;
@@ -49,6 +50,9 @@ export default async function ProductPage({
           <span>{product.name}</span>
         </nav>
       </div>
+      {product.category === "refler" && (
+        <div className="container shelf-detail-navigation"><ShelfNavigation activeSlug={slug} /></div>
+      )}
       <section className="container product-detail">
         <ProductPhoto
           src={product.image}
@@ -65,9 +69,19 @@ export default async function ProductPage({
           </Link>
           <h1>{product.name}</h1>
           <p className="product-description">{product.description}</p>
+          {product.capacity && (
+            <div className="capacity-section">
+              <h2>Yükdaşıma göstəriciləri</h2>
+              <dl className="capacity-grid">
+                <div><dt>Bir rəfə maksimum</dt><dd>{product.capacity.perShelf} <span>kq</span></dd></div>
+                <div><dt>Bütöv stellaja maksimum</dt><dd>{product.capacity.total} <span>kq</span></dd></div>
+              </dl>
+              <p className="capacity-note">Rəf sayı artdıqda stellajın ümumi yük həddi artmır. Yük rəflər arasında paylanmalı, həm hər rəfin, həm də bütöv stellajın həddi qorunmalıdır. Seçilən ölçü və komplektasiya üçün göstəricilər sifariş zamanı təsdiqlənir.</p>
+            </div>
+          )}
           {product.offerings && (
             <div className="service-offerings">
-              <h2>Bu istiqamətdə hazırlayırıq</h2>
+              <h2>{product.offeringHeading ?? "Məhsul növləri"}</h2>
               <ul className="usage-list">
                 {product.offerings.map((item) => (
                   <li key={item}>

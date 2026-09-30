@@ -6,9 +6,19 @@ import {
   DoorOpen,
   Truck,
   Paintbrush,
+  Layers3,
+  LockKeyhole,
+  Lightbulb,
+  Flame,
+  Scissors,
 } from "lucide-react";
 
 const annotations = {
+  refler: { icon: Layers3, action: "RƏF YÜKÜNƏ GÖRƏ SEÇİM", title: "Metal stellajlar", detail: "120 · 200 · 500 · 1500 kq/rəf" },
+  dolablar: { icon: LockKeyhole, action: "SİFARİŞLƏ HAZIRLANIR", title: "Metal dolablar", detail: "Geyim · sənəd · açar" },
+  direkler: { icon: Lightbulb, action: "METAL DİRƏK İSTEHSALI", title: "İşıqlandırma və avadanlıq dirəkləri", detail: "Elektrik · günəş paneli · müşahidə" },
+  "bag-mehsullari": { icon: Flame, action: "SİFARİŞLƏ HAZIRLANIR", title: "Bağ üçün metal məhsullar", detail: "Manqal · tonqal ocağı · yelləncək" },
+  "diger-xidmetler": { icon: Scissors, action: "METAL EMALI XİDMƏTLƏRİ", title: "Kəsmə, bükmə və qaynaq", detail: "CNC lazer · Punch" },
   "metal-mebel": {
     icon: Factory,
     action: "ÖLÇÜYƏ UYĞUN İSTEHSAL",
@@ -25,7 +35,7 @@ const annotations = {
     icon: Fence,
     action: "SİFARİŞLƏ HAZIRLANIR",
     title: "Metal pilləkən və məhəccər",
-    detail: "Qapı, darvaza və dekorativ metal işləri",
+    detail: "Layihələr üçün dekorativ metal işləri",
   },
   konteynerler: {
     icon: Snowflake,
@@ -36,7 +46,7 @@ const annotations = {
   "soyuducu-qapilari": {
     icon: DoorOpen,
     action: "ÖLÇÜYƏ UYĞUN HAZIRLANIR",
-    title: "Soyuducu kameralar üçün qapılar",
+    title: "Soyuducu kameralar üçün sürgülü qapılar",
     detail: "Sənaye soyuducularına uyğun",
   },
   kuzovlar: {

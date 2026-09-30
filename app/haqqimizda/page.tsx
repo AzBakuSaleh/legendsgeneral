@@ -35,16 +35,17 @@ export default function AboutPage() {
           </h2>
           <p>
             Legends General MMC Azərbaycanda metal mebel, tikinti
-            konstruksiyaları və dekorativ metal məmulatlar hazırlayır. Dolab,
-            stellaj, seyf və çarpayılardan anbar və anqar konstruksiyalarına,
-            pilləkən və darvazalara qədər müxtəlif istiqamətlər üzrə sifarişlər
-            qəbul edirik.
+            konstruksiyaları və dekorativ metal məmulatlar hazırlayır. Stellaj,
+            dolab, seyf və çarpayılardan metal dirəklərə, anbar və anqar
+            konstruksiyalarına qədər müxtəlif istiqamətlər üzrə sifarişlər
+            qəbul edilir.
           </p>
           <p>
             Fəaliyyətimizə quru və soyuducu konteynerlərin, sənaye soyuducu
             qapılarının və yük avtomobili kuzovlarının hazırlanması, həmçinin
-            elektrostatik toz boyama daxildir. Ölçü, material, komplektasiya və
-            iş həcmini sifarişin tələblərinə uyğun dəqiqləşdiririk.
+            CNC lazer və Punch kəsmə, bükmə, qaynaq və elektrostatik toz boyama
+            daxildir. Ölçü, material, komplektasiya və iş həcmi sifarişin
+            tələblərinə uyğun dəqiqləşdirilir.
           </p>
           <Link href="/gorulen-isler/" className="text-link">
             İşlərimizə baxın <ArrowUpRight />

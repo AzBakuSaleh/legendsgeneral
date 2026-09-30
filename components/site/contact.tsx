@@ -169,7 +169,8 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
                 <SelectGroup key={area.id}>
                   <SelectLabel>{area.name}</SelectLabel>
                   {inquiryOptions
-                    .filter((p) => categoryMatches(p.category, area.id))
+                    .filter((p) => categoryMatches(p.category, area.id) &&
+                      (area.id !== "metal-mebel" || !["refler", "dolablar"].includes(p.category)))
                     .map((p) => (
                       <SelectItem key={p.id} value={p.id}>
                         {p.name}

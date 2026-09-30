@@ -12,19 +12,19 @@ export const mapUrl =
   encodeURIComponent(address);
 const furnitureCategories = [
   {
+    id: "refler",
+    name: "Metal stellajlar",
+    short: "Rəf yükünə görə seçim",
+    image: withSiteBasePath("/images/warehouse-shelving.webp"),
+    description: "120, 200, 500 və 1500 kq/rəf yük sinifləri üzrə metal stellajlar.",
+  },
+  {
     id: "dolablar",
     name: "Metal dolablar",
     short: "Səliqəli və rahat saxlama",
     image: withSiteBasePath("/images/steel-lockers.webp"),
     description:
       "İş geyimləri, şəxsi əşyalar və sənədlərin saxlanması üçün metal dolablar.",
-  },
-  {
-    id: "refler",
-    name: "Metal rəflər",
-    short: "Məkanınızdan səmərəli istifadə",
-    image: withSiteBasePath("/images/warehouse-shelving.webp"),
-    description: "Anbar, arxiv və iş məkanları üçün metal rəf sistemləri.",
   },
   {
     id: "seyfler",
@@ -60,12 +60,29 @@ const furnitureCategories = [
 // Main service areas supplied in the client presentation, slides 2–5.
 export const divisions = [
   {
+    id: "refler",
+    name: "Metal stellajlar",
+    short: "120–1500 kq/rəf üzrə seçim",
+    image: withSiteBasePath("/images/warehouse-shelving.webp"),
+    description: "Rəfin və bütöv stellajın yük həddini ayrıca nəzərə alaraq uyğun modeli seçin.",
+  },
+  {
+    ...furnitureCategories[1],
+  },
+  {
     id: "metal-mebel",
     name: "Metal mebel",
-    short: "Dolab, stellaj, seyf və digər mebellər",
+    short: "Mebel karkasları, çarpayı və arxiv sistemləri",
     image: withSiteBasePath("/images/hero-showroom.webp"),
     description:
       "Dolablar, stellajlar, seyflər, çarpayılar, masa və oturacaqlar, tibbi mebel və arxiv sistemləri.",
+  },
+  {
+    id: "direkler",
+    name: "Metal dirəklər",
+    short: "İşıqlandırma, kamera və yol nişanları üçün",
+    image: withSiteBasePath("/images/services/lighting-poles.webp"),
+    description: "Elektrik və günəş enerjili işıqlandırma, müşahidə kameraları və yol nişanları üçün metal dirəklər.",
   },
   {
     id: "konstruksiyalar",
@@ -78,10 +95,17 @@ export const divisions = [
   {
     id: "dekorasiya",
     name: "Dekorasiya və metal işləri",
-    short: "Pilləkən, məhəccər, qapı və darvaza",
+    short: "Pilləkən, məhəccər və dekorativ metal işləri",
     image: withSiteBasePath("/images/services/metal-decoration.webp"),
     description:
-      "Skamyalar, dekorativ stendlər, məhəccərlər, pilləkənlər, qapı və darvazalar.",
+      "Skamyalar, dekorativ stendlər, məhəccərlər və pilləkənlər.",
+  },
+  {
+    id: "bag-mehsullari",
+    name: "Bağ üçün metal məhsullar",
+    short: "Manqal, tonqal ocağı və yelləncəklər",
+    image: withSiteBasePath("/images/services/garden-products.webp"),
+    description: "Açıq məkanlar üçün manqallar, dekorativ tonqal ocaqları və metal karkaslı bağ yelləncəkləri.",
   },
   {
     id: "konteynerler",
@@ -102,9 +126,16 @@ export const divisions = [
   {
     id: "kuzovlar",
     name: "Yük avtomobili kuzovları",
-    short: "Avtomobiliniz üçün kuzov hazırlayırıq",
+    short: "Avtomobilə uyğun kuzov istehsalı",
     image: withSiteBasePath("/images/services/truck-bodies.webp"),
     description: "Yük avtomobilləri üçün kuzovların hazırlanması.",
+  },
+  {
+    id: "diger-xidmetler",
+    name: "Kəsmə, bükmə və qaynaq",
+    short: "CNC lazer, Punch və metal emalı",
+    image: withSiteBasePath("/images/services/metal-processing.webp"),
+    description: "CNC lazer və Punch kəsmə, metal lövhələrin və qida borularının kəsilməsi və bükülməsi, qaynaq işləri.",
   },
   {
     id: "toz-boyama",
@@ -119,13 +150,19 @@ export const categories = [
   ...[
     {
       id: "diger-mebel",
-      name: "Çarpayı, masa və oturacaqlar",
+      name: "Çarpayı və mebel karkasları",
       short: "Yaşayış və iş məkanları üçün",
       image: withSiteBasePath("/images/25cd2abe20213f8a.jpg"),
-      description: "Metal çarpayılar, masalar və oturacaqlar.",
+      description: "Metal çarpayılar, masa və oturacaqlar üçün metal karkaslar.",
     },
   ],
-  ...divisions.slice(1),
+  ...divisions.filter((d) => d.id !== "metal-mebel" && !furnitureCategories.some((c) => c.id === d.id)),
+];
+export const shelfClasses = [
+  { slug: "stellaj-120-kq-ref", perShelf: 120, total: 500 },
+  { slug: "stellaj-200-kq-ref", perShelf: 200, total: 800 },
+  { slug: "stellaj-500-kq-ref", perShelf: 500, total: 1500 },
+  { slug: "stellaj-1500-kq-ref", perShelf: 1500, total: 4500 },
 ];
 export function categoryMatches(productCategory: string, selected: string) {
   return (
@@ -148,13 +185,26 @@ export type Product = {
   kind?: "service";
   offerings?: string[];
   imageKind?: "real";
+  offeringHeading?: string;
+  catalogHidden?: boolean;
+  capacity?: { perShelf: number; total: number };
 };
 export const products: Product[] = [
+  ...shelfClasses.map(({ slug, perShelf, total }) => ({
+    slug,
+    category: "refler",
+    name: `Metal stellaj — ${perShelf} kq/rəf`,
+    image: withSiteBasePath("/images/warehouse-shelving.webp"),
+    description: `Bir rəf üçün ${perShelf} kq, bütöv stellaj üçün ${total} kq nəzərdə tutulan yük sinfi. Rəf sayı və yerləşdiriləcək yükə uyğun komplektasiya sifariş zamanı dəqiqləşdirilir.`,
+    uses: ["Anbarlar", "Arxivlər", "İstehsal və ticarət sahələri"],
+    details: ["Hündürlük, en və dərinlik", "Rəf sayı və yükün paylanması", "Material və səth örtüyü"],
+    capacity: { perShelf, total },
+  })),
   {
     slug: "metal-geyim-dolabi",
     category: "dolablar",
     name: "Metal geyim dolabı",
-    image: categories[0].image,
+    image: furnitureCategories[1].image,
     description:
       "Geyim və şəxsi əşyaların ayrıca bölmələrdə saxlanması üçün metal dolab. İş məkanının planına və istifadəçi sayına uyğun həllin seçilməsi üçün bizimlə əlaqə saxlayın.",
     uses: ["İşçi soyunma otaqları", "İdman məkanları", "Ofis və müəssisələr"],
@@ -163,12 +213,14 @@ export const products: Product[] = [
       "Qapı və kilid seçimi",
       "Rəng və səth örtüyü",
     ],
+    offerings: ["Soyunub-geyinmə dolabları (locker)", "Sənəd və ofis dolabları", "Kartoteka dolabları", "Açar dolabları"],
   },
   {
     slug: "metal-anbar-refi",
+    catalogHidden: true,
     category: "refler",
     name: "Metal anbar rəfi",
-    image: categories[1].image,
+    image: furnitureCategories[0].image,
     description:
       "Əşyaların və materialların nizamlı yerləşdirilməsi üçün metal rəf sistemi. Rəf planı saxlanacaq yükə və məkanın ölçülərinə əsasən dəqiqləşdirilir.",
     uses: ["Anbarlar", "Mağaza anbarları", "İstehsal sahələri"],
@@ -182,7 +234,7 @@ export const products: Product[] = [
     slug: "pul-seyfi",
     category: "seyfler",
     name: "Pul və sənəd seyfi",
-    image: categories[2].image,
+    image: furnitureCategories[2].image,
     description:
       "Pul və sənədlərin saxlanması üçün metal seyf. Kilid, ölçü və təhlükəsizlik tələblərinizi bildirin, uyğun variant barədə məlumat alın.",
     uses: ["Ofislər", "Ticarət obyektləri", "Şəxsi istifadə"],
@@ -191,12 +243,13 @@ export const products: Product[] = [
       "Kilid mexanizmi",
       "Bərkidilmə və təhlükəsizlik tələbləri",
     ],
+    offerings: ["Pul və sənəd seyfləri", "Silah seyfləri", "Otel seyfləri", "Odadavamlı seyflər"],
   },
   {
     slug: "tibbi-metal-dolab",
     category: "tibbi",
     name: "Tibbi metal dolab",
-    image: categories[3].image,
+    image: furnitureCategories[3].image,
     description:
       "Tibbi ləvazimatların nizamlı saxlanması üçün dolab. Məhsulun komplektasiyası və istifadə şəraitinə uyğunluğu sifariş zamanı dəqiqləşdirilir.",
     uses: ["Tibb kabinetləri", "Klinikalar", "Laboratoriyalar"],
@@ -210,7 +263,7 @@ export const products: Product[] = [
     slug: "mobil-arxiv-sistemi",
     category: "arxiv",
     name: "Mobil arxiv sistemi",
-    image: categories[4].image,
+    image: furnitureCategories[4].image,
     description:
       "Qovluq və sənədləri bir məkanda təşkil etmək üçün arxiv sistemi. Sahənin planı və saxlama həcminə uyğun həll barədə məsləhət alın.",
     uses: ["Sənəd arxivləri", "Ofislər", "Müəssisələr"],
@@ -224,7 +277,7 @@ export const products: Product[] = [
     slug: "metal-is-masasi",
     category: "istehsalat",
     name: "Metal iş masası",
-    image: categories[5].image,
+    image: furnitureCategories[5].image,
     description:
       "Emalatxanada alət və materiallarla işləmək üçün metal iş masası. İş səthinin ölçüləri və saxlama bölmələri ehtiyacınıza əsasən müzakirə olunur.",
     uses: ["Emalatxanalar", "İstehsal sahələri", "Texniki xidmət məkanları"],
@@ -248,18 +301,19 @@ export const products: Product[] = [
       "Karkas və dayaq quruluşu",
       "Rəng və səth örtüyü",
     ],
+    offerings: ["Birmərtəbəli metal çarpayılar", "İkimərtəbəli metal çarpayılar"],
   },
   {
     slug: "metal-masa-oturacaq",
     category: "diger-mebel",
-    name: "Metal masa və oturacaqlar",
+    name: "Masa və oturacaq üçün metal karkaslar",
     image: withSiteBasePath("/images/df7bbb6396722057.jpg"),
     imageKind: "real",
     description:
-      "Metal karkaslı masa və oturacaqların hazırlanması. Forma, ölçü və tamamlayıcı materiallar istifadə ediləcək məkana uyğun razılaşdırılır.",
+      "Ofis masaları və oturacaqlar üçün alt metal karkaslar sifarişlə hazırlanır. Taxta masa üstlüyü əsas məhsula daxil deyil; karkasın forması və ölçüləri layihəyə uyğun razılaşdırılır.",
     uses: ["Ofis və iş məkanları", "Ticarət obyektləri", "Yaşayış məkanları"],
     details: [
-      "Masa və oturacaqların ölçüləri",
+      "Karkasın ölçüləri və üstlüyə uyğunluğu",
       "Karkasın forması və material seçimi",
       "Say, rəng və səth örtüyü",
     ],
@@ -277,7 +331,6 @@ export const products: Product[] = [
       "Yaşayış və ofis binaları üçün metal konstruksiyalar",
       "Stadion, ticarət və əyləncə mərkəzlərinin konstruksiyaları",
       "Metal çənlər, sütunlar və dayaqlar",
-      "Elektrik xətti və bayraq dirəkləri, ildırımötürücülər",
     ],
     uses: [
       "Sənaye obyektləri",
@@ -303,10 +356,9 @@ export const products: Product[] = [
       "Dekorativ stendlər",
       "Məhəccərlər",
       "Pilləkənlər",
-      "Qapı və darvazalar",
     ],
     uses: [
-      "Yaşayış və ofis binaları",
+      "Böyük tikinti və ofis layihələri",
       "Ticarət və ictimai məkanlar",
       "Həyət və açıq sahələr",
     ],
@@ -339,11 +391,11 @@ export const products: Product[] = [
   {
     slug: "senaye-soyuducu-qapilari",
     category: "soyuducu-qapilari",
-    name: "Sənaye soyuducuları üçün qapılar",
+    name: "Soyuducu kameralar üçün sürgülü qapılar",
     image: withSiteBasePath("/images/services/cold-room-doors.webp"),
     kind: "service",
     description:
-      "Sənaye soyuducularının açılış ölçülərinə və istifadə şəraitinə uyğun qapıların hazırlanması. Temperatur, izolyasiya və açılma tələbləri layihəyə əsasən müzakirə olunur.",
+      "Soyuducu kameraların açılış ölçülərinə uyğun sürgülü qapılar sifarişlə hazırlanır. Temperatur rejimi, izolyasiya və quraşdırılma şəraiti layihəyə əsasən dəqiqləşdirilir.",
     uses: [
       "Sənaye soyuducuları",
       "Soyuq saxlama kameraları",
@@ -371,6 +423,40 @@ export const products: Product[] = [
     ],
   },
   {
+    slug: "metal-direkler",
+    category: "direkler",
+    name: "İşıqlandırma və avadanlıq üçün metal dirəklər",
+    image: withSiteBasePath("/images/services/lighting-poles.webp"),
+    kind: "service",
+    description: "İşıqlandırma, müşahidə və yol infrastrukturu üçün metal dirəklər sifarişlə hazırlanır. Dirəyin hündürlüyü, dayaq quruluşu və avadanlıq birləşmələri layihəyə uyğun seçilir.",
+    offerings: ["Elektrik işıqlandırma dirəkləri", "Günəş panelli işıqlandırma üçün dirəklər", "Müşahidə kameraları üçün dirəklər", "Yol nişanı dirəkləri"],
+    uses: ["Küçə və yol kənarları", "Müəssisə əraziləri", "Park və açıq məkanlar"],
+    details: ["Hündürlük və dirəyin forması", "Bünövrə, dayaq və bərkidilmə tələbləri", "Avadanlıq, kabel keçidləri və səth örtüyü"],
+  },
+  {
+    slug: "bag-ucun-metal-mehsullar",
+    category: "bag-mehsullari",
+    name: "Manqallar, tonqal ocaqları və bağ yelləncəkləri",
+    image: withSiteBasePath("/images/services/garden-products.webp"),
+    kind: "service",
+    description: "Bağ və açıq istirahət məkanları üçün metal məhsullar sifarişlə hazırlanır. Ölçü, görünüş və istifadə tələbləri seçilən məhsula uyğun razılaşdırılır.",
+    offerings: ["Yemək bişirmək üçün manqallar", "Dekorativ tonqal ocaqları", "Metal karkaslı bağ yelləncəkləri"],
+    uses: ["Bağ və həyətlər", "Açıq istirahət məkanları", "Turizm obyektləri"],
+    details: ["Məhsulun növü, eskizi və ölçüləri", "Material və konstruksiya", "Rəng, səth örtüyü və komplektasiya"],
+  },
+  {
+    slug: "metal-emali-xidmetleri",
+    category: "diger-xidmetler",
+    name: "CNC lazer, Punch kəsmə və metal emalı",
+    image: withSiteBasePath("/images/services/metal-processing.webp"),
+    kind: "service",
+    offeringHeading: "Göstərilən xidmətlər",
+    description: "Çertyoj və ölçülərə əsasən metal hissələrin kəsilməsi, bükülməsi və qaynaq işləri. Materialın növünü, qalınlığını və iş həcmini bildirərək uyğun xidmət barədə məlumat ala bilərsiniz.",
+    offerings: ["CNC lazer kəsmə", "Punch kəsmə", "Metal lövhələrin kəsilməsi və bükülməsi", "Qida borularının kəsilməsi və bükülməsi", "Qaynaq işləri"],
+    uses: ["İstehsal müəssisələri", "Tikinti və metal konstruksiya layihələri", "Fərdi metal detallar"],
+    details: ["Çertyoj, fayl və ya ölçülü eskiz", "Materialın növü və qalınlığı", "Detal sayı və emal tələbləri"],
+  },
+  {
     slug: "elektrostatik-toz-boyama",
     category: "toz-boyama",
     name: "Elektrostatik toz boyama",
@@ -391,16 +477,11 @@ export const products: Product[] = [
   },
 ];
 export const inquiryOptions = [
-  ...products.map((p) => ({ id: p.slug, name: p.name, category: p.category })),
+  ...products.filter((p) => !p.catalogHidden).map((p) => ({ id: p.slug, name: p.name, category: p.category })),
   { id: "dekorasiya-skamya", name: "Skamya", category: "dekorasiya" },
   { id: "dekorasiya-stend", name: "Dekorativ stend", category: "dekorasiya" },
   { id: "dekorasiya-meheccer", name: "Məhəccər", category: "dekorasiya" },
   { id: "dekorasiya-pilleken", name: "Pilləkən", category: "dekorasiya" },
-  {
-    id: "dekorasiya-qapi-darvaza",
-    name: "Qapı və darvaza",
-    category: "dekorasiya",
-  },
 ];
 export const projects = [
   {
