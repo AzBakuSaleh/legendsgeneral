@@ -81,9 +81,9 @@ const slides = [
       "İşıqlandırma, müşahidə kameraları və yol nişanları üçün layihəyə uyğun dirək istehsalı.",
     href: "/kataloq/?kateqoriya=direkler",
     cta: "Dirəklərə bax",
-    image: withSiteBasePath("/images/services/lighting-poles.webp"),
-    alt: "Elektrik və günəş panelli işıqlandırma dirəklərinin nümunə görüntüsü",
-    kind: "scene",
+    image: withSiteBasePath("/images/services/wired-pole-close.webp"),
+    alt: "Naqilli işıqlandırma üçün metal dirək — yaxın nümunə görüntü",
+    kind: "pole",
     category: "direkler",
     badge: { icon: Lightbulb, title: "METAL", detail: "DİRƏK İSTEHSALI" },
     features: [
@@ -91,6 +91,16 @@ const slides = [
       { icon: Sun, label: "Günəş paneli" },
       { icon: Camera, label: "Müşahidə" },
     ],
+  },
+  {
+    title: <>Günəş panelli<br />metal dirəklər.</>,
+    description: "Günəş panelləri üçün metal dirəklər və bərkidicilər. Ölçülər layihəyə uyğun seçilir.",
+    href: "/mehsullar/metal-direkler/", cta: "Ətraflı bax",
+    image: withSiteBasePath("/images/services/solar-pole-close.webp"),
+    alt: "Günəş panelli işıqlandırma üçün metal dirək — yaxın nümunə görüntü",
+    kind: "pole", category: "direkler",
+    badge: { icon: Sun, title: "METAL", detail: "DİRƏK İSTEHSALI" },
+    features: [{ icon: Sun, label: "Panel üçün dayaq" }, { icon: Ruler, label: "Fərdi ölçü" }, { icon: Factory, label: "Yerli istehsal" }],
   },
 ];
 export function Hero() {
@@ -135,7 +145,7 @@ export function Hero() {
           setPlaying(false);
       }}
     >
-      <Carousel setApi={setApi} opts={{ loop: true }}>
+      <Carousel setApi={setApi} opts={{ loop: true, duration: reduce ? 0 : 25 }}>
         <CarouselContent className="ml-0">
           {slides.map((s, i) => (
             <CarouselItem key={i} className="pl-0" aria-hidden={index !== i}>
@@ -158,7 +168,7 @@ export function Hero() {
                     />
                   </div>
                 )}
-                <span className="hero-sample-label">Nümunə görüntü</span>
+                <span className="hero-sample-label">{s.kind === "pole" ? (i === 2 ? "Naqilli işıqlandırma · " : "Günəş panelli işıqlandırma · ") : ""}Nümunə görüntü</span>
                 <div
                   className="hero-emblem"
                   aria-label={`${s.badge.title} ${s.badge.detail}`}
@@ -168,6 +178,7 @@ export function Hero() {
                   <span>{s.badge.detail}</span>
                 </div>
                 <div className="container hero-content">
+                  <div className="hero-local"><Factory size={21} aria-hidden="true" /><span>YERLİ İSTEHSAL</span></div>
                   {i === 0 ? <h1>{s.title}</h1> : <h2>{s.title}</h2>}
                   <p>{s.description}</p>
                   <ul
@@ -214,7 +225,7 @@ export function Hero() {
         <div className="hero-controls">
           <span className="slide-index">
             0{index + 1}
-            <span> / 03</span>
+            <span> / {String(slides.length).padStart(2, "0")}</span>
           </span>
           <div className="slide-dots">
             {slides.map((_, i) => (

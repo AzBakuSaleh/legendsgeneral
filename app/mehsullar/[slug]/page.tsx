@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, Check, ArrowLeft } from "lucide-react";
-import { products, categories, categoryMatches } from "@/lib/content";
+import { products, categories, categoryMatches, getProductMedia } from "@/lib/content";
 import { ServiceAnnotation } from "@/components/site/service-annotation";
-import { ProductPhoto } from "@/components/site/product-photo";
+import { ProductGallery } from "@/components/site/product-gallery";
 import { ShelfNavigation } from "@/components/site/shelf-navigation";
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -54,12 +54,13 @@ export default async function ProductPage({
         <div className="container shelf-detail-navigation"><ShelfNavigation activeSlug={slug} /></div>
       )}
       <section className="container product-detail">
-        <ProductPhoto
-          src={product.image}
+        <div><ProductGallery
+          images={getProductMedia(product)}
           name={product.name}
           real={product.imageKind === "real"}
-          category={product.kind === "service" ? product.category : undefined}
-        />
+          overlay={product.kind === "service" && product.category !== "direkler" ? <ServiceAnnotation category={product.category} /> : undefined}
+          detail
+        /><p className="image-note">{product.imageKind === "real" ? "Legends General-ın görülən işlərindən." : "Nümunə görüntülər. Görünüş və texniki tələblər sifarişə uyğun dəqiqləşdirilir."}</p></div>
         <div className="product-info">
           <Link
             className="eyebrow"

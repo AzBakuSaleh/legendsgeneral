@@ -43,10 +43,10 @@ const furnitureCategories = [
   },
   {
     id: "arxiv",
-    name: "Arxiv sistemləri",
-    short: "Sənədləriniz qaydasında",
+    name: "Mobil arxiv sistemləri",
+    short: "Əl çarxlı, relsli saxlama sistemi",
     image: withSiteBasePath("/images/mobile-archive.webp"),
-    description: "Sənəd və qovluqların sistemli saxlanması üçün arxiv həlləri.",
+    description: "Sənəd və qovluqlar üçün rels üzərində hərəkət edən, əl çarxı ilə idarə olunan mobil arxiv sistemləri.",
   },
   {
     id: "istehsalat",
@@ -69,6 +69,7 @@ export const divisions = [
   {
     ...furnitureCategories[1],
   },
+  { ...furnitureCategories[4] },
   {
     id: "metal-mebel",
     name: "Metal mebel",
@@ -81,7 +82,7 @@ export const divisions = [
     id: "direkler",
     name: "Metal dirəklər",
     short: "İşıqlandırma, kamera və yol nişanları üçün",
-    image: withSiteBasePath("/images/services/lighting-poles.webp"),
+    image: withSiteBasePath("/images/services/wired-pole-close.webp"),
     description: "Elektrik və günəş enerjili işıqlandırma, müşahidə kameraları və yol nişanları üçün metal dirəklər.",
   },
   {
@@ -164,6 +165,21 @@ export const shelfClasses = [
   { slug: "stellaj-500-kq-ref", perShelf: 500, total: 1500 },
   { slug: "stellaj-1500-kq-ref", perShelf: 1500, total: 4500 },
 ];
+export type ProductMedia = { src: string; title: string; fit?: "contain" | "cover" };
+export const categoryMedia: Record<string, ProductMedia[]> = {
+  refler: [
+    { src: withSiteBasePath("/images/warehouse-shelving.webp"), title: "Metal stellaj — ümumi görünüş", fit: "contain" },
+    { src: withSiteBasePath("/images/shelving-close.webp"), title: "Rəf və metal dayaq — yaxın görünüş", fit: "cover" },
+  ],
+  direkler: [
+    { src: withSiteBasePath("/images/services/wired-pole-close.webp"), title: "Naqilli işıqlandırma üçün metal dirək", fit: "cover" },
+    { src: withSiteBasePath("/images/services/solar-pole-close.webp"), title: "Günəş panelli işıqlandırma üçün metal dirək", fit: "cover" },
+    { src: withSiteBasePath("/images/services/cctv-pole.webp"), title: "Nəzarət kamerası üçün metal dirək", fit: "cover" },
+  ],
+};
+export function getProductMedia(product: Product): ProductMedia[] {
+  return product.media ?? categoryMedia[product.category] ?? [{ src: product.image, title: product.name, fit: product.kind === "service" ? "cover" : "contain" }];
+}
 export function categoryMatches(productCategory: string, selected: string) {
   return (
     selected === "all" ||
@@ -188,6 +204,7 @@ export type Product = {
   offeringHeading?: string;
   catalogHidden?: boolean;
   capacity?: { perShelf: number; total: number };
+  media?: ProductMedia[];
 };
 export const products: Product[] = [
   ...shelfClasses.map(({ slug, perShelf, total }) => ({
@@ -265,12 +282,14 @@ export const products: Product[] = [
     name: "Mobil arxiv sistemi",
     image: furnitureCategories[4].image,
     description:
-      "Qovluq və sənədləri bir məkanda təşkil etmək üçün arxiv sistemi. Sahənin planı və saxlama həcminə uyğun həll barədə məsləhət alın.",
-    uses: ["Sənəd arxivləri", "Ofislər", "Müəssisələr"],
+      "Rels üzərində hərəkət edən metal rəf blokları sənəd və qovluqları kompakt saxlamağa imkan verir. Bloklar əl çarxı ilə hərəkət etdirilir, lazım olan sıranın qarşısında keçid açılır. Sistem məkanın planına və arxiv həcminə uyğun sifarişlə hazırlanır.",
+    offeringHeading: "Sistemin quruluşu",
+    offerings: ["Əl çarxı ilə mexaniki idarəetmə", "Rels üzərində hərəkət edən rəf blokları", "Məkanın planına uyğun yerləşdirmə"],
+    uses: ["Sənəd arxivləri", "Ofislər", "Kitabxanalar", "Müəssisələr"],
     details: [
       "Məkanın planı və ölçüləri",
-      "Saxlama həcmi",
-      "Bölmə sayı və hərəkət mexanizmi",
+      "Blokların ölçüləri, rəf sayı və tələb olunan yük",
+      "Relslərin yerləşməsi, döşəmənin uyğunluğu və keçid sahəsi",
     ],
   },
   {
@@ -425,13 +444,26 @@ export const products: Product[] = [
   {
     slug: "metal-direkler",
     category: "direkler",
-    name: "İşıqlandırma və avadanlıq üçün metal dirəklər",
-    image: withSiteBasePath("/images/services/lighting-poles.webp"),
+    name: "İşıqlandırma üçün metal dirəklər",
+    image: withSiteBasePath("/images/services/wired-pole-close.webp"),
+    media: categoryMedia.direkler.slice(0, 2),
     kind: "service",
-    description: "İşıqlandırma, müşahidə və yol infrastrukturu üçün metal dirəklər sifarişlə hazırlanır. Dirəyin hündürlüyü, dayaq quruluşu və avadanlıq birləşmələri layihəyə uyğun seçilir.",
-    offerings: ["Elektrik işıqlandırma dirəkləri", "Günəş panelli işıqlandırma üçün dirəklər", "Müşahidə kameraları üçün dirəklər", "Yol nişanı dirəkləri"],
+    description: "Naqilli və günəş panelli işıqlandırma üçün metal dirəklər sifarişlə hazırlanır. Dirəyin hündürlüyü, dayaq quruluşu və avadanlıq birləşmələri layihəyə uyğun seçilir. İşıqlandırma avadanlığının komplektasiyası ayrıca dəqiqləşdirilir.",
+    offerings: ["Naqilli elektrik işıqlandırması üçün dirəklər", "Günəş panelli işıqlandırma üçün dirəklər", "Yol nişanı dirəkləri"],
     uses: ["Küçə və yol kənarları", "Müəssisə əraziləri", "Park və açıq məkanlar"],
     details: ["Hündürlük və dirəyin forması", "Bünövrə, dayaq və bərkidilmə tələbləri", "Avadanlıq, kabel keçidləri və səth örtüyü"],
+  },
+  {
+    slug: "nezaret-kamerasi-direkleri",
+    category: "direkler",
+    name: "Nəzarət kameraları üçün metal dirəklər",
+    image: withSiteBasePath("/images/services/cctv-pole.webp"),
+    media: [{ src: withSiteBasePath("/images/services/cctv-pole.webp"), title: "Kamera üçün metal dirək və bərkidici hissələr", fit: "cover" }],
+    kind: "service",
+    description: "Açıq ərazilərdə nəzarət kameralarının yerləşdirilməsi üçün polad dirəklər və metal bərkidici hissələr sifarişlə hazırlanır. Kamera avadanlığı və onun quraşdırılması bu məhsula daxil deyil.",
+    offerings: ["Kameranın yerləşməsinə uyğun metal dirək", "Kamera üçün metal qol və bərkidici hissələr"],
+    uses: ["Müəssisə və anbar əraziləri", "Avtodayanacaqlar", "Obyektlərin giriş və perimetrləri"],
+    details: ["Dirəyin hündürlüyü, profili və divar qalınlığı", "Kameranın modeli, çəkisi, sayı və bərkidilmə ölçüləri", "Kabel keçidləri və xidmət üçün giriş tələbləri", "Baza lövhəsi, ankerlər və dayaq şəraiti", "Külək təsiri, titrəmə tələbləri və səth örtüyü"],
   },
   {
     slug: "bag-ucun-metal-mehsullar",

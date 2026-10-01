@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ServiceAnnotation } from "./service-annotation";
 import { ShelfNavigation } from "./shelf-navigation";
+import { ProductGallery } from "./product-gallery";
 import { useSearchParams } from "next/navigation";
 import { Search, ArrowUpRight, X } from "lucide-react";
 import {
@@ -10,6 +11,7 @@ import {
   divisions,
   products,
   categoryMatches,
+  getProductMedia,
 } from "@/lib/content";
 import { Input } from "@/components/ui/input";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -37,7 +39,7 @@ export function Catalog() {
   const query = params.get("q") ?? "";
   const furnitureSelected =
     category === "metal-mebel" ||
-    (category !== "refler" && category !== "dolablar" && categories.some(
+    (!["refler", "dolablar", "arxiv"].includes(category) && categories.some(
       (c) => c.id === category && categoryMatches(c.id, "metal-mebel"),
     ));
   const selectedArea = [...divisions, ...categories].find(
@@ -150,22 +152,7 @@ export function Catalog() {
           <div className="product-grid">
             {results.map((p) => (
               <article className="product-card" key={p.slug}>
-                <Link
-                  href={`/mehsullar/${p.slug}/`}
-                  className={`product-image${p.kind === "service" ? " service-photo" : ""}`}
-                >
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    width="512"
-                    height="512"
-                    loading="lazy"
-                  />
-                  {p.kind === "service" && (
-                    <ServiceAnnotation category={p.category} />
-                  )}
-                  {p.capacity && <span className="shelf-card-load">{p.capacity.perShelf} <small>kq / rəf</small></span>}
-                </Link>
+                <ProductGallery images={getProductMedia(p)} name={p.name} href={`/mehsullar/${p.slug}/`} overlay={<>{p.kind === "service" && p.category !== "direkler" && <ServiceAnnotation category={p.category} />}{p.capacity && <span className="shelf-card-load">{p.capacity.perShelf} <small>kq / rəf</small></span>}</>} />
                 <div className="product-card-content">
                   <span className="product-category">
                     {categories.find((c) => c.id === p.category)?.name}

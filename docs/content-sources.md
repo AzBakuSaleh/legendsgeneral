@@ -30,3 +30,19 @@ Generated using built-in ImageGen, without reference images, on 2026-10-01. They
 | `public/images/services/lighting-poles.webp` | Photorealistic conventional and solar steel lighting poles at blue hour, landscape composition with dark empty space on the left, no people, text or brands. |
 | `public/images/services/garden-products.webp` | Photorealistic dark steel decorative fire bowl, compact grill and metal-frame garden swing on a restrained patio; clear products, no people, text or brands. |
 | `public/images/services/metal-processing.webp` | Photorealistic close view of CNC laser cutting steel in a professional workshop, restrained sparks, no people, text or brands. |
+
+## Archive and pole clarification — 2026-10-01
+
+Client confirmed: mobile archives use a manual handwheel and floor rails. Surveillance scope is metal poles and mounting parts only; camera supply/installation is excluded. Mobile archive is now a primary catalogue direction.
+
+Research references (for mechanism and specification fields, not company-specific performance claims):
+- https://www.safe.ru/catalog/mobilnyy-arkhiv/
+- https://www.safe.ru/catalog/mobilnyy-arkhiv/mobilnyy-legkiy-arkhiv-900-kg-na-sektsiyu/
+- https://www.altron.co.uk/lamp_standard_poles.html
+- https://www.quickset.com/products/poles/p1600-1800/
+
+No third-party capacities, dimensions, standards, certifications or warranty periods were transferred. Pole height, section, wall thickness, mount geometry, equipment mass/count, foundations, anchors, wind/vibration requirements and surface treatment require project confirmation. Archive dimensions, floor suitability, layout and loads likewise require confirmation.
+
+Product gallery images are illustrative, separate from the real project gallery. Pole illustrations show intended application; visible lighting/camera equipment is context and does not establish equipment supply. The shelving detail is an illustrative reference edit of the existing shelving image.
+
+Four current gallery assets: `services/wired-pole-close.webp`, `services/solar-pole-close.webp`, `services/cctv-pole.webp`, and `shelving-close.webp`. Generated with built-in ImageGen on 2026-10-01; the shelving close-up uses the existing shelving image as reference. Descriptive captions distinguish wired and solar lighting, CCTV mounts, and the shelving detail. Hero local-production label is a client-confirmed company claim.

@@ -4,7 +4,8 @@ import { Hero } from "@/components/site/hero";
 import { AboutBand } from "@/components/site/shared";
 import { Gallery } from "@/components/site/gallery";
 import { ContactSection } from "@/components/site/contact";
-import { divisions } from "@/lib/content";
+import { divisions, categoryMedia } from "@/lib/content";
+import { ProductGallery } from "@/components/site/product-gallery";
 import { Partners } from "@/components/site/partners";
 import { ServiceAnnotation } from "@/components/site/service-annotation";
 export default function Home() {
@@ -27,22 +28,12 @@ export default function Home() {
           </div>
           <div className="category-grid services-grid">
             {divisions.map((c) => (
-              <Link
+              <article
                 className="category-card"
                 key={c.id}
-                href={`/kataloq/?kateqoriya=${c.id}`}
               >
-                <div className="category-image">
-                  <img
-                    src={c.image}
-                    alt={c.name}
-                    width="512"
-                    height="512"
-                    loading="lazy"
-                  />
-                  <ServiceAnnotation category={c.id} />
-                </div>
-                <div className="category-label">
+                <ProductGallery images={categoryMedia[c.id] ?? [{ src: c.image, title: c.name, fit: c.id === "arxiv" ? "contain" : "cover" }]} name={c.name} href={`/kataloq/?kateqoriya=${c.id}`} overlay={!categoryMedia[c.id] ? <ServiceAnnotation category={c.id} /> : undefined} />
+                <Link href={`/kataloq/?kateqoriya=${c.id}`} className="category-label">
                   <div>
                     <h3>{c.name}</h3>
                     <p>{c.short}</p>
@@ -50,8 +41,8 @@ export default function Home() {
                   <span className="round-arrow">
                     <ArrowUpRight />
                   </span>
-                </div>
-              </Link>
+                </Link>
+              </article>
             ))}
           </div>
           <p className="image-note">

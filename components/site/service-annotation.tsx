@@ -11,9 +11,11 @@ import {
   Lightbulb,
   Flame,
   Scissors,
+  Archive,
 } from "lucide-react";
 
 const annotations = {
+  arxiv: { icon: Archive, action: "MOBİL ARXİV SİSTEMİ", title: "Əl çarxı ilə idarə olunur", detail: "Rels üzərində hərəkət edən arxiv stellajları" },
   refler: { icon: Layers3, action: "RƏF YÜKÜNƏ GÖRƏ SEÇİM", title: "Metal stellajlar", detail: "120 · 200 · 500 · 1500 kq/rəf" },
   dolablar: { icon: LockKeyhole, action: "SİFARİŞLƏ HAZIRLANIR", title: "Metal dolablar", detail: "Geyim · sənəd · açar" },
   direkler: { icon: Lightbulb, action: "METAL DİRƏK İSTEHSALI", title: "İşıqlandırma və avadanlıq dirəkləri", detail: "Elektrik · günəş paneli · müşahidə" },
