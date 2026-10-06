@@ -2987,3 +2987,74 @@ h2.section-title {
   .hero-slide:not(.pole) .hero-emblem { top: 453px; }
 }
 .hero-slide.pole .hero-media img { object-fit: contain; }
+
+/* Mobile UX hardening — narrow hero controls, carousel gestures and catalog search. */
+.hero [data-slot="carousel-content"],
+.product-gallery [data-slot="carousel-content"] {
+  touch-action: pan-y pinch-zoom;
+}
+
+@media (max-width: 560px) {
+  .hero-controls {
+    gap: 8px;
+  }
+
+  .slide-dots {
+    gap: 3px;
+  }
+
+  .slide-dots button {
+    width: 24px;
+    height: 32px;
+  }
+
+  .slide-dots button::after {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .gallery-detail .gallery-stage {
+    height: clamp(250px, 88vw, 340px);
+  }
+
+  .gallery-thumbnails {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .gallery-thumbnails button {
+    flex: 0 0 85px;
+    scroll-snap-align: start;
+  }
+
+  .gallery-thumbnails::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .catalog-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .catalog-toolbar > span {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 340px) {
+  .hero-controls .slide-index {
+    display: none;
+  }
+}
+
