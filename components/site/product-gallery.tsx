@@ -46,7 +46,7 @@ export function ProductGallery({ images, name, href, detail = false, real = fals
       <Carousel setApi={setApi} opts={{ loop: multiple, duration: reduced ? 0 : 25 }} aria-label={`${name} — şəkillər`}>
         <CarouselContent className="ml-0">
           {images.map((item, i) => {
-            const visual = <><img src={item.src} alt={item.title} width="900" height="700" loading="lazy" style={{ objectFit: item.fit ?? "contain" }} />{overlay}</>;
+            const visual = <><img src={item.src} alt={item.title} width="900" height="700" loading="lazy" style={{ objectFit: detail ? "contain" : (item.fit ?? "contain") }} />{overlay}</>;
             return <CarouselItem key={item.src + i} className="pl-0" aria-hidden={index !== i}>
               {href ? <Link href={href} className="gallery-stage" tabIndex={index === i ? 0 : -1}>{visual}</Link>
                 : <button type="button" className="gallery-stage" tabIndex={index === i ? 0 : -1} onClick={() => { setExpanded(true); setPlaying(false); }} aria-label={`${item.title} — şəkli böyüt`}>{visual}<span className="photo-zoom"><Expand size={19} /></span></button>}
