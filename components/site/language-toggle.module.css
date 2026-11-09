@@ -1,0 +1,33 @@
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 68px;
+  height: 42px;
+  border: 1px solid #627584;
+  border-radius: 5px;
+  padding: 0 7px;
+  background: #23323e;
+  color: #f4f7fa;
+  font-weight: 740;
+  flex: 0 0 auto;
+}
+.wrap:hover,.wrap:focus-within { background: #324552; border-color: #d0dbe3; }
+.wrap:focus-within { outline: 2px solid #df4552; outline-offset: 2px; }
+.wrap select {
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  color: inherit;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 800;
+  min-width: 37px;
+}
+.wrap select option { background: #f5f7f9; color: #1e2934; }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+@media (max-width: 600px) {
+  .wrap { width: 44px; min-width: 44px; height: 41px; padding: 0 3px; justify-content: center; gap: 1px; }
+  .wrap > svg { width: 14px; }
+  .wrap select { font-size: 11px; min-width: 27px; }
+}
