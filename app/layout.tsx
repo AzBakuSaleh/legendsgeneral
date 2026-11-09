@@ -8,15 +8,43 @@ import { withSiteBasePath } from "@/lib/site-path";
 import "./globals.css";
 import "./showcase-catalog.css";
 import "./site-theme.css";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://legends-general-actual-preview.onrender.com";
+const socialImageUrl = new URL(withSiteBasePath("/images/logo.jpg"), siteUrl).toString();
+const socialTitle = "Legends General | Metal istehsalı və xidmətlər";
+const socialDescription =
+  "Azərbaycanda metal mebel və konstruksiyalar, dekorativ metal işləri, konteynerlər, sənaye soyuducu qapıları, kuzovlar və elektrostatik toz boyama.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Legends General | Metal istehsalı və xidmətlər",
+    default: socialTitle,
     template: "%s | Legends General",
   },
-  description:
-    "Azərbaycanda metal mebel və konstruksiyalar, dekorativ metal işləri, konteynerlər, sənaye soyuducu qapıları, kuzovlar və elektrostatik toz boyama.",
+  description: socialDescription,
   icons: { icon: withSiteBasePath("/favicon.svg") },
-  openGraph: { locale: "az_AZ", type: "website", siteName: "Legends General" },
+  openGraph: {
+    title: socialTitle,
+    description: socialDescription,
+    url: siteUrl,
+    locale: "az_AZ",
+    type: "website",
+    siteName: "Legends General",
+    images: [
+      {
+        url: socialImageUrl,
+        width: 897,
+        height: 954,
+        alt: "Legends General — Professional Metal Works logo",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: socialTitle,
+    description: socialDescription,
+    images: [socialImageUrl],
+  },
   robots: { index: false, follow: false },
 };
 export default function RootLayout({
