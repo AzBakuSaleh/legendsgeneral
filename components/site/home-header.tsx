@@ -36,18 +36,18 @@ export function HomeHeader() {
         }
       }}
     >
-      <a className="skip-link" href="#main">Əsas məzmuna keç</a>
+      <a className="skip-link" href="#main">{locale === "ru" ? "К основному содержимому" : locale === "en" ? "Skip to content" : "Əsas məzmuna keç"}</a>
       <div className={`${styles.wrap} ${styles.masthead} ${styles.showcaseMasthead}`}>
         <div className={styles.showcaseBrand}>
-          <Link className={styles.logo} href="/" aria-label="Legends General — ana səhifə">
+          <Link className={styles.logo} href={localizedHref(locale, "/")} aria-label={locale === "ru" ? "Legends General — главная" : locale === "en" ? "Legends General — home" : "Legends General — ana səhifə"}>
             <Logo />
           </Link>
-          <span className={styles.brandDescriptor} aria-label="Metal konstruksiya istehsalatı">
+          <span className={styles.brandDescriptor} aria-label={locale === "ru" ? "Производство металлоконструкций" : locale === "en" ? "Metal fabrication" : "Metal konstruksiya istehsalatı"}>
             {locale === "ru" ? <>ПРОИЗВОДСТВО<br />МЕТАЛЛО-<br />КОНСТРУКЦИЙ</> : locale === "en" ? <>METAL<br />FABRICATION<br />AND WORKS</> : <>METAL<br />KONSTRUKSİYA<br />İSTEHSALATI</>}
           </span>
         </div>
 
-        <nav className={styles.showcaseNav} aria-label="Əsas menyu">
+        <nav className={styles.showcaseNav} aria-label={locale === "ru" ? "Основное меню" : locale === "en" ? "Main navigation" : "Əsas menyu"}>
           {navigation.map(({ href, key }) => (
             <Link
               key={href}
@@ -60,7 +60,7 @@ export function HomeHeader() {
         </nav>
 
         <div className={styles.showcaseActions}>
-          <Link href={localizedHref(locale, "/kataloq/#axtaris")} className={styles.showcaseSearch} aria-label="Məhsul axtarışı">
+          <Link href={localizedHref(locale, "/kataloq/#axtaris")} className={styles.showcaseSearch} aria-label={locale === "ru" ? "Поиск продукции" : locale === "en" ? "Search products" : "Məhsul axtarışı"}>
             <Search size={22} strokeWidth={1.8} aria-hidden="true" />
           </Link>
           <a href={whatsapp} className={styles.whatsappLink} target="_blank" rel="noopener noreferrer">
@@ -73,7 +73,7 @@ export function HomeHeader() {
             type="button"
             className={styles.showcaseMenuToggle}
             id="showcase-menu-toggle"
-            aria-label={open ? "Menyunu bağla" : "Menyunu aç"}
+            aria-label={locale === "ru" ? (open ? "Закрыть меню" : "Открыть меню") : locale === "en" ? (open ? "Close menu" : "Open menu") : (open ? "Menyunu bağla" : "Menyunu aç")}
             aria-expanded={open}
             aria-controls="showcase-mobile-navigation"
             onClick={() => setOpen(!open)}
@@ -85,7 +85,7 @@ export function HomeHeader() {
       <nav
         className={`${styles.wrap} ${styles.showcaseMobileNav}`}
         id="showcase-mobile-navigation"
-        aria-label="Mobil menyu"
+        aria-label={locale === "ru" ? "Мобильное меню" : locale === "en" ? "Mobile menu" : "Mobil menyu"}
         hidden={!open}
       >
         {navigation.map(({ href, key }) => (
