@@ -380,3 +380,23 @@
 @media (prefers-reduced-motion: reduce) {
   .tab, .actions a { transition: none; }
 }
+
+
+:global(html.dark) .section { color: #ecf2f5; }
+:global(html.dark) .heading p,
+:global(html.dark) .footnote { color: #b5c5d0; }
+:global(html.dark) .headingCount,
+:global(html.dark) .tab:not(.active) {
+  background: #263541;
+  color: #edf3f6;
+  border-color: #4c5e6b;
+}
+:global(html.dark) .tab:not(.active):hover {
+  background: #364b59;
+  border-left-color: #e44652;
+}
+:global(html.dark) .tab:not(.active) small,
+:global(html.dark) .tab:not(.active) > svg { color: #bacbd6; }
+:global(html.dark) .tab.active { background: #4a2631; border-color: #a83846; }
+:global(html.dark) .feature { background: #1c2933; border-color: #435463; }
+:global(html.dark) .photo { background: #27343d; }
