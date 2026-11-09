@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { HomeHeader } from "@/components/site/home-header";
 import { Footer } from "@/components/site/shared";
 import { SiteThemeProvider } from "@/components/site/theme-provider";
+import { LanguageDocument } from "@/components/site/language-document";
 import { withSiteBasePath } from "@/lib/site-path";
 import "./globals.css";
 import "./showcase-catalog.css";
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="az" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
         <SiteThemeProvider>
+          <LanguageDocument />
           <HomeHeader />
           {children}
           <Footer />
