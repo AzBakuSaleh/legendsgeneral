@@ -23,6 +23,19 @@ export function Partners() {
             </li>
           ))}
         </ul>
+        <div className="partner-collaboration" aria-label="Korporativ əməkdaşlıq — METAK">
+          <span>KORPORATİV ƏMƏKDAŞLIQ</span>
+          <a href="https://metak.az/az" target="_blank" rel="noopener noreferrer" aria-label="METAK rəsmi saytı">
+            <img
+              src="https://metak.az/template/front/assets/images/logo.svg"
+              width="170"
+              height="62"
+              alt="METAK"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+            />
+          </a>
+        </div>
       </div>
     </aside>
   );
