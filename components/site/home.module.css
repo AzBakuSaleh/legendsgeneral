@@ -360,7 +360,7 @@
 .imageNote { margin-top: 9px; color: var(--muted); font-size: 12px; }
 
 .productImage { position: relative; background: var(--paper); }
-.productImage img { aspect-ratio: 1.45; object-fit: contain; mix-blend-mode: multiply; }
+.productImage img { aspect-ratio: 1.45; object-fit: contain; mix-blend-mode: normal; }
 .productImage > span { left: 9px; bottom: 9px; }
 
 .productCopy { padding: 15px 17px 17px; }
