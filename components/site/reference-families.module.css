@@ -18,7 +18,7 @@
   margin-bottom: 8px;
   font-size: 10px;
   line-height: 1.4;
-  color: #286b9b;
+  color: #be1c28;
   font-weight: 800;
   letter-spacing: .16em;
 }
@@ -78,12 +78,12 @@
 
 .tab:hover {
   border-color: #899baa;
-  border-left-color: #286b9b;
+  border-left-color: #be1c28;
   background: #eaf0f4;
 }
 
 .tab:focus-visible {
-  outline: 3px solid #286b9b;
+  outline: 3px solid #be1c28;
   outline-offset: 2px;
 }
 
@@ -91,7 +91,7 @@
   background: #252b32;
   color: #fff;
   border-color: #252b32;
-  border-left-color: #4489b9;
+  border-left-color: #d32230;
 }
 
 .tabNumber {
@@ -102,10 +102,10 @@
   font-size: 12px;
   line-height: 1.35;
   font-weight: 800;
-  color: #286b9b;
+  color: #be1c28;
 }
 
-.active .tabNumber { color: #96caeb; }
+.active .tabNumber { color: #f5adb3; }
 
 .tabText {
   display: flex;
@@ -150,7 +150,7 @@
 }
 
 .feature:focus-visible {
-  outline: 3px solid #286b9b;
+  outline: 3px solid #be1c28;
   outline-offset: 3px;
 }
 
@@ -281,7 +281,7 @@
   width: 5px;
   height: 5px;
   margin-top: 7px;
-  background: #86bfe4;
+  background: #d92835;
 }
 
 .more { margin: 10px 0 0; }
@@ -291,7 +291,7 @@
   align-items: center;
   gap: 8px;
   min-height: 36px;
-  color: #a9d6f3;
+  color: #f3a7ae;
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
