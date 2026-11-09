@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ServiceAnnotation } from "./service-annotation";
 import { ShelfNavigation } from "./shelf-navigation";
 import { ProductGallery } from "./product-gallery";
+import { ReferenceFamilies } from "./reference-families";
 import { useSearchParams } from "next/navigation";
 import { Search, ArrowUpRight, X } from "lucide-react";
 import {
@@ -104,6 +105,7 @@ export function Catalog() {
             <p>{selectedArea.description}</p>
           </div>
         )}
+        {category === "all" && !query.trim() && <ReferenceFamilies />}
         {category === "refler" && <div className="mobile-shelf-shortcuts"><ShelfNavigation /></div>}
         {furnitureSelected && (
           <ToggleGroup
