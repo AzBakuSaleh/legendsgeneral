@@ -16,7 +16,7 @@ const slides = [
     description: "Anbar, arxiv və iş məkanları üçün 120, 200, 500 və 1500 kq/rəf yük siniflərində stellajlar.",
     href: "/kataloq/?kateqoriya=refler",
     action: "Kataloqa bax",
-    image: withSiteBasePath("/images/shelving-close.webp"),
+    image: withSiteBasePath("/images/catalog-preview/rack-loaded.jpg"),
     caption: "Nümunə görüntü",
   },
   {
@@ -24,7 +24,7 @@ const slides = [
     description: "Geyim, sənəd və şəxsi əşyalar üçün metal dolablar. Ölçüləri, bölmələri və kilidi ehtiyacınıza uyğun seçin.",
     href: "/kataloq/?kateqoriya=dolablar",
     action: "Dolablara bax",
-    image: withSiteBasePath("/images/steel-lockers.webp"),
+    image: withSiteBasePath("/images/catalog-preview/locker-closed.jpg"),
     caption: "Nümunə görüntü",
   },
   {

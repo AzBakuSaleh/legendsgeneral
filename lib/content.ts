@@ -15,14 +15,14 @@ const furnitureCategories = [
     id: "refler",
     name: "Metal stellajlar",
     short: "Rəf yükünə görə seçim",
-    image: withSiteBasePath("/images/warehouse-shelving.webp"),
+    image: withSiteBasePath("/images/catalog-preview/rack-loaded.jpg"),
     description: "120, 200, 500 və 1500 kq/rəf yük sinifləri üzrə metal stellajlar.",
   },
   {
     id: "dolablar",
     name: "Metal dolablar",
     short: "Səliqəli və rahat saxlama",
-    image: withSiteBasePath("/images/steel-lockers.webp"),
+    image: withSiteBasePath("/images/catalog-preview/locker-closed.jpg"),
     description:
       "İş geyimləri, şəxsi əşyalar və sənədlərin saxlanması üçün metal dolablar.",
   },
@@ -30,7 +30,7 @@ const furnitureCategories = [
     id: "seyfler",
     name: "Seyflər",
     short: "Dəyərli əşyalar üçün",
-    image: withSiteBasePath("/images/money-safe.webp"),
+    image: withSiteBasePath("/images/catalog-preview/safe-open.jpg"),
     description: "Pul, sənədlər və dəyərli əşyaların saxlanması üçün seyflər.",
   },
   {
@@ -63,7 +63,7 @@ export const divisions = [
     id: "refler",
     name: "Metal stellajlar",
     short: "120–1500 kq/rəf üzrə seçim",
-    image: withSiteBasePath("/images/warehouse-shelving.webp"),
+    image: withSiteBasePath("/images/catalog-preview/rack-loaded.jpg"),
     description: "Rəfin və bütöv stellajın yük həddini ayrıca nəzərə alaraq uyğun modeli seçin.",
   },
   {
@@ -168,8 +168,14 @@ export const shelfClasses = [
 export type ProductMedia = { src: string; title: string; fit?: "contain" | "cover" };
 export const categoryMedia: Record<string, ProductMedia[]> = {
   refler: [
-    { src: withSiteBasePath("/images/warehouse-shelving.webp"), title: "Metal stellaj — ümumi görünüş", fit: "contain" },
-    { src: withSiteBasePath("/images/shelving-close.webp"), title: "Rəf və metal dayaq — yaxın görünüş", fit: "cover" },
+    { src: withSiteBasePath("/images/catalog-preview/rack-loaded.jpg"), title: "Metal stellaj — dolu vəziyyət (nümunə görüntü)", fit: "cover" },
+    { src: withSiteBasePath("/images/catalog-preview/rack-empty.jpg"), title: "Metal stellaj — boş vəziyyət (nümunə görüntü)", fit: "cover" },
+  ],
+  dolablar: [
+    { src: withSiteBasePath("/images/catalog-preview/locker-closed.jpg"), title: "Metal dolab — qapalı vəziyyət (nümunə görüntü)", fit: "cover" },
+  ],
+  seyfler: [
+    { src: withSiteBasePath("/images/catalog-preview/safe-open.jpg"), title: "Metal seyf — açıq vəziyyət (nümunə görüntü)", fit: "cover" },
   ],
   direkler: [
     { src: withSiteBasePath("/images/services/wired-pole-close.webp"), title: "Naqilli işıqlandırma üçün metal dirək", fit: "cover" },
@@ -211,7 +217,7 @@ export const products: Product[] = [
     slug,
     category: "refler",
     name: `Metal stellaj — ${perShelf} kq/rəf`,
-    image: withSiteBasePath("/images/warehouse-shelving.webp"),
+    image: withSiteBasePath("/images/catalog-preview/rack-loaded.jpg"),
     description: `Bir rəf üçün ${perShelf} kq, bütöv stellaj üçün ${total} kq nəzərdə tutulan yük sinfi. Rəf sayı və yerləşdiriləcək yükə uyğun komplektasiya sifariş zamanı dəqiqləşdirilir.`,
     uses: ["Anbarlar", "Arxivlər", "İstehsal və ticarət sahələri"],
     details: ["Hündürlük, en və dərinlik", "Rəf sayı və yükün paylanması", "Material və səth örtüyü"],

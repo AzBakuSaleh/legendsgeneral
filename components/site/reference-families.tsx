@@ -8,11 +8,11 @@ import { withSiteBasePath } from "@/lib/site-path";
 import styles from "./reference-families.module.css";
 
 const presentation: Record<string, { image: string; position?: string }> = {
-  "metal-stellajlar": { image: "/images/warehouse-shelving.webp" },
+  "metal-stellajlar": { image: "/images/catalog-preview/rack-loaded.jpg" },
   "mobil-arxiv": { image: "/images/mobile-archive.webp" },
   "istehsalat-mebeli": { image: "/images/metal-workbench.webp" },
-  "ofis-mebeli": { image: "/images/steel-lockers.webp" },
-  seyfler: { image: "/images/money-safe.webp" },
+  "ofis-mebeli": { image: "/images/catalog-preview/locker-closed.jpg" },
+  seyfler: { image: "/images/catalog-preview/safe-open.jpg" },
   "diger-metal-mehsullar": { image: "/images/hero-showroom.webp", position: "65% center" },
 };
 
