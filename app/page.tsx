@@ -1,64 +1,62 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Factory, Headset, Layers3, Ruler } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Layers3, LockKeyhole, Shirt, Lightbulb, Trees, Package } from "lucide-react";
 import { ContactSection } from "@/components/site/contact";
 import { Hero } from "@/components/site/hero";
 import { HomeHeader } from "@/components/site/home-header";
 import { Partners } from "@/components/site/partners";
 import { Certificates } from "@/components/site/certificates";
-import { ReferenceFamilies } from "@/components/site/reference-families";
-import { categories, categoryMedia, divisions, projects, shelfClasses } from "@/lib/content";
+import { categoryMedia, divisions, projects, shelfClasses } from "@/lib/content";
 import { withSiteBasePath } from "@/lib/site-path";
 import styles from "@/components/site/home.module.css";
 
-const featuredCategories = categories.filter(({ id }) =>
-  ["refler", "dolablar", "arxiv", "seyfler", "istehsalat", "tibbi"].includes(id),
-);
+const featuredCategories = [
+  { id: "refler", name: "Stellajlar", detail: "Anbar və saxlama sistemləri", image: "/images/catalog-preview/rack-loaded.jpg", icon: Layers3 },
+  { id: "dolablar", name: "Metal dolablar", detail: "Ofis, anbar və istehsalat üçün", image: "/images/hero-showroom.webp", icon: LockKeyhole },
+  { id: "dolablar", name: "Geyim dolabları", detail: "İdman zalları və müəssisələr üçün", image: "/images/catalog-preview/locker-closed.jpg", icon: Shirt },
+  { id: "direkler", name: "İşıq dirəkləri", detail: "Küçə və açıq məkanlar üçün", image: "/images/services/lighting-poles.webp", icon: Lightbulb },
+  { id: "bag-mehsullari", name: "Bağ məhsulları", detail: "Həyət, park və istirahət sahələri", image: "/images/services/garden-products.webp", icon: Trees },
+  { id: "konteynerler", name: "Konteynerlər", detail: "Quru və soyuducu həllər", image: "/images/services/containers.webp", icon: Package },
+] as const;
 const services = divisions.filter(({ id }) =>
   ["konstruksiyalar", "diger-xidmetler", "toz-boyama"].includes(id),
 );
 const featuredProjects = [projects[2], projects[1], projects[0]];
-const benefits = [
-  { icon: Factory, title: "Yerli istehsal", detail: "Azərbaycanda hazırlanır" },
-  { icon: Layers3, title: "Geniş məhsul çeşidi", detail: "Saxlama və iş məkanları üçün" },
-  { icon: Ruler, title: "Ölçüyə uyğun sifariş", detail: "Məkanınıza uyğun komplektasiya" },
-  { icon: Headset, title: "Seçimdə dəstək", detail: "Məhsul və xidmət üzrə məsləhət" },
-];
 
 export default function Home() {
   return (
     <>
       <HomeHeader />
       <main className={styles.home} id="main">
+        <Hero />
         <div className={styles.wrap}>
-          <Hero />
-          <ul className={styles.benefits} aria-label="Legends General üstünlükləri">
-            {benefits.map(({ icon: Icon, title, detail }) => (
-              <li key={title}>
-                <Icon size={29} strokeWidth={1.6} aria-hidden="true" />
-                <div><strong>{title}</strong><p>{detail}</p></div>
-              </li>
-            ))}
-          </ul>
-
-          <section className={styles.section} aria-labelledby="home-categories">
-            <div className={styles.sectionHeading}>
-              <h2 id="home-categories">Məhsul kateqoriyaları</h2>
-              <Link className={styles.textLink} href="/kataloq/">
-                Bütün kateqoriyalar <ArrowRight size={17} aria-hidden="true" />
+          <section className={`${styles.section} ${styles.showcaseCategoriesSection}`} id="mehsul-qruplari" aria-labelledby="home-categories">
+            <div className={styles.showcaseCategoryTop}>
+              <div className={styles.showcaseTitleBlock}>
+                <span>MƏHSULLARIMIZ</span>
+                <h2 id="home-categories">Məhsul qrupları</h2>
+              </div>
+              <p>Anbar, ofis, istehsalat, ictimai məkan və xüsusi layihələr üçün metal konstruksiya həlləri.</p>
+              <Link className={styles.showcaseAllProducts} href="/kataloq/">
+                Bütün məhsullar <ArrowRight size={18} aria-hidden="true" />
               </Link>
             </div>
-            <div className={styles.categories}>
-              {featuredCategories.map(({ id, name, image }) => (
-                <Link className={styles.category} href={`/kataloq/?kateqoriya=${id}`} key={id}>
-                  <img src={image} alt="" width="640" height="480" loading="lazy" />
-                  <span>{name} <ArrowUpRight size={17} aria-hidden="true" /></span>
+            <div className={styles.showcaseCategoryGrid}>
+              {featuredCategories.map(({ id, name, detail, image, icon: Icon }) => (
+                <Link className={styles.showcaseCategoryCard} href={`/kataloq/?kateqoriya=${id}`} key={name}>
+                  <img src={withSiteBasePath(image)} alt="" width={600} height={720} loading="lazy" />
+                  <span className={styles.showcaseCategoryContent}>
+                    <Icon size={24} strokeWidth={1.7} aria-hidden="true" />
+                    <span className={styles.showcaseCategoryDescription}>
+                      <strong>{name}</strong>
+                      <small>{detail}</small>
+                    </span>
+                    <ArrowRight size={20} aria-hidden="true" />
+                  </span>
                 </Link>
               ))}
             </div>
-            <p className={styles.imageNote}>Kateqoriya şəkilləri nümunə görüntüləridir.</p>
+            <p className={styles.imageNote}>Məhsul şəkilləri təqdimat məqsədli nümunə görüntülərdir; real modelin görünüşü sifariş zamanı dəqiqləşdirilir.</p>
           </section>
-
-          <ReferenceFamilies compact />
 
           <section className={styles.section} aria-labelledby="home-popular">
             <div className={styles.sectionHeading}>
@@ -139,7 +137,7 @@ export default function Home() {
           </section>
         </div>
         <Certificates />
-        <Partners />
+        <div id="emekdasliqlar"><Partners /></div>
         <ContactSection />
       </main>
     </>
