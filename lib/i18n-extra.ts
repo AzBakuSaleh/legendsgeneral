@@ -7,6 +7,25 @@
  */
 export const supplementaryTranslations: ReadonlyMap<string, Readonly<{ru: string; en: string}>> =
   new Map<string, {ru: string; en: string}>([
+  ["Anbar və istehsalat üçün etibarlı həllər", {"ru":"Надёжные решения для складов и производства","en":"Reliable solutions for warehouses and industry"}],
+  ["Stellaj, metal dolab, konteyner və digər metal konstruksiyaların layihələndirilməsi və istehsalı.", {"ru":"Проектирование и изготовление стеллажей, металлических шкафов, контейнеров и других металлоконструкций.","en":"Design and fabrication of shelving, metal cabinets, containers and other steel structures."}],
+  ["Layihələrimiz", {"ru":"Наши проекты","en":"Our projects"}],
+  ["Metal dolablar və saxlama sistemləri", {"ru":"Металлические шкафы и системы хранения","en":"Metal cabinets and storage systems"}],
+  ["İşçilər, ofislər və istehsalat sahələri üçün müxtəlif ölçülü və bölməli metal dolablar.", {"ru":"Металлические шкафы разных размеров и конфигураций для персонала, офисов и производственных помещений.","en":"Metal lockers and cabinets in various sizes and configurations for workplaces, offices and industrial facilities."}],
+  ["Dolabları kəşf et", {"ru":"Смотреть шкафы","en":"Browse cabinets"}],
+  ["Sorğu göndər", {"ru":"Отправить запрос","en":"Send enquiry"}],
+  ["Sifarişlə metal mebel və konstruksiyalar", {"ru":"Металлическая мебель и конструкции на заказ","en":"Custom metal furniture and structures"}],
+  ["İstehsalat imkanlarımızı və həyata keçirilmiş metal konstruksiya işlərini yaxından tanıyın.", {"ru":"Ознакомьтесь с нашими производственными возможностями и реализованными проектами.","en":"Explore our manufacturing capabilities and completed metalwork projects."}],
+  ["Metal rəflər və stellaj konstruksiyaları", {"ru":"Металлические полки и стеллажные конструкции","en":"Metal shelves and shelving structures"}],
+  ["Geyim saxlama üçün metal dolablar", {"ru":"Металлические шкафы для хранения одежды","en":"Metal lockers for clothing storage"}],
+  ["Metal rəflər", {"ru":"Металлические полки","en":"Metal shelves"}],
+  ["Metal işıqlandırma dirəkləri", {"ru":"Металлические опоры освещения","en":"Metal lighting poles"}],
+  ["Ehtiyacınızı bildirin", {"ru":"Расскажите о задаче","en":"Describe your requirements"}],
+  ["Maraqlandığınız məhsul və ya xidməti, istifadə məqsədini bizimlə paylaşın.", {"ru":"Расскажите, какая продукция или услуга вам нужна и как вы планируете её использовать.","en":"Tell us what you need and how you intend to use it."}],
+  ["Detalları dəqiqləşdirək", {"ru":"Уточним детали","en":"Confirm the details"}],
+  ["Ölçü, say, komplektasiya və digər tələbləri birlikdə müzakirə edək.", {"ru":"Обсудим размеры, количество, комплектацию и другие требования.","en":"We'll review dimensions, quantity, configurations and other requirements."}],
+  ["Təklifinizi alın", {"ru":"Получите предложение","en":"Receive your quote"}],
+  ["Qiymət və hazırlanma müddəti barədə fərdi təklif üçün əlaqə saxlayın.", {"ru":"Свяжитесь с нами, чтобы получить индивидуальное предложение по цене и срокам изготовления.","en":"Contact us for a tailored offer covering price and lead time."}],
   [
     "Metal stellaj",
     {
