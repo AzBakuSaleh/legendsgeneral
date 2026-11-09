@@ -1467,3 +1467,94 @@
     min-height: 41px;
   }
 }
+
+
+/* HERO VISUAL SYSTEM — uncropped product focus on desktop with an atmospheric
+   full-bleed layer underneath. Prevent the 3:2 rack/locker shots from being
+   cropped into an ultra-wide banner and keep headline clear of the product. */
+.showcaseHero .heroCopy :is(h1, h2) {
+  font-family: "Segoe UI", "Noto Sans", "DejaVu Sans", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+.showcaseHero .heroMedia .heroAtmosphere {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: .33;
+  filter: blur(12px) saturate(.73);
+  transform: scale(1.055);
+}
+.showcaseHero .heroMedia .heroFocus {
+  position: absolute;
+  inset: 0 0 0 auto;
+  display: block;
+  width: 56%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right center;
+  filter: none;
+  transform: none;
+  mix-blend-mode: normal;
+}
+.showcaseHero .heroMedia[data-slide="0"] .heroFocus,
+.showcaseHero .heroMedia[data-slide="1"] .heroFocus {
+  object-fit: contain;
+  object-position: right center;
+}
+.showcaseHero .heroMedia[data-slide="2"] .heroFocus {
+  object-fit: contain;
+  object-position: right center;
+}
+.showcaseHero .heroMedia::after {
+  background: linear-gradient(90deg,
+    #101922 0%,
+    #101922fa 21%,
+    #101922ef 38%,
+    #101922a3 52%,
+    #10192239 72%,
+    #1019221c 100%);
+}
+.showcaseHero .heroCopy {
+  width: min(750px, 54%);
+}
+@media (max-width: 980px) {
+  .showcaseHero .heroCopy { width: min(700px, 72%); }
+  .showcaseHero .heroMedia .heroFocus { width: 65%; }
+  .showcaseHero .heroMedia::after {
+    background: linear-gradient(90deg,
+      #101922 0%, #101922f0 33%, #101922b3 58%, #10192255 100%);
+  }
+}
+@media (max-width: 780px) {
+  .showcaseHero .heroCopy { width: min(620px, 87%); }
+  .showcaseHero .heroMedia .heroFocus {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 68% center;
+    opacity: .66;
+  }
+  .showcaseHero .heroMedia[data-slide="1"] .heroFocus { object-position: 64% center; }
+  .showcaseHero .heroMedia[data-slide="2"] .heroFocus { object-position: 66% center; }
+  .showcaseHero .heroMedia::after {
+    background: linear-gradient(90deg, #101922f7 0%, #101922e8 53%, #101922a1 100%);
+  }
+}
+@media (max-width: 600px) {
+  .showcaseHero .heroCopy { width: 100%; }
+  .showcaseHero .heroMedia .heroFocus {
+    opacity: .54;
+    object-position: 66% center;
+  }
+  .showcaseHero .heroMedia[data-slide="1"] .heroFocus { object-position: 62% center; }
+  .showcaseHero .heroMedia::after {
+    background: linear-gradient(90deg, #101922f7 0%, #101922df 65%, #101922b0 100%);
+  }
+}
