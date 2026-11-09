@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { HomeHeader } from "@/components/site/home-header";
 import { Footer } from "@/components/site/shared";
+import { SiteThemeProvider } from "@/components/site/theme-provider";
 import { withSiteBasePath } from "@/lib/site-path";
 import "./globals.css";
 import "./showcase-catalog.css";
+import "./site-theme.css";
 export const metadata: Metadata = {
   title: {
     default: "Legends General | Metal istehsalı və xidmətlər",
@@ -21,11 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="az" data-scroll-behavior="smooth">
+    <html lang="az" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
-        <HomeHeader />
-        {children}
-        <Footer />
+        <SiteThemeProvider>
+          <HomeHeader />
+          {children}
+          <Footer />
+        </SiteThemeProvider>
       </body>
     </html>
   );
