@@ -67,7 +67,7 @@ export function Catalog() {
     window.history.replaceState(null, "", url);
   }
   return (
-    <section className="container section catalog-layout">
+    <section id="catalog-browse" className="container section catalog-layout">
       <aside className="catalog-sidebar">
         <h2>İstiqamətlər</h2>
         <button type="button" className="mobile-category-toggle" aria-expanded={menuOpen} aria-controls="catalog-categories" onClick={() => setMenuOpen(!menuOpen)}>

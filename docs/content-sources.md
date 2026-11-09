@@ -46,3 +46,7 @@ No third-party capacities, dimensions, standards, certifications or warranty per
 Product gallery images are illustrative, separate from the real project gallery. Pole illustrations show intended application; visible lighting/camera equipment is context and does not establish equipment supply. The shelving detail is an illustrative reference edit of the existing shelving image.
 
 Four current gallery assets: `services/wired-pole-close.webp`, `services/solar-pole-close.webp`, `services/cctv-pole.webp`, and `shelving-close.webp`. Generated with built-in ImageGen on 2026-10-01; the shelving close-up uses the existing shelving image as reference. Descriptive captions distinguish wired and solar lighting, CCTV mounts, and the shelving detail. Hero local-production label is a client-confirmed company claim.
+
+## Road-sign catalog addition — 2026-11-09
+
+The client separately confirmed manufacturing road signs. The V2 preview now exposes `yol-nisanlari` as its own category and `/mehsullar/yol-nisanlari-ve-direkleri/` as a project-inquiry page, while road-signs are removed from the lighting-pole offers to avoid duplication. `public/images/services/road-signs.svg` is an **original illustrative placeholder**, not a photo of Legends products and not proof of regulatory compliance. Replace it with the user's approved original/permission-cleared photo before release when the file is available. No unverified sizes, sign specifications, standards or certification grades are claimed.

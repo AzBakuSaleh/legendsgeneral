@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 880" role="img" aria-labelledby="title description">
+<title id="title">Yol nişanları və metal dirəklər</title>
+<desc id="description">Yol nişanları və metal dirəklər üçün illüstrativ vizual. Legends istehsalat fotosu deyil.</desc>
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#dbe7ef"/><stop offset="1" stop-color="#f6f8fa"/></linearGradient>
+  <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#64727d"/><stop offset=".36" stop-color="#d8e1e6"/><stop offset=".7" stop-color="#8897a2"/><stop offset="1" stop-color="#4e5c67"/></linearGradient>
+  <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#75818b"/><stop offset="1" stop-color="#38444f"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fefefe"/><stop offset="1" stop-color="#dce6eb"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="11" dy="15" stdDeviation="13" flood-color="#26333d" flood-opacity=".22"/></filter>
+  <filter id="ground"><feGaussianBlur stdDeviation="10"/></filter>
+</defs>
+<rect width="1200" height="880" fill="url(#sky)"/>
+<path d="M0 575C280 535 470 562 710 538C918 523 1040 528 1200 504V880H0Z" fill="#becbd2"/>
+<path d="M0 693L1200 597V880H0Z" fill="url(#road)"/>
+<path d="M0 817L1200 718" stroke="#e2e8eb" stroke-width="6" stroke-dasharray="100 65" opacity=".75"/>
+<path d="M0 595L1200 518" stroke="#fff" stroke-width="6" opacity=".45"/>
+<g fill="#31404b" opacity=".12"><path d="M32 540h150v36H32zM146 510h130v62H146zM800 490h178v49H800zM960 460h205v70H960z"/></g>
+<ellipse cx="630" cy="697" rx="440" ry="36" fill="#1d2b36" opacity=".22" filter="url(#ground)"/>
+<!-- Speed limit sign, central foreground -->
+<g filter="url(#shadow)">
+  <rect x="568" y="285" width="25" height="413" rx="9" fill="url(#steel)"/>
+  <rect x="556" y="665" width="48" height="15" rx="4" fill="#586772"/>
+  <circle cx="580" cy="278" r="142" fill="#4b5964"/>
+  <circle cx="574" cy="267" r="135" fill="#fff"/>
+  <circle cx="574" cy="267" r="114" fill="#c9383f"/>
+  <circle cx="574" cy="267" r="91" fill="url(#panel)"/>
+  <text x="574" y="303" fill="#25333f" font-family="Arial,Helvetica,sans-serif" font-size="112" font-weight="700" text-anchor="middle">50</text>
+  <path d="M490 191C528 158 576 151 621 170" stroke="#fff" stroke-opacity=".35" stroke-width="12" stroke-linecap="round" fill="none"/>
+</g>
+<!-- Pedestrian crossing sign -->
+<g filter="url(#shadow)" transform="translate(148 220)">
+  <rect x="125" y="180" width="19" height="370" rx="8" fill="url(#steel)"/>
+  <rect width="270" height="270" rx="15" fill="#556b7a" transform="translate(0 2)"/>
+  <rect x="9" y="9" width="252" height="252" rx="8" fill="#2372ab"/>
+  <path d="M135 32L243 229H27Z" fill="#f7f9fa"/>
+  <circle cx="135" cy="92" r="16" fill="#263746"/>
+  <path d="M135 112L119 153L147 171M135 112L160 148L177 146M120 152L92 180M145 171L165 198" stroke="#263746" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M75 208l120-27M85 224l120-27" stroke="#263746" stroke-width="9" stroke-linecap="round"/>
+  <path d="M15 15h85" stroke="#fff" stroke-width="8" opacity=".22"/>
+</g>
+<!-- Warning sign behind -->
+<g filter="url(#shadow)" transform="translate(850 90)">
+  <rect x="108" y="248" width="20" height="374" rx="7" fill="url(#steel)"/>
+  <path d="M118 10L235 219H1Z" fill="#4e5b66"/>
+  <path d="M118 23L222 209H14Z" fill="#fff"/>
+  <path d="M118 43L201 192H35Z" fill="#d04047"/>
+  <path d="M118 67L181 179H55Z" fill="#f7f9fa"/>
+  <rect x="110" y="103" width="16" height="46" rx="6" fill="#26333f"/>
+  <circle cx="118" cy="163" r="9" fill="#26333f"/>
+</g>
+<!-- Small blue directional sign -->
+<g filter="url(#shadow)" transform="translate(849 478)">
+ <rect x="97" y="112" width="17" height="148" rx="6" fill="url(#steel)"/>
+ <rect width="220" height="124" rx="12" fill="#51626e"/>
+ <rect x="7" y="7" width="206" height="110" rx="7" fill="#286b9b"/>
+ <path d="M41 59h123m-39-27l38 27-38 27" stroke="#fff" stroke-width="17" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+</g>
+<path d="M0 0h1200v880H0Z" fill="none" stroke="#d4dfe5" stroke-width="12"/>
+</svg>

@@ -6,6 +6,7 @@ import { products, categories, categoryMatches, getProductMedia } from "@/lib/co
 import { ServiceAnnotation } from "@/components/site/service-annotation";
 import { ProductGallery } from "@/components/site/product-gallery";
 import { ShelfNavigation } from "@/components/site/shelf-navigation";
+import styles from "../../v2-product.module.css";
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
 }
@@ -40,7 +41,7 @@ export default async function ProductPage({
     ...candidates.filter((p) => !categoryMatches(p.category, area)),
   ].slice(0, 3);
   return (
-    <main id="main">
+    <main id="main" className={styles.productPage}>
       <div className="container product-breadcrumbs">
         <nav className="breadcrumbs" aria-label="Səhifə yolu">
           <Link href="/">Ana səhifə</Link>
@@ -62,6 +63,7 @@ export default async function ProductPage({
           detail
         /><p className="image-note">{product.imageKind === "real" ? "Legends General-ın görülən işlərindən." : "Nümunə görüntülər. Görünüş və texniki tələblər sifarişə uyğun dəqiqləşdirilir."}</p></div>
         <div className="product-info">
+          <p className={styles.overline}>Legends General · İstehsal məhsulu</p>
           <Link
             className="eyebrow"
             href={`/kataloq/?kateqoriya=${category.id}`}
