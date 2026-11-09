@@ -991,6 +991,40 @@
 }
 .showcaseCategoryCard:hover > img,
 .showcaseCategoryCard:focus-visible > img { transform: scale(1.04); }
+/* Seventh production direction: wide road-signs banner that preserves the six approved cards. */
+.showcaseCategoryCard:last-child:nth-child(7) {
+  grid-column: 1 / -1;
+  aspect-ratio: auto;
+  min-height: 220px;
+}
+.showcaseCategoryCard:last-child:nth-child(7) > img {
+  object-position: center 46%;
+}
+.showcaseCategoryCard:last-child:nth-child(7) .showcaseCategoryContent {
+  max-width: 560px;
+  padding: 23px 27px;
+}
+.showcaseCategoryCard:last-child:nth-child(7) .showcaseCategoryDescription strong {
+  font-size: clamp(21px, 2.5vw, 29px);
+}
+.showcaseCategoryCard:last-child:nth-child(7) .showcaseCategoryDescription small {
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .showcaseCategoryCard:last-child:nth-child(7) {
+    min-height: 205px;
+  }
+  .showcaseCategoryCard:last-child:nth-child(7) .showcaseCategoryContent {
+    max-width: none;
+    padding: 17px;
+  }
+  .showcaseCategoryCard:last-child:nth-child(7) .showcaseCategoryDescription strong {
+    font-size: 20px;
+  }
+  .showcaseCategoryCard:last-child:nth-child(7) .showcaseCategoryDescription small {
+    font-size: 11px;
+  }
+}
 .showcaseCategoryCard::after {
   content: "";
   position: absolute;
