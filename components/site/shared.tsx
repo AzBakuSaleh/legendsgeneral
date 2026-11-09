@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { localeFromPath, localizedHref, localeNames, tr, label, type Locale } from "@/lib/i18n";
 import { ArrowUpRight, Phone, MapPin, Camera as Instagram } from "lucide-react";
+import { WhatsAppIcon } from "./whatsapp-icon";
 import {
   phones,
   whatsappNumber,
@@ -51,7 +52,7 @@ export function ContactDetails({ locale = "az" }: { locale?: Locale }) {
                 rel="noopener noreferrer"
                 aria-label={locale === "ru" ? "Написать в WhatsApp: +994 50 299 10 22" : locale === "en" ? "WhatsApp +994 50 299 10 22" : "+994 50 299 10 22 nömrəsinə WhatsApp yaz"}
               >
-                WhatsApp <ArrowUpRight size={14} />
+                <WhatsAppIcon size={16} /> WhatsApp
               </a>
             )}
           </div>
