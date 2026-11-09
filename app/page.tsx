@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Layers3, LockKeyhole, Shirt, Lightbulb, Trees, Package } from "lucide-react";
 import { ContactSection } from "@/components/site/contact";
 import { Hero } from "@/components/site/hero";
-import { HomeHeader } from "@/components/site/home-header";
 import { Partners } from "@/components/site/partners";
 import { Certificates } from "@/components/site/certificates";
 import { categoryMedia, divisions, projects, shelfClasses } from "@/lib/content";
@@ -25,7 +24,6 @@ const featuredProjects = [projects[2], projects[1], projects[0]];
 export default function Home() {
   return (
     <>
-      <HomeHeader />
       <main className={styles.home} id="main">
         <Hero />
         <div className={styles.wrap}>
