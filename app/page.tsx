@@ -40,7 +40,7 @@ export default function Home() {
             </div>
             <div className={styles.showcaseCategoryGrid}>
               {featuredCategories.map(({ id, name, detail, image, icon: Icon }) => (
-                <Link className={styles.showcaseCategoryCard} href={`/kataloq/?kateqoriya=${id}`} key={name}>
+                <Link className={styles.showcaseCategoryCard} href={`/kataloq/?kateqoriya=${id}${name === "Geyim dolabları" ? "&q=geyim" : ""}`} key={name}>
                   <img src={withSiteBasePath(image)} alt="" width={600} height={720} loading="lazy" />
                   <span className={styles.showcaseCategoryContent}>
                     <Icon size={24} strokeWidth={1.7} aria-hidden="true" />
