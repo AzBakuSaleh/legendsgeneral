@@ -63,7 +63,7 @@ export function Hero() {
       if (reducedMotion.matches) return;
 
       interval = window.setInterval(() => {
-        if (!document.hidden) api.scrollNext();
+        api.scrollNext();
       }, AUTO_ADVANCE_MS);
     };
 
