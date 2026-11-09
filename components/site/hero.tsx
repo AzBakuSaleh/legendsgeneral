@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Pause, Play } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import { projects } from "@/lib/content";
 import { withSiteBasePath } from "@/lib/site-path";
 import styles from "./home.module.css";
 
+const AUTO_ADVANCE_MS = 5000;
 const shelfProject = projects[2];
 const slides = [
   {
@@ -39,6 +40,7 @@ const slides = [
 export function Hero() {
   const [api, setApi] = useState<CarouselApi>();
   const [index, setIndex] = useState(0);
+  const [autoplay, setAutoplay] = useState(true);
 
   useEffect(() => {
     if (!api) return;
@@ -48,6 +50,31 @@ export function Hero() {
       api.off("select", select).off("reInit", select);
     };
   }, [api]);
+
+  useEffect(() => {
+    if (!api || !autoplay) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let interval: number | undefined;
+
+    const syncAutoplay = () => {
+      window.clearInterval(interval);
+      interval = undefined;
+      if (reducedMotion.matches) return;
+
+      interval = window.setInterval(() => {
+        if (!document.hidden) api.scrollNext();
+      }, AUTO_ADVANCE_MS);
+    };
+
+    syncAutoplay();
+    reducedMotion.addEventListener("change", syncAutoplay);
+
+    return () => {
+      window.clearInterval(interval);
+      reducedMotion.removeEventListener("change", syncAutoplay);
+    };
+  }, [api, autoplay, index]);
 
   return (
     <Carousel
@@ -88,12 +115,21 @@ export function Hero() {
         <button type="button" aria-label="Əvvəlki slayd" onClick={() => api?.scrollPrev()}>
           <ArrowLeft size={18} aria-hidden="true" />
         </button>
-        <span aria-live="polite" aria-atomic="true">
+        <span aria-live={autoplay ? "off" : "polite"} aria-atomic="true">
           <span className="sr-only">Slayd </span>
           {String(index + 1).padStart(2, "0")} <span>/ {String(slides.length).padStart(2, "0")}</span>
         </span>
         <button type="button" aria-label="Növbəti slayd" onClick={() => api?.scrollNext()}>
           <ArrowRight size={18} aria-hidden="true" />
+        </button>
+        <button
+          type="button"
+          aria-label={autoplay ? "Avtomatik keçidi dayandır" : "Avtomatik keçidi başlat"}
+          aria-pressed={autoplay}
+          title={autoplay ? "Avtomatik keçidi dayandır" : "Avtomatik keçidi başlat"}
+          onClick={() => setAutoplay((enabled) => !enabled)}
+        >
+          {autoplay ? <Pause size={17} aria-hidden="true" /> : <Play size={17} aria-hidden="true" />}
         </button>
       </div>
     </Carousel>
