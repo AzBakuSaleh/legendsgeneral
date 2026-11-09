@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowRight, Menu, MessageCircle, Search, X } from "lucide-react";
+import { ArrowRight, Menu, Search, X } from "lucide-react";
+import { WhatsAppIcon } from "./whatsapp-icon";
 import { whatsappNumber } from "@/lib/content";
 import { Logo } from "./header";
 import { ThemeToggle } from "./theme-toggle";
@@ -64,7 +65,7 @@ export function HomeHeader() {
             <Search size={22} strokeWidth={1.8} aria-hidden="true" />
           </Link>
           <a href={whatsapp} className={styles.whatsappLink} target="_blank" rel="noopener noreferrer">
-            <MessageCircle size={20} aria-hidden="true" />
+            <WhatsAppIcon size={20} />
             <span>{label(locale, "whatsapp")}</span>
           </a>
           <ThemeToggle />
@@ -94,7 +95,7 @@ export function HomeHeader() {
           </Link>
         ))}
         <a href={whatsapp} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-          {label(locale, "whatsapp")} <MessageCircle size={17} aria-hidden="true" />
+          {label(locale, "whatsapp")} <WhatsAppIcon size={17} />
         </a>
       </nav>
     </header>
