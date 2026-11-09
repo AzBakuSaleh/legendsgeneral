@@ -1241,3 +1241,115 @@
 @media (max-width: 365px) {
   .showcaseSearch { display: none; }
 }
+
+/* Compact mobile header polish (WhatsApp / theme / language / menu).
+   Desktop layout is intentionally untouched. The search action remains
+   available from the expanded mobile menu. */
+@media (max-width: 600px) {
+  .showcaseHeader .wrap {
+    width: calc(100% - 24px);
+  }
+  .showcaseMasthead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 24px);
+    min-height: 72px;
+    padding-block: 7px;
+    column-gap: 9px;
+  }
+  .showcaseBrand {
+    flex: 0 1 124px;
+    min-width: 0;
+    gap: 0;
+  }
+  .showcaseBrand .logo {
+    min-width: 0;
+  }
+  .showcaseBrand .logo :global(.brand-image) {
+    width: 124px;
+    height: 44px;
+  }
+  .showcaseBrand .logo :global(.brand-image) img {
+    width: 154px;
+    top: -61px;
+    left: -13px;
+  }
+  .showcaseActions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 0 0 auto;
+    gap: 8px;
+  }
+  .showcaseSearch {
+    display: none;
+  }
+  .whatsappLink,
+  .showcaseMenuToggle {
+    display: grid;
+    place-items: center;
+    flex: 0 0 42px;
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    min-height: 42px;
+    padding: 0;
+    border: 1px solid #70818c;
+    border-radius: 8px;
+    background: #22303b;
+    color: #fff;
+  }
+  .whatsappLink:hover,
+  .showcaseMenuToggle:hover {
+    background: #34444f;
+    border-color: #d9e3ea;
+  }
+  .whatsappLink > svg {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 auto;
+  }
+  .showcaseMenuToggle > svg {
+    width: 23px;
+    height: 23px;
+  }
+  .showcaseMobileNav:not([hidden]) {
+    padding-top: 6px;
+    padding-bottom: 17px;
+  }
+}
+@media (max-width: 360px) {
+  .showcaseHeader .wrap,
+  .showcaseMasthead {
+    width: calc(100% - 20px);
+  }
+  .showcaseMasthead {
+    min-height: 65px;
+    gap: 6px;
+    padding-block: 5px;
+  }
+  .showcaseBrand {
+    flex: 0 1 96px;
+  }
+  .showcaseBrand .logo :global(.brand-image) {
+    width: 96px;
+    height: 39px;
+  }
+  .showcaseBrand .logo :global(.brand-image) img {
+    width: 122px;
+    top: -48px;
+    left: -11px;
+  }
+  .showcaseActions {
+    gap: 5px;
+  }
+  .whatsappLink,
+  .showcaseMenuToggle {
+    flex-basis: 40px;
+    width: 40px;
+    min-width: 40px;
+    height: 41px;
+    min-height: 41px;
+  }
+}
