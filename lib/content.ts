@@ -92,7 +92,7 @@ export const divisions = [
     name: "Yol nişanları",
     short: "Yol və ərazi üçün nişanların istehsalı",
     // Temporary process illustration; not an image of the road sign product.
-    image: withSiteBasePath("/images/services/metal-processing.webp"),
+    image: withSiteBasePath("/images/catalog-preview/road-signs-showcase.jpg"),
     description: "Yol nişanlarının sifarişlə istehsalı. Nişanın növü, tərtibatı, ölçüsü və hazırlanma tələbləri layihə əsasında dəqiqləşdirilir.",
   },
   {
@@ -473,10 +473,10 @@ export const products: Product[] = [
     slug: "yol-nisanlari",
     category: "yol-nisanlari",
     name: "Yol nişanları",
-    image: withSiteBasePath("/images/services/metal-processing.webp"),
+    image: withSiteBasePath("/images/catalog-preview/road-signs-showcase.jpg"),
     media: [{
-      src: withSiteBasePath("/images/services/metal-processing.webp"),
-      title: "Metal emalı — nümunə görüntü (yol nişanının məhsul fotosu deyil)",
+      src: withSiteBasePath("/images/catalog-preview/road-signs-showcase.jpg"),
+      title: "Yol nişanları — təqdimat üçün nümunə vizual (real məhsul fotosu deyil)",
       fit: "cover",
     }],
     description: "Legends General yol nişanlarını da istehsal edir. Nişanın növü, görünüşü, ölçüsü, materialı və bərkidilmə tələbləri sifarişin texniki şərtlərinə uyğun dəqiqləşdirilir. Məhsulun real fotoşəkli hələ kataloqa əlavə edilməyib.",
