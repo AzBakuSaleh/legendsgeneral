@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, MessageCircle, Search, X } from "lucide-react";
-import { phones } from "@/lib/content";
+import { whatsappNumber } from "@/lib/content";
 import { Logo } from "./header";
 import styles from "./home.module.css";
 
@@ -20,7 +20,7 @@ const navigation = [
 export function HomeHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const whatsapp = `https://wa.me/${phones[0].number}`;
+  const whatsapp = `https://wa.me/${whatsappNumber}`;
 
   return (
     <header
