@@ -26,3 +26,25 @@
 .notice a:hover { text-decoration: underline; }
 @media (max-width: 800px) { .cards { grid-template-columns: 1fr; } .card h3 { min-height: 0; } }
 @media (max-width: 520px) { .heading > svg { display: none; } .notice { gap: 9px; } }
+
+
+:global(html.dark) .section {
+  background: #1b2832;
+  color: #ecf2f6;
+  border-color: #405461;
+}
+:global(html.dark) .heading p,
+:global(html.dark) .notice { color: #bdcbd4; }
+:global(html.dark) .eyebrow,
+:global(html.dark) .heading svg,
+:global(html.dark) .icon,
+:global(html.dark) .notice > svg,
+:global(html.dark) .notice a { color: #f3a0a7; }
+:global(html.dark) .card {
+  background: #263541;
+  border-color: #495a68;
+  border-top-color: #d83843;
+}
+:global(html.dark) .card dl > div { border-top-color: #455869; }
+:global(html.dark) .card dt { color: #bdcbd3; }
+:global(html.dark) .card dd { color: #eaf1f5; }
