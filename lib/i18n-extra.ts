@@ -10,7 +10,7 @@ export const supplementaryTranslations: ReadonlyMap<string, Readonly<{ru: string
   ["Yol nişanları", {"ru":"Дорожные знаки","en":"Road signs"}],
   ["Yol və ərazi üçün nişanların istehsalı", {"ru":"Изготовление дорожных знаков для дорог и территорий","en":"Manufacturing road signs for roads and sites"}],
   ["Yol nişanlarının sifarişlə istehsalı. Nişanın növü, tərtibatı, ölçüsü və hazırlanma tələbləri layihə əsasında dəqiqləşdirilir.", {"ru":"Изготовление дорожных знаков на заказ. Вид знака, оформление, размеры и требования к изготовлению уточняются согласно проекту.","en":"Custom road sign manufacturing. Sign type, artwork, dimensions and manufacturing requirements are agreed for each project."}],
-  ["Metal emalı — nümunə görüntü (yol nişanının məhsul fotosu deyil)", {"ru":"Металлообработка — иллюстрация (не фото дорожного знака)","en":"Metalworking — illustrative image (not a road sign product photo)"}],
+  ["Yol nişanları — təqdimat üçün nümunə vizual (real məhsul fotosu deyil)", {"ru":"Дорожные знаки — иллюстрация для презентации (не фотография реальной продукции)","en":"Road signs — illustrative presentation image (not a photo of actual products)"}],
   ["Küçə və yollar", {"ru":"Улицы и дороги","en":"Streets and roads"}],
   ["Müəssisə və obyekt əraziləri", {"ru":"Территории предприятий и объектов","en":"Commercial and industrial premises"}],
   ["Dayanacaq və giriş sahələri", {"ru":"Парковки и въездные зоны","en":"Parking and access areas"}],
