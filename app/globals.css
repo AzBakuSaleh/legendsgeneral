@@ -2987,3 +2987,36 @@ h2.section-title {
   .hero-slide:not(.pole) .hero-emblem { top: 453px; }
 }
 .hero-slide.pole .hero-media img { object-fit: contain; }
+
+
+/* Legends General — progressive cross-document page transitions */
+/* For language changes that perform a full navigation (AZ / RU / EN).
+   Internal Next.js links animate #main without disturbing the navigation bar. */
+@view-transition {
+  navigation: auto;
+}
+
+@keyframes lg-page-exit {
+  from { opacity: 1; }
+  to { opacity: 0.78; }
+}
+
+@keyframes lg-page-enter {
+  from { opacity: 0.78; }
+  to { opacity: 1; }
+}
+
+::view-transition-old(root) {
+  animation: 130ms ease-in both lg-page-exit;
+}
+
+::view-transition-new(root) {
+  animation: 220ms ease-out both lg-page-enter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.01ms !important;
+  }
+}
