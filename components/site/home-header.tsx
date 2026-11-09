@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, MessageCircle, Search, X } from "lucide-react";
 import { whatsappNumber } from "@/lib/content";
 import { Logo } from "./header";
+import { ThemeToggle } from "./theme-toggle";
 import styles from "./home.module.css";
 
 const navigation = [
@@ -63,6 +64,7 @@ export function HomeHeader() {
             <MessageCircle size={20} aria-hidden="true" />
             <span>WhatsApp ilə əlaqə</span>
           </a>
+          <ThemeToggle />
           <span className={styles.languageLabel} aria-label="Saytın dili Azərbaycan dilidir">AZ</span>
           <button
             type="button"
