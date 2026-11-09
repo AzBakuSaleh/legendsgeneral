@@ -40,11 +40,7 @@ jobs:
 
       - name: Confirm no sensitive certificate documents are exported
         run: |
-          if find out -type f -iname '*.pdf' | grep -Ei '(sert|cert).*\\.pdf
-            echo "Certificate PDFs must never be shipped as public assets."
-            exit 1
-          fi
-; then
+          if find out -type f -iname '*.pdf' | grep -Ei '(sert|cert)'; then
             echo "Certificate PDFs must never be shipped as public assets."
             exit 1
           fi
