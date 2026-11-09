@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { Monitor, Moon, Sun } from "lucide-react";
 import styles from "./theme-toggle.module.css";
@@ -12,10 +12,14 @@ const labels: Record<ThemeChoice, string> = {
   dark: "Tünd",
 };
 
+// React-safe mounted snapshot prevents hydration mismatch without effect-driven state.
+const subscribe = () => () => {};
+const getBrowserSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(subscribe, getBrowserSnapshot, getServerSnapshot);
   const choice: ThemeChoice =
     mounted && (theme === "dark" || theme === "light") ? theme : "system";
   const Icon = choice === "dark" ? Moon : choice === "light" ? Sun : Monitor;
