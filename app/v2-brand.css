@@ -29,10 +29,12 @@ input:focus-visible {
   border-bottom-color: #dce3e8;
 }
 .desktop-nav a:hover,
-.text-link:hover,
-.catalog-category-nav a:hover {
+.text-link:hover {
   color: #286b9b;
 }
+/* Leave catalog navigation hover/focus colours to the existing
+   component rules: the hovered background is steel-blue and text
+   must remain white for readable contrast. */
 .button:not(.outline):not(.white-outline):hover {
   background: #367eaf;
   border-color: #367eaf;
