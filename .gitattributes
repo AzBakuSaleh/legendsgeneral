@@ -1,0 +1,2 @@
+# Preserve the exact bytes of reviewed public assets on every platform.
+/public/** -text

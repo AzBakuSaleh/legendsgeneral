@@ -16,6 +16,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,6 +27,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
+
+      - name: Check tracked files and approved public assets
+        run: node scripts/check-certificate-assets.mjs repo
 
       - name: Install dependencies
         run: npm ci
@@ -38,12 +42,16 @@ jobs:
       - name: Add .nojekyll
         run: touch out/.nojekyll
 
+      - name: Check the static export for unapproved assets
+        run: node scripts/check-certificate-assets.mjs export
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
 
   deploy:
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

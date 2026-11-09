@@ -1,0 +1,49 @@
+name: Legends actual-local preview checks
+
+on:
+  push:
+    branches: ["preview-actual-local"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Typecheck, lint and static export
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check tracked files and approved public assets
+        run: node scripts/check-certificate-assets.mjs repo
+
+      - name: Test the certificate asset guard
+        run: node --test scripts/check-certificate-assets.test.mjs
+
+      - name: Install exact dependencies
+        run: npm ci
+
+      - name: Check production dependencies
+        run: npm audit --omit=dev
+
+      - name: TypeScript check
+        run: npm run typecheck
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: Next static export (no deployment)
+        env:
+          NEXT_PUBLIC_BASE_PATH: ""
+        run: npm run build
+
+      - name: Check the static export for unapproved assets
+        run: node scripts/check-certificate-assets.mjs export
