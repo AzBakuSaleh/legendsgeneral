@@ -81,9 +81,16 @@ export const divisions = [
   {
     id: "direkler",
     name: "Metal dirəklər",
-    short: "İşıqlandırma, kamera və yol nişanları üçün",
+    short: "İşıqlandırma və kamera dirəkləri",
     image: withSiteBasePath("/images/services/wired-pole-close.webp"),
-    description: "Elektrik və günəş enerjili işıqlandırma, müşahidə kameraları və yol nişanları üçün metal dirəklər.",
+    description: "Elektrik və günəş enerjili işıqlandırma və müşahidə kameraları üçün metal dirəklər.",
+  },
+  {
+    id: "yol-nisanlari",
+    name: "Yol nişanları",
+    short: "Yol infrastrukturu üçün metal nişanlar",
+    image: withSiteBasePath("/images/services/road-signs.svg"),
+    description: "Yol nişanlarının və onlara aid metal dirək, bərkidici hissələrin layihə üzrə hazırlanması.",
   },
   {
     id: "konstruksiyalar",
@@ -449,9 +456,37 @@ export const products: Product[] = [
     media: categoryMedia.direkler.slice(0, 2),
     kind: "service",
     description: "Naqilli və günəş panelli işıqlandırma üçün metal dirəklər sifarişlə hazırlanır. Dirəyin hündürlüyü, dayaq quruluşu və avadanlıq birləşmələri layihəyə uyğun seçilir. İşıqlandırma avadanlığının komplektasiyası ayrıca dəqiqləşdirilir.",
-    offerings: ["Naqilli elektrik işıqlandırması üçün dirəklər", "Günəş panelli işıqlandırma üçün dirəklər", "Yol nişanı dirəkləri"],
+    offerings: ["Naqilli elektrik işıqlandırması üçün dirəklər", "Günəş panelli işıqlandırma üçün dirəklər"],
     uses: ["Küçə və yol kənarları", "Müəssisə əraziləri", "Park və açıq məkanlar"],
     details: ["Hündürlük və dirəyin forması", "Bünövrə, dayaq və bərkidilmə tələbləri", "Avadanlıq, kabel keçidləri və səth örtüyü"],
+  },
+  {
+    slug: "yol-nisanlari-ve-direkleri",
+    category: "yol-nisanlari",
+    name: "Yol nişanları və metal dirəklər",
+    image: withSiteBasePath("/images/services/road-signs.svg"),
+    kind: "service",
+    description: "Yol infrastrukturu layihələri üçün metal yol nişanları, dirəklər və bərkidici elementlər sifarişlə hazırlanır. Nişanın növü və görünüşü, ölçülər, material, örtük və quraşdırılma tələbləri müraciət əsasında dəqiqləşdirilir.",
+    offerings: [
+      "Layihəyə uyğun yol nişanları",
+      "Metal nişan dirəkləri",
+      "Bərkidici elementlər və dayaq hissələri",
+    ],
+    uses: ["Şəhər və qəsəbə yolları", "Sənaye və logistika əraziləri", "Avtodayanacaqlar və daxili yollar"],
+    details: [
+      "Nişanın növü, eskizi və tələb olunan say",
+      "Ölçülər, material və örtük tələbləri",
+      "Dirəyin profili, hündürlüyü və bərkidilmə üsulu",
+      "Quraşdırılma yeri və layihə sənədləri",
+      "Tətbiq olunan yol hərəkəti standartlarına uyğunluq sifariş zamanı yoxlanılır",
+    ],
+    media: [
+      {
+        src: withSiteBasePath("/images/services/road-signs.svg"),
+        title: "Yol nişanları və metal dirəklər — illüstrativ nümunə",
+        fit: "cover",
+      },
+    ],
   },
   {
     slug: "nezaret-kamerasi-direkleri",
