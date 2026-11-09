@@ -1,0 +1,207 @@
+/* Legends General V2: user-controlled light/dark mode.
+   System theme is the default; images retain natural, unfiltered colour.
+   All visual changes are scoped to the html.dark class applied by next-themes. */
+html.dark {
+  color-scheme: dark;
+  --background: #111a21;
+  --foreground: #e8eff4;
+  --card: #202d37;
+  --card-foreground: #edf2f6;
+  --popover: #263440;
+  --popover-foreground: #edf2f6;
+  --primary: #d52b36;
+  --primary-foreground: #fff;
+  --secondary: #263541;
+  --secondary-foreground: #e6eff5;
+  --muted: #202d38;
+  --muted-foreground: #b1c0cb;
+  --accent: #30404c;
+  --accent-foreground: #f3f6f8;
+  --destructive: #ed6973;
+  --border: #40505d;
+  --input: #465966;
+  --ring: #e14e5a;
+  --light: #1e2b35;
+  --orange: #d72c38;
+  --catalog-blue: #8cbad9;
+}
+html.dark body { color: #edf2f5; background: #111a21; }
+html.dark ::selection { color: #fff; background: #a62534; }
+html.dark :is(a, button, input, textarea, select, summary):focus-visible {
+  outline-color: #ec5d68;
+  outline-offset: 3px;
+}
+html.dark .text-link,
+html.dark .eyebrow { color: #f28c94; }
+html.dark .text-link:hover { color: #fff; }
+html.dark .button.outline { color: #edf2f5; border-color: #718492; }
+html.dark .button.outline:hover { background: #293946; }
+html.dark .icon-button:hover { background: #34434f; }
+html.dark .skip-link { background: #263642; color: #fff; }
+
+/* Shared content pages and sections */
+html.dark :is(.page-heading, .process-section, .contact-section) {
+  background: #18242e;
+  color: #f0f4f7;
+}
+html.dark .page-heading p,
+html.dark .page-heading .breadcrumbs,
+html.dark .page-heading .breadcrumbs > span:last-child {
+  color: #b9c8d4;
+}
+html.dark :is(.about-copy, .about-categories, .about-photo, .gallery-section, .gallery-grid, .gallery-dialog) {
+  color: #edf2f5;
+}
+html.dark :is(.about-copy p, .about-categories p, .process-grid p, .contact-intro, .contact-details, .phone-row, .address, .address small, .section-heading p) {
+  color: #b9c7d2;
+}
+html.dark .process-grid article > div { color: #e6eef3; }
+html.dark :is(.gallery-grid article, .category-card, .project-photo, .product-card, .project-label, .category-label, .about-photo) {
+  background: #202d37;
+  color: #eef2f5;
+  border-color: #415362;
+}
+html.dark :is(.project-label h3,.category-label h3,.about-copy h2,.process-grid h3,.contact-grid h2) {
+  color: #f1f5f8;
+}
+html.dark :is(.category-label p,.project-label > span,.project-label p) { color: #b8c7d2; }
+html.dark .about-categories > a { border-color: #3d505d; }
+html.dark .gallery-dialog { background: #23313d; }
+html.dark .gallery-dialog .lightbox-heading [data-slot="dialog-description"] { color: #b6c5cf; }
+html.dark .filter-tabs button { color: #dce7ee; }
+html.dark .filter-tabs button[data-state="on"] { background: #c72532; color: #fff; }
+
+/* Phone and quote forms, including select dropdowns */
+html.dark :is(.inquiry-form,.request-preview) {
+  color: #edf3f7;
+  background: #202d38;
+  border: 1px solid #465765;
+}
+html.dark :is(.inquiry-form [data-slot="input"],.inquiry-form [data-slot="select-trigger"],.inquiry-form [data-slot="textarea"]) {
+  color: #f0f5f8;
+  background: #111c25;
+  border-color: #627484;
+}
+html.dark :is(.inquiry-form [data-slot="input"],.inquiry-form [data-slot="textarea"])::placeholder { color: #adbcc6; }
+html.dark .inquiry-form [data-slot="field-label"] { color: #e8f0f4; }
+html.dark :is(.form-note,.request-preview > p) { color: #bac9d4; }
+html.dark .request-preview pre { color: #e7eff5; background: #17242d; border-color: #4b5d6a; }
+html.dark :is(.success-icon,.form-submit) { background: #c72733; color: #fff; }
+html.dark .form-submit:hover { background: #e13a46; }
+html.dark :is([data-slot="select-content"],[data-slot="popover-content"],[data-slot="dialog-content"]) {
+  background: #263643;
+  color: #eff3f6;
+  border-color: #506474;
+}
+html.dark :is([data-slot="select-item"],[data-slot="select-group-label"]) { color: #edf2f6; }
+html.dark [data-slot="select-item"]:hover { background: #394c5a; }
+
+/* Catalog direction pages */
+html.dark :is(.showcase-catalog-page,.showcase-product-page) {
+  --showcase-ink: #f0f5f8;
+  --showcase-muted: #b7c6d0;
+  --showcase-line: #415363;
+  color: #eef2f6;
+  background: #111a21;
+}
+html.dark .showcase-catalog-page .catalog-intro,
+html.dark .showcase-catalog-page .catalog-toolbar,
+html.dark .showcase-catalog-subgroups {
+  background: #202d37;
+  border-color: #455767;
+}
+html.dark .showcase-catalog-page .catalog-intro {
+  border-left-color: #d72b39;
+}
+html.dark .showcase-catalog-page .catalog-intro h2,
+html.dark .showcase-catalog-subgroups h3,
+html.dark .showcase-catalog-page .product-card h2,
+html.dark .showcase-product-page .product-info h1,
+html.dark .showcase-product-page .specification-section > h2 {
+  color: #eef3f7;
+}
+html.dark .showcase-catalog-page :is(.catalog-intro p, .catalog-toolbar > span, .product-card p, .image-note),
+html.dark .showcase-catalog-subgroups :is(> p, .showcase-catalog-subgroup-count) {
+  color: #b8c6d2;
+}
+html.dark .showcase-catalog-page .catalog-toolbar input {
+  background: #111d26;
+  border-color: #586e7b;
+  color: #edf3f6;
+}
+html.dark .showcase-catalog-page .catalog-toolbar input::placeholder { color: #afc0ca; }
+html.dark .showcase-catalog-page .product-card,
+html.dark .showcase-product-page .related-grid .category-card {
+  background: #212f3a;
+  border-color: #415463;
+  color: #ecf2f5;
+}
+html.dark .showcase-catalog-page .product-card:hover,
+html.dark .showcase-product-page .related-grid .category-card:hover {
+  border-color: #a2b4c0;
+}
+html.dark .showcase-catalog-subgroup-grid li {
+  color: #e9f0f4;
+  background: #2b3b47;
+  border-color: #465d6c;
+  border-left-color: #bd3240;
+}
+html.dark .showcase-catalog-subgroup-grid li strong { color: #edf3f7; }
+html.dark .showcase-catalog-page .catalog-empty { border-color: #5a6b79; }
+html.dark .showcase-catalog-page .catalog-empty p { color: #bbcad3; }
+html.dark .shelf-navigation > p { color: #b8c7d2; }
+html.dark .shelf-navigation > a {
+  color: #e7f0f5;
+  background: #22303a;
+  border-color: #526576;
+}
+html.dark .shelf-navigation > a:hover,
+html.dark .shelf-navigation > a[aria-current="page"] {
+  color: #fff;
+  background: #a62532;
+  border-color: #d8404c;
+}
+html.dark .showcase-product-page .product-description,
+html.dark .showcase-product-page .capacity-note { color: #b9c8d2; }
+html.dark .showcase-product-page .capacity-grid > div {
+  color: #f0f4f7;
+  background: #253642;
+  border-top-color: #c82533;
+}
+html.dark .showcase-product-page .product-detail .product-gallery { background: #25323d; border-color: #435969; }
+html.dark .showcase-product-page .specification-list > div { border-bottom-color: #455969; }
+html.dark .showcase-product-page .specification-list p { color: #e6edf2; }
+
+/* Product image surfaces: never recolour real product photos. */
+html.dark :is(.gallery-stage,.detail-photo,.gallery-thumbnails button) {
+  background: #25333d;
+  border-color: #51616b;
+}
+html.dark .gallery-caption {
+  color: #e8f0f5;
+  background: #263643;
+  border-color: #506273;
+}
+html.dark .gallery-caption .gallery-count { color: #bfd0db; }
+html.dark :is(.gallery-arrows button,.gallery-dialog-controls button) {
+  color: #f3f6f8;
+  background: #263642;
+  border-color: #7b8f9e;
+}
+html.dark :is(.gallery-arrows button,.gallery-dialog-controls button):hover {
+  background: #c72b38;
+  border-color: #e34b56;
+}
+html.dark .gallery-thumbnails button[aria-pressed="true"] { border-color: #e34b56; }
+html.dark .product-photo-dialog { background: #263642; color: #ecf3f7; }
+html.dark .specification-list svg { color: #e34b56; }
+html.dark .specification-list > div { border-color: #405463; }
+
+/* Primary and footer navigation stay charcoal in both modes. */
+html.dark .site-footer { background: #0e171d; color: #dce6ec; }
+html.dark .site-footer a:hover { color: #fff; }
+html.dark .site-footer .footer-bottom { border-color: #384d5a; }
+
+@media (max-width: 640px) {
+  html.dark .showcase-catalog-page .catalog-toolbar > span { color: #bccbd5; }
+}
