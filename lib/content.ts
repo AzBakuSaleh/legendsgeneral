@@ -1,5 +1,7 @@
 import { withSiteBasePath } from "@/lib/site-path";
 
+/** Single official WhatsApp recipient used across the V2 demo. */
+export const whatsappNumber = "994502991022";
 export const phones = [
   { label: "055 240 81 65", number: "994552408165" },
   { label: "050 299 10 22", number: "994502991022" },
