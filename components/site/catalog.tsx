@@ -82,7 +82,7 @@ export function Catalog({ locale = "az" }: { locale?: Locale }) {
           <Link href={url("/kataloq/")} aria-current={category === "all" ? "page" : undefined}>
             {label(locale,"all")} <span>{products.filter((p) => !p.catalogHidden).length}</span>
           </Link>
-          <details className="shelf-menu" open>
+          <details className="shelf-menu" open={category === "refler"}>
             <summary>{label(locale,"metalRack")}</summary>
             <Link href={url("/kataloq/?kateqoriya=refler")} className="shelf-overview">{label(locale,"allShelves")}</Link>
             <ShelfNavigation locale={locale} />
