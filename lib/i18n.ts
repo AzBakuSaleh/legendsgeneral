@@ -4,6 +4,7 @@
  * Never translate brand names, verified numeric capacities or identifiers.
  */
 import { supplementaryTranslations } from "./i18n-extra";
+import { categoryTranslations } from "./i18n-categories";
 export type Locale = "az" | "ru" | "en";
 export const locales = ["az", "ru", "en"] as const;
 export const addedLocales = ["ru", "en"] as const;
@@ -216,7 +217,11 @@ const byAz = new Map<string, { ru: string; en: string }>(
 );
 export function tr(locale: Locale, original: string): string {
   if (locale === "az" || !original) return original;
-  const manual = byAz.get(original) ?? supplementaryTranslations.get(original);
+  const manual = byAz.get(original) ?? supplementaryTranslations.get(original) ?? categoryTranslations.get(original);
+  if (!manual) {
+    const uiMatch = Object.values(ui).find((texts) => texts[0] === original);
+    if (uiMatch) return uiMatch[locale === "ru" ? 1 : 2];
+  }
   if (manual) return manual[locale];
   const rack = original.match(/^Metal stellaj — (\d+) kq\/rəf$/);
   if (rack) return locale === "ru"
