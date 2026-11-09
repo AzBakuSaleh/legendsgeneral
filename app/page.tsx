@@ -46,7 +46,7 @@ export function HomeContent({ locale }: { locale: Locale }) {
             </div>
             <div className={styles.showcaseCategoryGrid}>
               {featuredCategories.map(({ id, name, detail, image, icon: Icon }) => (
-                <Link className={styles.showcaseCategoryCard} href={url(`/kataloq/?kateqoriya=${id}${name === "Geyim dolabları" ? "&q=geyim" : ""}`)} key={name}>
+                <Link className={styles.showcaseCategoryCard} data-feature={id === "yol-nisanlari" ? "road-signs" : undefined} href={url(`/kataloq/?kateqoriya=${id}${name === "Geyim dolabları" ? "&q=geyim" : ""}`)} key={name}>
                   <img src={withSiteBasePath(image)} alt="" width={600} height={720} loading="lazy" />
                   <span className={styles.showcaseCategoryContent}>
                     <Icon size={24} strokeWidth={1.7} aria-hidden="true" />
