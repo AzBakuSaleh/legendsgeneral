@@ -445,3 +445,34 @@
   .showcase-catalog-page .product-card,
   .showcase-product-page .related-grid .category-card { transition: none; }
 }
+
+/* Legends V2 — full-frame product imagery for road signs.
+   The approved image is 1300 x 866; a fixed-height cover crop hides the STOP sign on phones.
+   Keep the complete scene visible for both the card and full-screen gallery. */
+.showcase-product-page[data-product="yol-nisanlari"] .gallery-detail .gallery-stage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1300 / 866;
+  background: #e9eef1;
+  overflow: hidden;
+}
+.showcase-product-page[data-product="yol-nisanlari"] .gallery-detail .gallery-stage > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  object-position: center center;
+  mix-blend-mode: normal;
+}
+.showcase-product-page[data-product="yol-nisanlari"] .gallery-thumbnails img,
+.showcase-product-page[data-product="yol-nisanlari"] .gallery-expanded {
+  object-fit: contain;
+  object-position: center center;
+}
+@media (max-width: 850px) {
+  .showcase-product-page[data-product="yol-nisanlari"] .gallery-detail .gallery-stage {
+    min-height: 0;
+    aspect-ratio: 1300 / 866;
+  }
+}
