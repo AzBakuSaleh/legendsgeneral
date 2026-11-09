@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, MessageCircle, Search, X } from "lucide-react";
 import { phones } from "@/lib/content";
 import { Logo } from "./header";
@@ -12,12 +13,13 @@ const navigation = [
   { href: "/kataloq/", label: "Məhsullar" },
   { href: "/gorulen-isler/", label: "Layihələr" },
   { href: "/haqqimizda/", label: "Haqqımızda" },
-  { href: "#emekdasliqlar", label: "Əməkdaşlıqlar" },
+  { href: "/#emekdasliqlar", label: "Əməkdaşlıqlar" },
   { href: "/elaqe/", label: "Əlaqə" },
 ];
 
 export function HomeHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   const whatsapp = `https://wa.me/${phones[0].number}`;
 
   return (
@@ -46,7 +48,7 @@ export function HomeHeader() {
             <Link
               key={href}
               href={href}
-              aria-current={href === "/" ? "page" : undefined}
+              aria-current={(pathname.replace(/\/$/, "") || "/") === (href.replace(/\/$/, "") || "/") ? "page" : undefined}
             >
               {label}
             </Link>
