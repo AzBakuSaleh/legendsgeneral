@@ -3,6 +3,7 @@ import { HomeHeader } from "@/components/site/home-header";
 import { Footer } from "@/components/site/shared";
 import { withSiteBasePath } from "@/lib/site-path";
 import "./globals.css";
+import "./showcase-catalog.css";
 export const metadata: Metadata = {
   title: {
     default: "Legends General | Metal istehsalı və xidmətlər",
