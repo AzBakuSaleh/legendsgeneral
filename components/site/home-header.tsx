@@ -64,7 +64,7 @@ export function HomeHeader() {
           <Link href={localizedHref(locale, "/kataloq/#axtaris")} className={styles.showcaseSearch} aria-label={locale === "ru" ? "Поиск продукции" : locale === "en" ? "Search products" : "Məhsul axtarışı"}>
             <Search size={22} strokeWidth={1.8} aria-hidden="true" />
           </Link>
-          <a href={whatsapp} className={styles.whatsappLink} target="_blank" rel="noopener noreferrer">
+          <a href={whatsapp} className={styles.whatsappLink} target="_blank" rel="noopener noreferrer" aria-label={label(locale, "whatsapp")}>
             <WhatsAppIcon size={20} />
             <span>{label(locale, "whatsapp")}</span>
           </a>
@@ -94,6 +94,10 @@ export function HomeHeader() {
             {label(locale, key)}<ArrowRight size={17} aria-hidden="true" />
           </Link>
         ))}
+        <Link href={localizedHref(locale, "/kataloq/#axtaris")} onClick={() => setOpen(false)}>
+          {locale === "ru" ? "Поиск товаров" : locale === "en" ? "Search products" : "Məhsul axtarışı"}
+          <Search size={17} aria-hidden="true" />
+        </Link>
         <a href={whatsapp} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
           {label(locale, "whatsapp")} <WhatsAppIcon size={17} />
         </a>
