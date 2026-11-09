@@ -3,7 +3,7 @@ import { Suspense, useEffect, useRef, useState, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowUpRight, Check, ArrowLeft } from "lucide-react";
 import {
-  phones,
+  whatsappNumber,
   inquiryOptions,
   divisions,
   categoryMatches,
@@ -33,7 +33,6 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [product, setProduct] = useState(initialProduct);
-  const [recipient, setRecipient] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [prepared, setPrepared] = useState<{
@@ -52,8 +51,6 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
     const digits = phone.replace(/\D/g, "");
     if (digits.length < 9 || digits.length > 15 || !/^[+\d\s()-]+$/.test(phone))
       next.phone = "Düzgün əlaqə nömrəsi daxil edin.";
-    if (!phones.some((p) => p.number === recipient))
-      next.recipient = "Müraciətin gedəcəyi şirkət nömrəsini seçin.";
     if (message.trim().length < 5)
       next.message = "Sualınızı bir qədər ətraflı yazın.";
     setErrors(next);
@@ -66,7 +63,7 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
     const text = `Salam, Legends General!\n\nAd: ${name.trim()}\nƏlaqə nömrəsi: ${phone.trim()}\nMəhsul / xidmət: ${selected}\n\nSual: ${message.trim()}`;
     setPrepared({
       text,
-      url: `https://wa.me/${recipient}?text=${encodeURIComponent(text)}`,
+      url: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`,
     });
   }
   if (prepared)
@@ -77,8 +74,8 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
         </span>
         <h3>Mesajınız hazırdır</h3>
         <p>
-          Seçdiyiniz nömrə:{" "}
-          <strong>{phones.find((p) => p.number === recipient)?.label}</strong>
+          WhatsApp nömrəsi:{" "}
+          <strong>+994 50 299 10 22</strong>
         </p>
         <pre>{prepared.text}</pre>
         <p className="form-note">
@@ -181,35 +178,9 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
             </SelectContent>
           </Select>
         </Field>
-        <Field data-invalid={!!errors.recipient}>
-          <FieldLabel htmlFor="inquiry-recipient">
-            Şirkətin əlaqə nömrəsi <span aria-hidden="true">*</span>
-          </FieldLabel>
-          <Select value={recipient} onValueChange={setRecipient}>
-            <SelectTrigger
-              id="inquiry-recipient"
-              aria-invalid={!!errors.recipient}
-              aria-describedby={
-                errors.recipient ? "error-recipient" : undefined
-              }
-            >
-              <SelectValue placeholder="Müraciət üçün nömrə seçin" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {phones.map((p) => (
-                  <SelectItem key={p.number} value={p.number}>
-                    {p.label}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          {errors.recipient && (
-            <p id="error-recipient" className="field-error">
-              {errors.recipient}
-            </p>
-          )}
+        <Field>
+          <FieldLabel>Şirkətin WhatsApp nömrəsi</FieldLabel>
+          <p className="form-note">+994 50 299 10 22</p>
         </Field>
         <Field data-invalid={!!errors.message}>
           <FieldLabel htmlFor="inquiry-message">
