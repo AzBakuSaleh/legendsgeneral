@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { Suspense } from "react";
 import { Catalog } from "@/components/site/catalog";
 import styles from "./v2-catalog.module.css";
@@ -36,7 +36,6 @@ export default function CatalogPage() {
       <Suspense fallback={<div className={styles.fallback} role="status">Kataloq yüklənir...</div>}>
         <Catalog />
       </Suspense>
-      <div className="sr-only"><ArrowUpRight aria-hidden="true" /></div>
     </main>
   );
 }
