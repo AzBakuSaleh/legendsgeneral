@@ -3,6 +3,7 @@
  * AZ is the source of truth. No machine-translation requests are performed.
  * Never translate brand names, verified numeric capacities or identifiers.
  */
+import { supplementaryTranslations } from "./i18n-extra";
 export type Locale = "az" | "ru" | "en";
 export const locales = ["az", "ru", "en"] as const;
 export const addedLocales = ["ru", "en"] as const;
@@ -215,7 +216,7 @@ const byAz = new Map<string, { ru: string; en: string }>(
 );
 export function tr(locale: Locale, original: string): string {
   if (locale === "az" || !original) return original;
-  const manual = byAz.get(original);
+  const manual = byAz.get(original) ?? supplementaryTranslations.get(original);
   if (manual) return manual[locale];
   const rack = original.match(/^Metal stellaj — (\d+) kq\/rəf$/);
   if (rack) return locale === "ru"
