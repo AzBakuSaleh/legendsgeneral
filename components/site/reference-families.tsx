@@ -6,6 +6,7 @@ import { ArrowRight, ArrowUpRight, ChevronDown, Layers3 } from "lucide-react";
 import { plannedProductFamilies } from "@/lib/product-families";
 import { withSiteBasePath } from "@/lib/site-path";
 import styles from "./reference-families.module.css";
+import { tr, localizedHref, label, type Locale } from "@/lib/i18n";
 
 const presentation: Record<string, { image: string; position?: string }> = {
   "metal-stellajlar": { image: "/images/catalog-preview/rack-loaded.jpg" },
@@ -16,7 +17,9 @@ const presentation: Record<string, { image: string; position?: string }> = {
   "diger-metal-mehsullar": { image: "/images/hero-showroom.webp", position: "65% center" },
 };
 
-export function ReferenceFamilies({ compact = false }: { compact?: boolean }) {
+export function ReferenceFamilies({ compact = false, locale = "az" }: { compact?: boolean; locale?: Locale }) {
+  const t = (value: string) => tr(locale, value);
+  const url = (p: string) => localizedHref(locale,p);
   const [selected, setSelected] = useState(0);
   const group = plannedProductFamilies[selected] ?? plannedProductFamilies[0];
   const media = presentation[group.id];
@@ -42,17 +45,17 @@ export function ReferenceFamilies({ compact = false }: { compact?: boolean }) {
     <section className={styles.section} id="mehsul-aileleri" aria-labelledby="product-groups-heading">
       <div className={styles.heading}>
         <div>
-          <span className={styles.eyebrow}>LEGENDS GENERAL / KATALOQ</span>
-          <h2 id="product-groups-heading">Məhsul qrupları</h2>
-          <p>İstehsalat və saxlama ehtiyaclarınıza uyğun məhsul istiqamətini seçin.</p>
+          <span className={styles.eyebrow}>LEGENDS GENERAL / {label(locale,"catalog").toLocaleUpperCase(locale)}</span>
+          <h2 id="product-groups-heading">{label(locale,"productGroups")}</h2>
+          <p>{locale === "ru" ? "Выберите подходящее направление продукции для производства и хранения." : locale === "en" ? "Explore products for your manufacturing and storage needs." : "İstehsalat və saxlama ehtiyaclarınıza uyğun məhsul istiqamətini seçin."}</p>
         </div>
         <span className={styles.headingCount}>
           <Layers3 size={17} aria-hidden="true" />
-          06 istiqamət
+          06 {locale === "ru" ? "направлений" : locale === "en" ? "categories" : "istiqamət"}
         </span>
       </div>
 
-      <div className={styles.navigation} role="tablist" aria-label="Məhsul qrupları">
+      <div className={styles.navigation} role="tablist" aria-label={label(locale,"productGroups")}>
         {plannedProductFamilies.map((item, index) => (
           <button
             key={item.id}
@@ -68,8 +71,8 @@ export function ReferenceFamilies({ compact = false }: { compact?: boolean }) {
           >
             <span className={styles.tabNumber}>{String(index + 1).padStart(2, "0")}</span>
             <span className={styles.tabText}>
-              <strong>{item.title}</strong>
-              <small>{item.subfamilies.length} alt kateqoriya</small>
+              <strong>{t(item.title)}</strong>
+              <small>{item.subfamilies.length} {locale === "ru" ? "подкатегорий" : locale === "en" ? "subcategories" : "alt kateqoriya"}</small>
             </span>
             <ArrowUpRight size={18} strokeWidth={1.6} aria-hidden="true" />
           </button>
@@ -87,54 +90,52 @@ export function ReferenceFamilies({ compact = false }: { compact?: boolean }) {
         <figure className={styles.photo}>
           <img
             src={withSiteBasePath(media.image)}
-            alt={`${group.title} məhsul qrupunu təsvir edən nümunə foto`}
+            alt={locale === "ru" ? `Иллюстрация: ${t(group.title)}` : locale === "en" ? `Illustration: ${t(group.title)}` : `${group.title} məhsul qrupunu təsvir edən nümunə foto`}
             width={900}
             height={760}
             loading="lazy"
             style={media.position ? { objectPosition: media.position } : undefined}
           />
-          <figcaption>Nümunə görüntü</figcaption>
+          <figcaption>{label(locale,"imageSample")}</figcaption>
           <span className={styles.photoIndex} aria-hidden="true">
             {String(selected + 1).padStart(2, "0")}<small>/06</small>
           </span>
         </figure>
 
         <div className={styles.content}>
-          <span className={styles.contentEyebrow}>SEÇİLMİŞ İSTİQAMƏT</span>
-          <h3>{group.title}</h3>
-          <p className={styles.summary}>{group.description}</p>
+          <span className={styles.contentEyebrow}>{locale === "ru" ? "ВЫБРАННАЯ КАТЕГОРИЯ" : locale === "en" ? "SELECTED CATEGORY" : "SEÇİLMİŞ İSTİQAMƏT"}</span>
+          <h3>{t(group.title)}</h3>
+          <p className={styles.summary}>{t(group.description)}</p>
           <div className={styles.listHeading}>
-            <span>Alt kateqoriyalar</span>
-            <span>{group.subfamilies.length} istiqamət</span>
+            <span>{label(locale,"subcategories")}</span>
+            <span>{group.subfamilies.length} {locale === "ru" ? "направлений" : locale === "en" ? "subcategories" : "istiqamət"}</span>
           </div>
           <ul className={styles.subcategories}>
             {group.subfamilies.slice(0, visibleCount).map((name) => (
-              <li key={name}><span aria-hidden="true" />{name}</li>
+              <li key={name}><span aria-hidden="true" />{t(name)}</li>
             ))}
           </ul>
           {remaining.length > 0 && (
             <details className={styles.more}>
-              <summary>Daha {remaining.length} alt kateqoriyaya bax <ChevronDown size={15} aria-hidden="true" /></summary>
+              <summary>{locale === "ru" ? `Показать ещё ${remaining.length}` : locale === "en" ? `View ${remaining.length} more` : `Daha ${remaining.length} alt kateqoriyaya bax`} <ChevronDown size={15} aria-hidden="true" /></summary>
               <ul className={styles.subcategories}>
-                {remaining.map((name) => <li key={name}><span aria-hidden="true" />{name}</li>)}
+                {remaining.map((name) => <li key={name}><span aria-hidden="true" />{t(name)}</li>)}
               </ul>
             </details>
           )}
           <div className={styles.actions}>
-            <Link className={styles.primaryLink} href={`/kataloq/?kateqoriya=${group.existingCategory}`}>
-              Mövcud məhsullara bax <ArrowRight size={17} aria-hidden="true" />
+            <Link className={styles.primaryLink} href={url(`/kataloq/?kateqoriya=${group.existingCategory}`)}>
+              {locale === "ru" ? "Смотреть товары" : locale === "en" ? "Browse products" : "Mövcud məhsullara bax"} <ArrowRight size={17} aria-hidden="true" />
             </Link>
-            <Link className={styles.secondaryLink} href="/elaqe/">
-              Sorğu göndər <ArrowUpRight size={16} aria-hidden="true" />
+            <Link className={styles.secondaryLink} href={url("/elaqe/")}>
+              {locale === "ru" ? "Отправить запрос" : locale === "en" ? "Send enquiry" : "Sorğu göndər"} <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
           </div>
         </div>
       </div>
 
       <p className={styles.footnote}>
-        Qeyd: Buradakı alt kateqoriyalar kataloqun genişləndirilmə istiqamətləridir.
-        Konkret model, foto və texniki göstəricilər şirkət tərəfindən təsdiqləndikcə
-        məhsul səhifələrinə əlavə olunur.
+        {locale === "ru" ? "Примечание: Подкатегории обозначают направления развития каталога. Конкретные модели, фотографии и характеристики будут добавляться после подтверждения компанией." : locale === "en" ? "Note: These subcategories describe planned catalog expansion. Specific models, photographs and technical specifications will be added once approved by the company." : "Qeyd: Buradakı alt kateqoriyalar kataloqun genişləndirilmə istiqamətləridir. Konkret model, foto və texniki göstəricilər şirkət tərəfindən təsdiqləndikcə məhsul səhifələrinə əlavə olunur."}
       </p>
     </section>
   );
