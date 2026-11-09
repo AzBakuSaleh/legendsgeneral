@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Header } from "@/components/site/header";
+import { HomeHeader } from "@/components/site/home-header";
 import { Footer } from "@/components/site/shared";
 import { withSiteBasePath } from "@/lib/site-path";
 import "./globals.css";
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="az" data-scroll-behavior="smooth">
       <body>
-        <Header />
+        <HomeHeader />
         {children}
         <Footer />
       </body>
