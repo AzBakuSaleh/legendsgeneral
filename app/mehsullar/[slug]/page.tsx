@@ -40,8 +40,8 @@ export default async function ProductPage({
     ...candidates.filter((p) => !categoryMatches(p.category, area)),
   ].slice(0, 3);
   return (
-    <main id="main">
-      <div className="container product-breadcrumbs">
+    <main id="main" className="showcase-product-page">
+      <div className="showcase-product-top"><div className="container product-breadcrumbs">
         <nav className="breadcrumbs" aria-label="Səhifə yolu">
           <Link href="/">Ana səhifə</Link>
           <span>/</span>
@@ -49,6 +49,7 @@ export default async function ProductPage({
           <span>/</span>
           <span>{product.name}</span>
         </nav>
+      </div>
       </div>
       {product.category === "refler" && (
         <div className="container shelf-detail-navigation"><ShelfNavigation activeSlug={slug} /></div>
