@@ -88,6 +88,14 @@ export const divisions = [
     description: "Elektrik və günəş enerjili işıqlandırma, müşahidə kameraları və yol nişanları üçün metal dirəklər.",
   },
   {
+    id: "yol-nisanlari",
+    name: "Yol nişanları",
+    short: "Yol və ərazi üçün nişanların istehsalı",
+    // Temporary process illustration; not an image of the road sign product.
+    image: withSiteBasePath("/images/services/metal-processing.webp"),
+    description: "Yol nişanlarının sifarişlə istehsalı. Nişanın növü, tərtibatı, ölçüsü və hazırlanma tələbləri layihə əsasında dəqiqləşdirilir.",
+  },
+  {
     id: "konstruksiyalar",
     name: "Metal konstruksiyalar",
     short: "Hazırlanma və quraşdırılma",
@@ -460,6 +468,25 @@ export const products: Product[] = [
     offerings: ["Naqilli elektrik işıqlandırması üçün dirəklər", "Günəş panelli işıqlandırma üçün dirəklər", "Yol nişanı dirəkləri"],
     uses: ["Küçə və yol kənarları", "Müəssisə əraziləri", "Park və açıq məkanlar"],
     details: ["Hündürlük və dirəyin forması", "Bünövrə, dayaq və bərkidilmə tələbləri", "Avadanlıq, kabel keçidləri və səth örtüyü"],
+  },
+  {
+    slug: "yol-nisanlari",
+    category: "yol-nisanlari",
+    name: "Yol nişanları",
+    image: withSiteBasePath("/images/services/metal-processing.webp"),
+    media: [{
+      src: withSiteBasePath("/images/services/metal-processing.webp"),
+      title: "Metal emalı — nümunə görüntü (yol nişanının məhsul fotosu deyil)",
+      fit: "cover",
+    }],
+    description: "Legends General yol nişanlarını da istehsal edir. Nişanın növü, görünüşü, ölçüsü, materialı və bərkidilmə tələbləri sifarişin texniki şərtlərinə uyğun dəqiqləşdirilir. Məhsulun real fotoşəkli hələ kataloqa əlavə edilməyib.",
+    uses: ["Küçə və yollar", "Müəssisə və obyekt əraziləri", "Dayanacaq və giriş sahələri"],
+    details: [
+      "Nişanın növü və təsviri",
+      "Ölçülər və material seçimi",
+      "Səth görünüşü və işarələmə tələbləri",
+      "Bərkidilmə və dirək tələbləri",
+    ],
   },
   {
     slug: "nezaret-kamerasi-direkleri",
