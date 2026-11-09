@@ -103,7 +103,20 @@ export function Hero({ locale = "az" }: { locale?: Locale }) {
             <CarouselItem key={slide.title} className="pl-0" aria-hidden={index !== i} inert={index !== i}>
               <div className={styles.heroSlide}>
                 <figure className={styles.heroMedia} data-slide={i}>
+                  {/* A softly tinted atmospheric layer fills widescreen banners.
+                      A second, uncropped layer keeps the full product in view. */}
                   <img
+                    className={styles.heroAtmosphere}
+                    src={slide.image}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
+                    width={1536}
+                    height={1024}
+                  />
+                  <img
+                    className={styles.heroFocus}
                     src={slide.image}
                     alt=""
                     fetchPriority={i === 0 ? "high" : "auto"}
