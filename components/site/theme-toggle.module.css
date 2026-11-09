@@ -1,0 +1,60 @@
+.control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex: 0 0 auto;
+  min-height: 42px;
+  padding: 0 10px;
+  border: 1px solid #70818c;
+  border-radius: 5px;
+  color: #f6f8fa;
+  background: #22303b;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.control:hover,
+.control:focus-within { background: #34444f; border-color: #d9e3ea; }
+.control:focus-within { outline: 2px solid #db4b57; outline-offset: 2px; }
+.control select {
+  appearance: auto;
+  -webkit-appearance: auto;
+  min-width: 76px;
+  max-width: 126px;
+  border: 0;
+  padding: 4px 1px;
+  color: #fff;
+  background: #22303b;
+  font-size: 11px;
+  font-weight: 720;
+  cursor: pointer;
+}
+.control select option { color: #16242f; background: #fff; }
+.control select:focus-visible { outline: none; }
+.text { display: none; }
+@media (max-width: 1270px) {
+  .control { gap: 4px; min-height: 41px; padding-inline: 6px; }
+  .control select { max-width: 90px; font-size: 10px; }
+}
+@media (max-width: 600px) {
+  .control {
+    width: 41px;
+    min-width: 41px;
+    height: 41px;
+    min-height: 41px;
+    padding: 0;
+    justify-content: center;
+  }
+  .control select {
+    position: absolute;
+    inset: 0;
+    display: block;
+    height: 100%;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
