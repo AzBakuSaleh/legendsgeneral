@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Phone, MapPin, Camera as Instagram } from "lucide-react";
 import {
   phones,
+  whatsappNumber,
   address,
   mapUrl,
   instagram,
@@ -37,15 +38,17 @@ export function ContactDetails() {
           <div key={p.number} className="phone-row">
             <Phone size={20} />
             <a href={`tel:+${p.number}`}>{p.label}</a>
-            <a
-              className="wa-link"
-              href={`https://wa.me/${p.number}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${p.label} nömrəsinə WhatsApp yaz`}
-            >
-              WhatsApp <ArrowUpRight size={14} />
-            </a>
+            {p.number === whatsappNumber && (
+              <a
+                className="wa-link"
+                href={`https://wa.me/${whatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="+994 50 299 10 22 nömrəsinə WhatsApp yaz"
+              >
+                WhatsApp <ArrowUpRight size={14} />
+              </a>
+            )}
           </div>
         ))}
       </div>
