@@ -1,3 +1,42 @@
+/* LEGENDS DESIGN SYSTEM v1 — consistent light / dark surfaces.
+   Design tokens are the single source of truth for content panels and controls.
+   Branded hero photography, intentional dark promotional bands and product photos
+   are never inverted. Every surface carrying text uses matching theme tokens. */
+:root {
+  --lg-ui-page: #ffffff;
+  --lg-ui-surface: #ffffff;
+  --lg-ui-panel: #f4f7f9;
+  --lg-ui-raised: #edf2f6;
+  --lg-ui-control: #ffffff;
+  --lg-ui-hover: #e8eff4;
+  --lg-ui-selected: #dde8f0;
+  --lg-ui-ink: #1a2933;
+  --lg-ui-muted: #536574;
+  --lg-ui-subtle: #647787;
+  --lg-ui-border: #d4dfe7;
+  --lg-ui-border-strong: #8c9eab;
+  --lg-ui-accent: #aa1b2a;
+  --lg-ui-action: #b61929;
+  --lg-ui-shadow: 0 12px 29px #10263616;
+}
+html.dark {
+  --lg-ui-page: #111a21;
+  --lg-ui-surface: #1e2c37;
+  --lg-ui-panel: #23333f;
+  --lg-ui-raised: #293b48;
+  --lg-ui-control: #263845;
+  --lg-ui-hover: #344d5e;
+  --lg-ui-selected: #3c5362;
+  --lg-ui-ink: #edf4f8;
+  --lg-ui-muted: #bdced9;
+  --lg-ui-subtle: #afc3d1;
+  --lg-ui-border: #455c6b;
+  --lg-ui-border-strong: #78909f;
+  --lg-ui-accent: #f17b85;
+  --lg-ui-action: #fa8791;
+  --lg-ui-shadow: 0 14px 32px #050b1566;
+}
+
 /* Legends General V2: user-controlled light/dark mode.
    System theme is the default; images retain natural, unfiltered colour.
    All visual changes are scoped to the html.dark class applied by next-themes. */
@@ -205,4 +244,279 @@ html.dark .site-footer .footer-bottom { border-color: #384d5a; }
 
 @media (max-width: 640px) {
   html.dark .showcase-catalog-page .catalog-toolbar > span { color: #bccbd5; }
+}
+
+
+/* Theme-aware catalog navigation. No permanently dark 'island' in Light Mode. */
+.showcase-catalog-page {
+  background: var(--lg-ui-page);
+  color: var(--lg-ui-ink);
+}
+.showcase-catalog-page .catalog-sidebar {
+  background: var(--lg-ui-panel);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border);
+}
+.showcase-catalog-page .catalog-sidebar > h2 {
+  color: var(--lg-ui-ink);
+}
+.showcase-catalog-page .catalog-category-nav {
+  background: var(--lg-ui-surface);
+  border-color: var(--lg-ui-border);
+}
+.showcase-catalog-page .catalog-category-nav > a,
+.showcase-catalog-page .catalog-category-nav .shelf-overview {
+  background: var(--lg-ui-panel);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border);
+  border-left-color: transparent;
+}
+.showcase-catalog-page .catalog-category-nav > a:hover,
+.showcase-catalog-page .catalog-category-nav > a:focus-visible,
+.showcase-catalog-page .catalog-category-nav .shelf-overview:hover,
+.showcase-catalog-page .catalog-category-nav .shelf-overview:focus-visible {
+  color: var(--lg-ui-ink);
+  background: var(--lg-ui-hover);
+  border-color: var(--lg-ui-border-strong);
+  border-left-color: #d22634;
+}
+.showcase-catalog-page .catalog-category-nav > a[aria-current="page"] {
+  background: var(--lg-ui-selected);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border-strong);
+  border-left-color: #d22634;
+}
+.showcase-catalog-page .shelf-menu {
+  border-color: var(--lg-ui-border);
+  color: var(--lg-ui-ink);
+}
+.showcase-catalog-page .shelf-menu > summary {
+  background: var(--lg-ui-raised);
+  color: var(--lg-ui-ink);
+  border: 1px solid var(--lg-ui-border);
+}
+.showcase-catalog-page .shelf-menu > summary:hover,
+.showcase-catalog-page .shelf-menu > summary:focus-visible {
+  color: var(--lg-ui-ink);
+  background: var(--lg-ui-hover);
+  border-color: var(--lg-ui-border-strong);
+}
+.showcase-catalog-page .shelf-menu .shelf-navigation > p {
+  color: var(--lg-ui-muted);
+}
+.showcase-catalog-page .shelf-menu .shelf-navigation > a {
+  background: var(--lg-ui-panel);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border);
+}
+.showcase-catalog-page .shelf-menu .shelf-navigation > a:hover,
+.showcase-catalog-page .shelf-menu .shelf-navigation > a:focus-visible,
+.showcase-catalog-page .shelf-menu .shelf-navigation > a[aria-current="page"] {
+  background: var(--lg-ui-selected);
+  color: var(--lg-ui-ink);
+  border-color: #d22634;
+}
+.showcase-catalog-page .shelf-menu .shelf-navigation > a :is(strong, small, span) {
+  color: inherit;
+}
+.showcase-catalog-page .catalog-help {
+  background: var(--lg-ui-raised);
+  border-color: var(--lg-ui-border);
+  color: var(--lg-ui-ink);
+}
+.showcase-catalog-page .catalog-help h3 { color: var(--lg-ui-ink); }
+.showcase-catalog-page .catalog-help p { color: var(--lg-ui-muted); }
+.showcase-catalog-page .catalog-help a { color: var(--lg-ui-action); }
+.showcase-catalog-page .catalog-help a:hover { color: var(--lg-ui-ink); }
+
+/* Main catalog: the entire card (including content) changes theme together.
+   Legacy .product-card-content forced white even after dark parent styling. */
+.showcase-catalog-page .catalog-intro,
+.showcase-catalog-page .catalog-toolbar,
+.showcase-catalog-page .showcase-catalog-subgroups {
+  background: var(--lg-ui-panel);
+  border-color: var(--lg-ui-border);
+  color: var(--lg-ui-ink);
+}
+.showcase-catalog-page .catalog-intro h2,
+.showcase-catalog-page .catalog-intro p {
+  color: var(--lg-ui-ink);
+}
+.showcase-catalog-page .catalog-intro p { color: var(--lg-ui-muted); }
+.showcase-catalog-page .catalog-toolbar > span { color: var(--lg-ui-muted); }
+.showcase-catalog-page .catalog-toolbar .search-input {
+  color: var(--lg-ui-muted);
+}
+.showcase-catalog-page .catalog-toolbar .search-input > svg { color: var(--lg-ui-subtle); }
+.showcase-catalog-page .catalog-toolbar input {
+  background: var(--lg-ui-control);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border-strong);
+}
+.showcase-catalog-page .catalog-toolbar input::placeholder { color: var(--lg-ui-subtle); }
+.showcase-catalog-page .catalog-toolbar input:focus-visible {
+  outline: 2px solid #c82d3b;
+  outline-offset: 1px;
+}
+.showcase-catalog-page .product-card,
+html.dark .showcase-catalog-page .product-card {
+  background: var(--lg-ui-surface);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border);
+}
+.showcase-catalog-page .product-card:hover,
+html.dark .showcase-catalog-page .product-card:hover,
+.showcase-catalog-page .product-card:focus-within {
+  border-color: var(--lg-ui-border-strong);
+  box-shadow: var(--lg-ui-shadow);
+}
+.showcase-catalog-page .product-card .product-card-content,
+.showcase-catalog-page .product-card:hover .product-card-content,
+.showcase-catalog-page .product-card:focus-within .product-card-content {
+  background: var(--lg-ui-surface);
+  color: var(--lg-ui-ink);
+}
+.showcase-catalog-page .product-card h2,
+.showcase-catalog-page .product-card h2 a,
+.showcase-catalog-page .product-card:hover h2,
+.showcase-catalog-page .product-card:focus-within h2 {
+  color: var(--lg-ui-ink);
+}
+.showcase-catalog-page .product-card .product-category,
+.showcase-catalog-page .product-card:hover .product-category,
+.showcase-catalog-page .product-card:focus-within .product-category {
+  color: var(--lg-ui-accent);
+}
+.showcase-catalog-page .product-card p,
+.showcase-catalog-page .product-card:hover p,
+.showcase-catalog-page .product-card:focus-within p {
+  color: var(--lg-ui-muted);
+}
+.showcase-catalog-page .product-card .text-link,
+.showcase-catalog-page .product-card:hover .text-link,
+.showcase-catalog-page .product-card .text-link:hover,
+.showcase-catalog-page .product-card:focus-within .text-link {
+  color: var(--lg-ui-action);
+}
+.showcase-catalog-page .product-card .text-link:hover { text-decoration: underline; }
+
+/* Subcategories, active filters, empty state and notes use the same palette. */
+.showcase-catalog-page .showcase-catalog-subgroups h3,
+.showcase-catalog-page .showcase-catalog-subgroups .showcase-catalog-subgroup-count {
+  color: var(--lg-ui-ink);
+}
+.showcase-catalog-page .showcase-catalog-subgroups > p {
+  color: var(--lg-ui-muted);
+}
+.showcase-catalog-page .showcase-catalog-subgroup-grid li {
+  background: var(--lg-ui-raised);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border);
+  border-left-color: #a9b5bd;
+}
+.showcase-catalog-page .showcase-catalog-subgroup-grid li strong { color: var(--lg-ui-ink); }
+.showcase-catalog-page .showcase-catalog-subgroup-grid li span { color: var(--lg-ui-accent); }
+.showcase-catalog-page .furniture-filters > button {
+  background: var(--lg-ui-control);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border);
+}
+.showcase-catalog-page .furniture-filters > button:hover {
+  background: var(--lg-ui-hover);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border-strong);
+}
+.showcase-catalog-page .furniture-filters > button[data-state="on"] {
+  background: var(--lg-ui-selected);
+  color: var(--lg-ui-ink);
+  border-color: #d22634;
+  border-left-width: 3px;
+}
+.showcase-catalog-page .catalog-empty {
+  background: var(--lg-ui-panel);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border);
+}
+.showcase-catalog-page .catalog-empty p,
+.showcase-catalog-page .catalog-main .image-note {
+  color: var(--lg-ui-muted);
+}
+.showcase-catalog-page .catalog-empty .button.outline {
+  background: var(--lg-ui-control);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border-strong);
+}
+.showcase-catalog-page .mobile-category-toggle {
+  background: var(--lg-ui-control);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border-strong);
+}
+.showcase-catalog-page .mobile-category-toggle:hover,
+.showcase-catalog-page .mobile-category-toggle:focus-visible {
+  background: var(--lg-ui-hover);
+  color: var(--lg-ui-ink);
+}
+
+/* Product-detail pages use the same body colours; the branded hero and quote
+   CTA stay anthracite by design, while product photos remain unmodified. */
+.showcase-product-page {
+  color: var(--lg-ui-ink);
+  background: var(--lg-ui-page);
+}
+.showcase-product-page .product-info h1,
+.showcase-product-page .product-info h2,
+.showcase-product-page .specification-section > h2,
+.showcase-product-page .specification-list p {
+  color: var(--lg-ui-ink);
+}
+.showcase-product-page .product-description,
+.showcase-product-page .capacity-note,
+.showcase-product-page .image-note,
+.showcase-product-page .product-info .usage-list {
+  color: var(--lg-ui-muted);
+}
+.showcase-product-page .product-detail .product-gallery {
+  background: var(--lg-ui-panel);
+  border-color: var(--lg-ui-border);
+}
+.showcase-product-page .capacity-grid > div {
+  background: var(--lg-ui-raised);
+  color: var(--lg-ui-ink);
+  border-top-color: #bd2a38;
+}
+.showcase-product-page .specification-section { border-color: var(--lg-ui-border); }
+.showcase-product-page .specification-list > div { border-color: var(--lg-ui-border); }
+.showcase-product-page .related-grid .category-card {
+  background: var(--lg-ui-surface);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border);
+}
+.showcase-product-page .related-grid :is(.category-label, .category-label h3) {
+  background: var(--lg-ui-surface);
+  color: var(--lg-ui-ink);
+}
+.showcase-product-page .related-grid .category-label p { color: var(--lg-ui-muted); }
+.showcase-product-page .related-grid .category-card:hover,
+.showcase-product-page .related-grid .category-card:focus-within {
+  border-color: var(--lg-ui-border-strong);
+}
+.showcase-product-page .related-grid .category-card:hover :is(.category-label, .category-label h3, .category-label p),
+.showcase-product-page .related-grid .category-card:focus-within :is(.category-label, .category-label h3, .category-label p) {
+  color: var(--lg-ui-ink);
+  background: var(--lg-ui-surface);
+}
+
+/* The site's dark sections (header, footer, media and editorial feature panels)
+   are intentional brand components; avoid white surfaces with pale dark-mode text. */
+html.dark :is(.project-label,.category-label,.gallery-grid article) {
+  background: var(--lg-ui-surface);
+  color: var(--lg-ui-ink);
+  border-color: var(--lg-ui-border);
+}
+html.dark :is(.project-label h3,.category-label h3) { color: var(--lg-ui-ink); }
+html.dark :is(.project-label p,.category-label p) { color: var(--lg-ui-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-catalog-page .product-card,
+  .showcase-catalog-page .product-card .product-card-content { transition: none; }
 }
