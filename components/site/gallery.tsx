@@ -11,7 +11,9 @@ import {
 } from "@/components/ui/dialog";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { projects } from "@/lib/content";
-export function Gallery({ compact = false }: { compact?: boolean }) {
+import { tr, localizedHref, label, type Locale } from "@/lib/i18n";
+export function Gallery({ compact = false, locale = "az" }: { compact?: boolean; locale?: Locale }) {
+  const t = (s:string) => tr(locale,s);
   const [filter, setFilter] = useState("all");
   const [selected, setSelected] = useState<number | null>(null);
   const [swipe, setSwipe] = useState<number | null>(null);
@@ -29,12 +31,12 @@ export function Gallery({ compact = false }: { compact?: boolean }) {
     <section className="gallery-section container section">
       <div className="section-heading">
         <div>
-          <h2>{compact ? "Görülən işlər" : "İş nümunələrimiz"}</h2>
-          <p>Legends General-ın Instagram səhifəsindən seçilmiş işlər.</p>
+          <h2>{compact ? label(locale,"ourWork") : (locale==="ru" ? "Примеры наших работ" : locale==="en" ? "Our portfolio" : "İş nümunələrimiz")}</h2>
+          <p>{locale === "ru" ? "Подборка выполненных работ из Instagram Legends General." : locale === "en" ? "Selected projects from the Legends General Instagram gallery." : "Legends General-ın Instagram səhifəsindən seçilmiş işlər."}</p>
         </div>
         {compact ? (
-          <Link href="/gorulen-isler/" className="text-link">
-            Bütün işlər <ArrowUpRight />
+          <Link href={localizedHref(locale, "/gorulen-isler/")} className="text-link">
+            {locale === "ru" ? "Все работы" : locale === "en" ? "All projects" : "Bütün işlər"} <ArrowUpRight />
           </Link>
         ) : (
           <ToggleGroup
@@ -46,9 +48,9 @@ export function Gallery({ compact = false }: { compact?: boolean }) {
             className="filter-tabs"
             aria-label="İşlərin kateqoriyası"
           >
-            <ToggleGroupItem value="all">Hamısı</ToggleGroupItem>
-            <ToggleGroupItem value="Rəflər">Rəflər</ToggleGroupItem>
-            <ToggleGroupItem value="Metal mebel">Metal mebel</ToggleGroupItem>
+            <ToggleGroupItem value="all">{label(locale,"all")}</ToggleGroupItem>
+            <ToggleGroupItem value="Rəflər">{locale === "ru" ? "Стеллажи" : locale === "en" ? "Shelving" : "Rəflər"}</ToggleGroupItem>
+            <ToggleGroupItem value="Metal mebel">{t("Metal mebel")}</ToggleGroupItem>
           </ToggleGroup>
         )}
       </div>
@@ -62,11 +64,11 @@ export function Gallery({ compact = false }: { compact?: boolean }) {
                 setSelected(i);
               }}
               className="project-photo"
-              aria-label={`${p.title} — şəkli böyüt`}
+              aria-label={locale === "ru" ? `${t(p.title)} — увеличить фото` : locale === "en" ? `${t(p.title)} — enlarge photo` : `${p.title} — şəkli böyüt`}
             >
               <img
                 src={p.image}
-                alt={p.title}
+                alt={t(p.title)}
                 width="720"
                 height="960"
                 loading="lazy"
@@ -76,8 +78,8 @@ export function Gallery({ compact = false }: { compact?: boolean }) {
               </span>
             </button>
             <div className="project-label">
-              <h3>{p.title}</h3>
-              <span>{p.tag}</span>
+              <h3>{t(p.title)}</h3>
+              <span>{t(p.tag)}</span>
             </div>
           </article>
         ))}
@@ -110,14 +112,14 @@ export function Gallery({ compact = false }: { compact?: boolean }) {
             <>
               <div className="lightbox-heading">
                 <div>
-                  <DialogTitle>{current.title}</DialogTitle>
+                  <DialogTitle>{t(current.title)}</DialogTitle>
                   <DialogDescription>
-                    Legends General • {current.tag}
+                    Legends General • {t(current.tag)}
                   </DialogDescription>
                 </div>
                 <DialogClose
                   className="icon-button"
-                  aria-label="Qalereyanı bağla"
+                  aria-label={locale === "ru" ? "Закрыть галерею" : locale === "en" ? "Close gallery" : "Qalereyanı bağla"}
                 >
                   <X />
                 </DialogClose>
@@ -134,12 +136,12 @@ export function Gallery({ compact = false }: { compact?: boolean }) {
                   setSwipe(null);
                 }}
               >
-                <img src={current.image} alt={current.title} />
+                <img src={current.image} alt={t(current.title)} />
               </div>
               <div className="lightbox-controls">
                 <button
                   className="icon-button"
-                  aria-label="Əvvəlki şəkil"
+                  aria-label={locale === "ru" ? "Предыдущее фото" : locale === "en" ? "Previous photo" : "Əvvəlki şəkil"}
                   onClick={() => move(-1)}
                 >
                   <ArrowLeft />
@@ -149,7 +151,7 @@ export function Gallery({ compact = false }: { compact?: boolean }) {
                 </span>
                 <button
                   className="icon-button"
-                  aria-label="Növbəti şəkil"
+                  aria-label={locale === "ru" ? "Следующее фото" : locale === "en" ? "Next photo" : "Növbəti şəkil"}
                   onClick={() => move(1)}
                 >
                   <ArrowRight />
@@ -160,7 +162,7 @@ export function Gallery({ compact = false }: { compact?: boolean }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Instagramda bax <ArrowUpRight size={17} />
+                  {locale === "ru" ? "Посмотреть в Instagram" : locale === "en" ? "View on Instagram" : "Instagramda bax"} <ArrowUpRight size={17} />
                 </a>
               </div>
             </>
