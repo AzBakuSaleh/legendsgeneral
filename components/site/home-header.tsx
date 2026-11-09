@@ -2,90 +2,93 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowUpRight, LayoutGrid, MapPin, Menu, Phone, Search, X } from "lucide-react";
-import { mapUrl, nav, phones } from "@/lib/content";
-import { withSiteBasePath } from "@/lib/site-path";
+import { ArrowRight, Menu, MessageCircle, Search, X } from "lucide-react";
+import { phones } from "@/lib/content";
 import { Logo } from "./header";
 import styles from "./home.module.css";
 
-const homeNav = [
-  ...nav.slice(0, 2),
-  { href: "#istehsalat", label: "İstehsalat" },
-  ...nav.slice(2),
+const navigation = [
+  { href: "/", label: "Ana səhifə" },
+  { href: "/kataloq/", label: "Məhsullar" },
+  { href: "/gorulen-isler/", label: "Layihələr" },
+  { href: "/haqqimizda/", label: "Haqqımızda" },
+  { href: "#emekdasliqlar", label: "Əməkdaşlıqlar" },
+  { href: "/elaqe/", label: "Əlaqə" },
 ];
 
 export function HomeHeader() {
   const [open, setOpen] = useState(false);
-  const phone = phones[0];
+  const whatsapp = `https://wa.me/${phones[0].number}`;
 
   return (
     <header
-      className={`${styles.home} ${styles.header}`}
+      className={`${styles.home} ${styles.header} ${styles.showcaseHeader}`}
       onKeyDown={(event) => {
         if (event.key === "Escape" && open) {
           setOpen(false);
-          document.getElementById("home-menu-toggle")?.focus();
+          document.getElementById("showcase-menu-toggle")?.focus();
         }
       }}
     >
       <a className="skip-link" href="#main">Əsas məzmuna keç</a>
-      <div className={styles.utility}>
-        <div className={styles.wrap}>
-          <a href={mapUrl} target="_blank" rel="noopener noreferrer">
-            <MapPin size={14} aria-hidden="true" /> Bakı, Azərbaycan
-          </a>
-          <span>Metal istehsalı və xidmətlər</span>
+      <div className={`${styles.wrap} ${styles.masthead} ${styles.showcaseMasthead}`}>
+        <div className={styles.showcaseBrand}>
+          <Link className={styles.logo} href="/" aria-label="Legends General — ana səhifə">
+            <Logo />
+          </Link>
+          <span className={styles.brandDescriptor} aria-label="Metal konstruksiya istehsalatı">
+            METAL<br />KONSTRUKSİYA<br />İSTEHSALATI
+          </span>
         </div>
-      </div>
-      <div className={`${styles.wrap} ${styles.masthead}`}>
-        <Link className={styles.logo} href="/" aria-label="Legends General — ana səhifə">
-          <Logo />
-        </Link>
-        <Link className={`${styles.button} ${styles.catalogButton}`} href="/kataloq/">
-          <LayoutGrid size={17} aria-hidden="true" /> Kataloq
-        </Link>
-        <form
-          className={styles.search}
-          action={withSiteBasePath("/kataloq/")}
-          method="get"
-          role="search"
-          aria-label="Kataloqda axtarış"
-        >
-          <Search size={19} aria-hidden="true" />
-          <input name="q" type="search" aria-label="Məhsul axtarışı" placeholder="Məhsul axtarın" />
-          <button type="submit">Axtar</button>
-        </form>
-        <a className={styles.headerPhone} href={`tel:+${phone.number}`} aria-label={`Zəng edin, ${phone.label}`}>
-          <Phone size={17} aria-hidden="true" /> <span>{phone.label}</span>
-        </a>
-        <a className={`${styles.button} ${styles.outline} ${styles.headerQuote}`} href="#muraciet">
-          Qiymət təklifi al <ArrowUpRight size={16} aria-hidden="true" />
-        </a>
-        <button
-          className={styles.menuToggle}
-          type="button"
-          id="home-menu-toggle"
-          aria-expanded={open}
-          aria-controls="home-mobile-nav"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />} Menyu
-        </button>
-      </div>
-      <nav className={styles.desktopNav} aria-label="Əsas menyu">
-        <div className={styles.wrap}>
-          {homeNav.map(({ href, label }) => (
-            <Link key={href} href={href} aria-current={href === "/" ? "page" : undefined}>{label}</Link>
+
+        <nav className={styles.showcaseNav} aria-label="Əsas menyu">
+          {navigation.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              aria-current={href === "/" ? "page" : undefined}
+            >
+              {label}
+            </Link>
           ))}
+        </nav>
+
+        <div className={styles.showcaseActions}>
+          <Link href="/kataloq/#axtaris" className={styles.showcaseSearch} aria-label="Məhsul axtarışı">
+            <Search size={22} strokeWidth={1.8} aria-hidden="true" />
+          </Link>
+          <a href={whatsapp} className={styles.whatsappLink} target="_blank" rel="noopener noreferrer">
+            <MessageCircle size={20} aria-hidden="true" />
+            <span>WhatsApp ilə əlaqə</span>
+          </a>
+          <span className={styles.languageLabel} aria-label="Saytın dili Azərbaycan dilidir">AZ</span>
+          <button
+            type="button"
+            className={styles.showcaseMenuToggle}
+            id="showcase-menu-toggle"
+            aria-label={open ? "Menyunu bağla" : "Menyunu aç"}
+            aria-expanded={open}
+            aria-controls="showcase-mobile-navigation"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <X size={23} aria-hidden="true" /> : <Menu size={23} aria-hidden="true" />}
+          </button>
         </div>
-      </nav>
-      <nav className={`${styles.wrap} ${styles.mobileNav}`} id="home-mobile-nav" aria-label="Mobil menyu" hidden={!open}>
-        {homeNav.map(({ href, label }) => (
-          <Link key={href} href={href} onClick={() => setOpen(false)} aria-current={href === "/" ? "page" : undefined}>
-            {label} <ArrowUpRight size={16} aria-hidden="true" />
+      </div>
+      <nav
+        className={`${styles.wrap} ${styles.showcaseMobileNav}`}
+        id="showcase-mobile-navigation"
+        aria-label="Mobil menyu"
+        hidden={!open}
+      >
+        {navigation.map(({ href, label }) => (
+          <Link href={href} key={href} onClick={() => setOpen(false)}>
+            {label}<ArrowRight size={17} aria-hidden="true" />
           </Link>
         ))}
-        <a href="#muraciet" onClick={() => setOpen(false)}>Qiymət təklifi al <ArrowUpRight size={16} aria-hidden="true" /></a>
+        <a href={whatsapp} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+          WhatsApp ilə əlaqə <MessageCircle size={17} aria-hidden="true" />
+        </a>
       </nav>
     </header>
   );
