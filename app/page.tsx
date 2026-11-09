@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Layers3, LockKeyhole, Shirt, Lightbulb, Trees, Package } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Layers3, LockKeyhole, Shirt, Lightbulb, Trees, Package, TrafficCone } from "lucide-react";
 import { ContactSection } from "@/components/site/contact";
 import { Hero } from "@/components/site/hero";
 import { Partners } from "@/components/site/partners";
@@ -16,6 +16,7 @@ const featuredCategories = [
   { id: "direkler", name: "İşıq dirəkləri", detail: "Küçə və açıq məkanlar üçün", image: "/images/services/lighting-poles.webp", icon: Lightbulb },
   { id: "bag-mehsullari", name: "Bağ məhsulları", detail: "Həyət, park və istirahət sahələri", image: "/images/services/garden-products.webp", icon: Trees },
   { id: "konteynerler", name: "Konteynerlər", detail: "Quru və soyuducu həllər", image: "/images/services/containers.webp", icon: Package },
+  { id: "yol-nisanlari", name: "Yol nişanları", detail: "Yol və ərazi üçün nişanların istehsalı", image: "/images/catalog-preview/road-signs-showcase.jpg", icon: TrafficCone },
 ] as const;
 const services = divisions.filter(({ id }) =>
   ["konstruksiyalar", "diger-xidmetler", "toz-boyama"].includes(id),
