@@ -3,6 +3,7 @@ import type { Product } from "./content";
 
 /** Product-specific editorial text. Verified product data and load classes remain unchanged. */
 const productDescriptions: Record<string, { ru: string; en: string }> = {
+  "yol-nisanlari": {"ru":"Legends General также производит дорожные знаки. Тип знака, оформление, размеры, материал и требования к креплению согласуются по техническому заданию. Фотография готового изделия пока не добавлена в каталог.","en":"Legends General also manufactures road signs. Sign type, artwork, dimensions, material and mounting requirements are confirmed against the order specifications. A photograph of the actual product has not yet been added to the catalog."},
   "metal-geyim-dolabi": {
     "ru": "Металлический шкаф для раздельного хранения одежды и личных вещей. Свяжитесь с нами, чтобы подобрать конфигурацию с учётом планировки помещения и количества пользователей.",
     "en": "A metal locker for separate storage of clothing and personal belongings. Contact us to choose a configuration suited to your floor plan and number of users."
