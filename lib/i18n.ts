@@ -5,6 +5,7 @@
  */
 import { supplementaryTranslations } from "./i18n-extra";
 import { categoryTranslations } from "./i18n-categories";
+import { heroTranslations } from "./i18n-hero";
 export type Locale = "az" | "ru" | "en";
 export const locales = ["az", "ru", "en"] as const;
 export const addedLocales = ["ru", "en"] as const;
@@ -217,7 +218,7 @@ const byAz = new Map<string, { ru: string; en: string }>(
 );
 export function tr(locale: Locale, original: string): string {
   if (locale === "az" || !original) return original;
-  const manual = byAz.get(original) ?? supplementaryTranslations.get(original) ?? categoryTranslations.get(original);
+  const manual = byAz.get(original) ?? supplementaryTranslations.get(original) ?? categoryTranslations.get(original) ?? heroTranslations.get(original);
   if (!manual) {
     const uiMatch = Object.values(ui).find((texts) => texts[0] === original);
     if (uiMatch) return uiMatch[locale === "ru" ? 1 : 2];
