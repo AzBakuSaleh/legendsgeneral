@@ -47,7 +47,7 @@ export function ProductContent({ slug, locale }: { slug: string; locale: Locale 
     ...candidates.filter((p) => !categoryMatches(p.category, area)),
   ].slice(0, 3);
   return (
-    <main id="main" className="showcase-product-page">
+    <main id="main" className="showcase-product-page" data-product={product.slug}>
       <div className="showcase-product-top"><div className="container product-breadcrumbs">
         <nav className="breadcrumbs" aria-label="Səhifə yolu">
           <Link href={url("/")}>{label(locale,"home")}</Link>
