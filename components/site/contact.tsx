@@ -21,15 +21,17 @@ import {
   SelectLabel,
 } from "@/components/ui/select";
 import { ContactDetails } from "./shared";
-export function ContactForm() {
+import { tr, label, type Locale } from "@/lib/i18n";
+export function ContactForm({ locale = "az" }: { locale?: Locale }) {
   const params = useSearchParams();
   const id = params.get("mehsul");
   const initialProduct = inquiryOptions.some((p) => p.id === id)
     ? id!
     : "general";
-  return <InquiryForm key={initialProduct} initialProduct={initialProduct} />;
+  return <InquiryForm key={initialProduct} initialProduct={initialProduct} locale={locale} />;
 }
-function InquiryForm({ initialProduct }: { initialProduct: string }) {
+function InquiryForm({ initialProduct, locale }: { initialProduct: string; locale: Locale }) {
+  const t = (s: string) => tr(locale, s);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [product, setProduct] = useState(initialProduct);
@@ -47,20 +49,20 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
     e.preventDefault();
     const next: Record<string, string> = {};
     if (name.trim().length < 2)
-      next.name = "Adınızı daxil edin (ən azı 2 hərf).";
+      next.name = locale === "ru" ? "Укажите имя (не менее 2 символов)." : locale === "en" ? "Enter your name (at least 2 characters)." : "Adınızı daxil edin (ən azı 2 hərf).";
     const digits = phone.replace(/\D/g, "");
     if (digits.length < 9 || digits.length > 15 || !/^[+\d\s()-]+$/.test(phone))
-      next.phone = "Düzgün əlaqə nömrəsi daxil edin.";
+      next.phone = locale === "ru" ? "Укажите корректный телефон." : locale === "en" ? "Enter a valid phone number." : "Düzgün əlaqə nömrəsi daxil edin.";
     if (message.trim().length < 5)
-      next.message = "Sualınızı bir qədər ətraflı yazın.";
+      next.message = locale === "ru" ? "Пожалуйста, уточните ваш вопрос." : locale === "en" ? "Please describe your enquiry in more detail." : "Sualınızı bir qədər ətraflı yazın.";
     setErrors(next);
     if (Object.keys(next).length) {
       document.getElementById("inquiry-" + Object.keys(next)[0])?.focus();
       return;
     }
     const selected =
-      inquiryOptions.find((p) => p.id === product)?.name ?? "Ümumi məlumat";
-    const text = `Salam, Legends General!\n\nAd: ${name.trim()}\nƏlaqə nömrəsi: ${phone.trim()}\nMəhsul / xidmət: ${selected}\n\nSual: ${message.trim()}`;
+      t(inquiryOptions.find((p) => p.id === product)?.name ?? "Ümumi məlumat");
+    const text = locale === "ru" ? `Здравствуйте, Legends General!\n\nИмя: ${name.trim()}\nТелефон: ${phone.trim()}\nТовар / услуга: ${selected}\n\nВопрос: ${message.trim()}` : locale === "en" ? `Hello, Legends General!\n\nName: ${name.trim()}\nPhone: ${phone.trim()}\nProduct / service: ${selected}\n\nEnquiry: ${message.trim()}` : `Salam, Legends General!\n\nAd: ${name.trim()}\nƏlaqə nömrəsi: ${phone.trim()}\nMəhsul / xidmət: ${selected}\n\nSual: ${message.trim()}`;
     setPrepared({
       text,
       url: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`,
@@ -72,15 +74,14 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
         <span className="success-icon">
           <Check />
         </span>
-        <h3>Mesajınız hazırdır</h3>
+        <h3>{label(locale, "messageReady")}</h3>
         <p>
-          WhatsApp nömrəsi:{" "}
+          {label(locale, "phone")}:{" "}
           <strong>+994 50 299 10 22</strong>
         </p>
         <pre>{prepared.text}</pre>
         <p className="form-note">
-          Mesaj hələ göndərilməyib. WhatsApp-ı açın və göndərməyi orada
-          tamamlayın.
+          {locale === "ru" ? "Сообщение ещё не отправлено. Откройте WhatsApp и подтвердите отправку." : locale === "en" ? "Your message has not been sent yet. Open WhatsApp and send it there." : "Mesaj hələ göndərilməyib. WhatsApp-ı açın və göndərməyi orada tamamlayın."}
         </p>
         <a
           className="button"
@@ -88,7 +89,7 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          WhatsApp-ı aç <ArrowUpRight size={18} />
+          {label(locale, "openWhatsApp")} <ArrowUpRight size={18} />
         </a>
         <button
           type="button"
@@ -96,7 +97,7 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
           onClick={() => setPrepared(null)}
         >
           <ArrowLeft size={16} />
-          Məlumatları dəyiş
+          {label(locale, "editDetails")}
         </button>
       </div>
     );
@@ -106,7 +107,7 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
         <div className="form-row">
           <Field data-invalid={!!errors.name}>
             <FieldLabel htmlFor="inquiry-name">
-              Adınız <span aria-hidden="true">*</span>
+              {label(locale, "yourName")} <span aria-hidden="true">*</span>
             </FieldLabel>
             <Input
               id="inquiry-name"
@@ -118,7 +119,7 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
               required
               aria-invalid={!!errors.name}
               aria-describedby={errors.name ? "error-name" : undefined}
-              placeholder="Ad və soyad"
+              placeholder={locale === "ru" ? "Имя и фамилия" : locale === "en" ? "Name and surname" : "Ad və soyad"}
             />
             {errors.name && (
               <p id="error-name" className="field-error">
@@ -128,7 +129,7 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
           </Field>
           <Field data-invalid={!!errors.phone}>
             <FieldLabel htmlFor="inquiry-phone">
-              Telefon nömrəniz <span aria-hidden="true">*</span>
+              {label(locale, "yourPhone")} <span aria-hidden="true">*</span>
             </FieldLabel>
             <Input
               type="tel"
@@ -152,7 +153,7 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
         </div>
         <Field>
           <FieldLabel htmlFor="inquiry-product">
-            Maraqlandığınız məhsul və ya xidmət
+            {locale === "ru" ? "Интересующий товар или услуга" : locale === "en" ? "Product or service of interest" : "Maraqlandığınız məhsul və ya xidmət"}
           </FieldLabel>
           <Select value={product} onValueChange={setProduct}>
             <SelectTrigger id="inquiry-product">
@@ -160,17 +161,17 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="general">Ümumi məlumat</SelectItem>
+                <SelectItem value="general">{label(locale,"generalInfo")}</SelectItem>
               </SelectGroup>
               {divisions.map((area) => (
                 <SelectGroup key={area.id}>
-                  <SelectLabel>{area.name}</SelectLabel>
+                  <SelectLabel>{t(area.name)}</SelectLabel>
                   {inquiryOptions
                     .filter((p) => categoryMatches(p.category, area.id) &&
                       (area.id !== "metal-mebel" || !["refler", "dolablar", "arxiv"].includes(p.category)))
                     .map((p) => (
                       <SelectItem key={p.id} value={p.id}>
-                        {p.name}
+                        {t(p.name)}
                       </SelectItem>
                     ))}
                 </SelectGroup>
@@ -179,12 +180,12 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
           </Select>
         </Field>
         <Field>
-          <FieldLabel>Şirkətin WhatsApp nömrəsi</FieldLabel>
+          <FieldLabel>{label(locale,"phone")}</FieldLabel>
           <p className="form-note">+994 50 299 10 22</p>
         </Field>
         <Field data-invalid={!!errors.message}>
           <FieldLabel htmlFor="inquiry-message">
-            Sualınız <span aria-hidden="true">*</span>
+            {label(locale,"yourMessage")} <span aria-hidden="true">*</span>
           </FieldLabel>
           <Textarea
             id="inquiry-message"
@@ -196,7 +197,7 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
             required
             aria-invalid={!!errors.message}
             aria-describedby={errors.message ? "error-message" : undefined}
-            placeholder="Məhsul və ya xidmət, ölçü, say və digər tələblərinizi yazın..."
+            placeholder={locale === "ru" ? "Опишите товар или услугу, размеры, количество и другие требования..." : locale === "en" ? "Describe the item or service, dimensions, quantity and any other requirements..." : "Məhsul və ya xidmət, ölçü, say və digər tələblərinizi yazın..."}
           />
           {errors.message && (
             <p id="error-message" className="field-error">
@@ -205,34 +206,30 @@ function InquiryForm({ initialProduct }: { initialProduct: string }) {
           )}
         </Field>
         <button type="submit" className="button form-submit">
-          Müraciəti hazırla <ArrowUpRight size={18} />
+          {label(locale, "submitRequest")} <ArrowUpRight size={18} />
         </button>
         <p className="form-note">
-          Məlumatlarınız WhatsApp mesajı kimi hazırlanır. Göndərməzdən əvvəl
-          mesajı yoxlaya bilərsiniz.
+          {locale === "ru" ? "Мы подготовим сообщение для WhatsApp. Вы сможете проверить его перед отправкой." : locale === "en" ? "We will prepare your WhatsApp message for review before you send it." : "Məlumatlarınız WhatsApp mesajı kimi hazırlanır. Göndərməzdən əvvəl mesajı yoxlaya bilərsiniz."}
         </p>
       </FieldGroup>
     </form>
   );
 }
-export function ContactSection() {
+export function ContactSection({ locale = "az" }: { locale?: Locale }) {
   return (
     <section className="contact-section" id="muraciet">
       <div className="container contact-grid">
         <div>
           <h2>
-            Sualınız var?
-            <br />
-            Bizə yazın.
+            {locale === "ru" ? <>Есть вопросы?<br />Напишите нам.</> : locale === "en" ? <>Questions?<br />Get in touch.</> : <>Sualınız var?<br />Bizə yazın.</>}
           </h2>
           <p className="contact-intro">
-            Məhsul və xidmət seçimi, ölçülər və sifarişlə bağlı suallarınızı
-            cavablandırmağa hazırıq.
+            {locale === "ru" ? "Мы поможем с выбором продукции и услуг, размерами и оформлением заказа." : locale === "en" ? "We can help you choose products and services and discuss dimensions and orders." : "Məhsul və xidmət seçimi, ölçülər və sifarişlə bağlı suallarınızı cavablandırmağa hazırıq."}
           </p>
-          <ContactDetails />
+          <ContactDetails locale={locale} />
         </div>
-        <Suspense fallback={<p role="status">Müraciət forması yüklənir...</p>}>
-          <ContactForm />
+        <Suspense fallback={<p role="status">{locale === "ru" ? "Загрузка формы..." : locale === "en" ? "Loading contact form..." : "Müraciət forması yüklənir..."}</p>}>
+          <ContactForm locale={locale} />
         </Suspense>
       </div>
     </section>
