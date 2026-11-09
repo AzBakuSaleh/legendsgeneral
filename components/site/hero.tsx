@@ -111,7 +111,7 @@ export function Hero({ locale = "az" }: { locale?: Locale }) {
                     width={1536}
                     height={1024}
                   />
-                  <figcaption>{t(slide.caption)}</figcaption>
+                  <figcaption>{slide.caption.startsWith("Legends General işi · ") ? `Legends General · ${t(projects[2].title)}` : t(slide.caption)}</figcaption>
                 </figure>
                 <div className={styles.heroCopy}>
                   <span className={styles.heroIntro}>LEGENDS GENERAL · {locale === "ru" ? "МЕТАЛЛООБРАБОТКА" : locale === "en" ? "METAL FABRICATION" : "METAL İSTEHSALATI"}</span>
