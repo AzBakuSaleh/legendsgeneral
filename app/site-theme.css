@@ -121,7 +121,8 @@ html.dark .showcase-product-page .specification-section > h2 {
   color: #eef3f7;
 }
 html.dark .showcase-catalog-page :is(.catalog-intro p, .catalog-toolbar > span, .product-card p, .image-note),
-html.dark .showcase-catalog-subgroups :is(> p, .showcase-catalog-subgroup-count) {
+html.dark .showcase-catalog-subgroups > p,
+html.dark .showcase-catalog-subgroups .showcase-catalog-subgroup-count {
   color: #b8c6d2;
 }
 html.dark .showcase-catalog-page .catalog-toolbar input {
