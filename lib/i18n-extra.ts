@@ -7,6 +7,17 @@
  */
 export const supplementaryTranslations: ReadonlyMap<string, Readonly<{ru: string; en: string}>> =
   new Map<string, {ru: string; en: string}>([
+  ["Yol nişanları", {"ru":"Дорожные знаки","en":"Road signs"}],
+  ["Yol və ərazi üçün nişanların istehsalı", {"ru":"Изготовление дорожных знаков для дорог и территорий","en":"Manufacturing road signs for roads and sites"}],
+  ["Yol nişanlarının sifarişlə istehsalı. Nişanın növü, tərtibatı, ölçüsü və hazırlanma tələbləri layihə əsasında dəqiqləşdirilir.", {"ru":"Изготовление дорожных знаков на заказ. Вид знака, оформление, размеры и требования к изготовлению уточняются согласно проекту.","en":"Custom road sign manufacturing. Sign type, artwork, dimensions and manufacturing requirements are agreed for each project."}],
+  ["Metal emalı — nümunə görüntü (yol nişanının məhsul fotosu deyil)", {"ru":"Металлообработка — иллюстрация (не фото дорожного знака)","en":"Metalworking — illustrative image (not a road sign product photo)"}],
+  ["Küçə və yollar", {"ru":"Улицы и дороги","en":"Streets and roads"}],
+  ["Müəssisə və obyekt əraziləri", {"ru":"Территории предприятий и объектов","en":"Commercial and industrial premises"}],
+  ["Dayanacaq və giriş sahələri", {"ru":"Парковки и въездные зоны","en":"Parking and access areas"}],
+  ["Nişanın növü və təsviri", {"ru":"Тип и изображение знака","en":"Sign type and artwork"}],
+  ["Ölçülər və material seçimi", {"ru":"Размеры и выбор материала","en":"Dimensions and material selection"}],
+  ["Səth görünüşü və işarələmə tələbləri", {"ru":"Внешний вид поверхности и требования к обозначениям","en":"Surface appearance and marking requirements"}],
+  ["Bərkidilmə və dirək tələbləri", {"ru":"Требования к креплению и стойке","en":"Mounting and support requirements"}],
   ["Anbar və istehsalat üçün etibarlı həllər", {"ru":"Надёжные решения для складов и производства","en":"Reliable solutions for warehouses and industry"}],
   ["Stellaj, metal dolab, konteyner və digər metal konstruksiyaların layihələndirilməsi və istehsalı.", {"ru":"Проектирование и изготовление стеллажей, металлических шкафов, контейнеров и других металлоконструкций.","en":"Design and fabrication of shelving, metal cabinets, containers and other steel structures."}],
   ["Layihələrimiz", {"ru":"Наши проекты","en":"Our projects"}],
