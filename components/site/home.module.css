@@ -1154,3 +1154,90 @@
   .showcaseCategoryCard > img { transition: none; }
   .showcaseHeroArrow, .showcaseCategoryCard { scroll-behavior: auto; }
 }
+
+
+/* Dark appearance is deliberately limited to content surfaces, not product photos. */
+:global(html.dark) .home {
+  --paper: #1e2b35;
+  --line: #3f505d;
+  --muted: #b4c4cf;
+  color: #edf3f7;
+  background: #111a21;
+}
+:global(html.dark) .home .sectionHeading h2,
+:global(html.dark) .home .showcaseTitleBlock h2,
+:global(html.dark) .home .productCopy,
+:global(html.dark) .home .showcaseCategoryTop > p {
+  color: #edf2f5;
+}
+:global(html.dark) .home .product,
+:global(html.dark) .home .project,
+:global(html.dark) .home .category {
+  background: #222f3a;
+  border-color: #445765;
+}
+:global(html.dark) .home .productImage {
+  background: #26343f;
+}
+:global(html.dark) .home .productCopy p,
+:global(html.dark) .home .sectionHeading p,
+:global(html.dark) .home .imageNote {
+  color: #b8c6d0;
+}
+:global(html.dark) .home .productCopy > .button {
+  background: #c52330;
+  border-color: #c52330;
+  color: #fff;
+}
+:global(html.dark) .home .productCopy > .button:hover {
+  background: #e13a47;
+}
+:global(html.dark) .home .showcaseAllProducts {
+  color: #edf2f5;
+  background: #1d2b35;
+  border-color: #82939e;
+}
+:global(html.dark) .home .showcaseAllProducts:hover {
+  color: #fff;
+  background: #3a4e5c;
+}
+:global(html.dark) .home :global(.partners) {
+  background: #202c36;
+  color: #edf3f7;
+}
+:global(html.dark) .home :global(.partners-heading) h2 { color: #f0f5f7; }
+:global(html.dark) .home :global(.partner-logo) {
+  background: #f3f5f6;
+  border-radius: 4px;
+}
+:global(html.dark) .home :global(.partner-collaboration) {
+  background: #283742;
+  border-color: #536774;
+}
+:global(html.dark) .home :global(.partner-collaboration) > span {
+  color: #f1a2aa;
+}
+:global(html.dark) .home :global(.partner-collaboration) img {
+  filter: none;
+}
+:global(html.dark) .home :global(.contact-section) {
+  --light: #1d2a35;
+  --orange: #cf2d3a;
+  --navy: #dfeaf0;
+  --primary: #c72b39;
+  color: #eef3f7;
+  background: #18242d;
+  border-top-color: #435561;
+}
+:global(html.dark) .home :global(.contact-section) :global(.contact-intro),
+:global(html.dark) .home :global(.contact-section) :global(.wa-link) {
+  color: #bed0db;
+}
+:global(html.dark) .home :global(.contact-section) :global(.button:hover),
+:global(html.dark) .home :global(.contact-section) :global(.success-icon) {
+  background: #db3440;
+  color: #fff;
+}
+@media (max-width: 365px) {
+  .showcaseSearch { display: none; }
+}
