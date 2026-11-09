@@ -20,6 +20,8 @@ export function Logo() {
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  if (pathname === "/") return null;
+
   return (
     <>
       <a className="skip-link" href="#main">

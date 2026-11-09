@@ -1,283 +1,101 @@
 "use client";
+
 import Link from "next/link";
-import { ServiceAnnotation } from "./service-annotation";
-import { withSiteBasePath } from "@/lib/site-path";
 import { useEffect, useState } from "react";
-import {
-  ArrowUpRight,
-  ArrowLeft,
-  ArrowRight,
-  Pause,
-  Play,
-  Ruler,
-  Layers3,
-  Factory,
-  Sun,
-  Lightbulb,
-  Camera,
-  LockKeyhole,
-} from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from "@/components/ui/carousel";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
+import { projects } from "@/lib/content";
+import { withSiteBasePath } from "@/lib/site-path";
+import styles from "./home.module.css";
+
+const shelfProject = projects[2];
 const slides = [
   {
-    title: (
-      <>
-        Yükünüzə uyğun
-        <br />
-        metal stellajlar.
-      </>
-    ),
-    description: "120, 200, 500 və 1500 kq/rəf yük sinifləri. Anbar, arxiv və iş məkanları üçün sifarişlə hazırlanır.",
+    title: "Metal stellajlar və saxlama sistemləri",
+    description: "Anbar, arxiv və iş məkanları üçün 120, 200, 500 və 1500 kq/rəf yük siniflərində stellajlar.",
     href: "/kataloq/?kateqoriya=refler",
-    cta: "Stellajları seç",
-    image: withSiteBasePath("/images/warehouse-shelving.webp"),
-    alt: "Metal stellajın nümunə görüntüsü",
-    kind: "product",
-    category: "refler",
-    badge: { icon: Layers3, title: "4", detail: "YÜK SİNFİ" },
-    features: [
-      { icon: Ruler, label: "Fərdi ölçü" },
-      { icon: Layers3, label: "Rəf sayı seçimi" },
-      { icon: Factory, label: "Yerli istehsal" },
-    ],
+    action: "Kataloqa bax",
+    image: withSiteBasePath("/images/shelving-close.webp"),
+    caption: "Nümunə görüntü",
   },
   {
-    title: (
-      <>
-        İş yerində
-        <br />
-        hər şey yerində.
-      </>
-    ),
-    description:
-      "Geyim, sənəd və şəxsi əşyalar üçün metal dolablar. Ölçü və bölmələr ehtiyacınıza uyğun seçilir.",
+    title: "İş məkanları üçün metal dolablar",
+    description: "Geyim, sənəd və şəxsi əşyalar üçün metal dolablar. Ölçüləri, bölmələri və kilidi ehtiyacınıza uyğun seçin.",
     href: "/kataloq/?kateqoriya=dolablar",
-    cta: "Dolablara bax",
+    action: "Dolablara bax",
     image: withSiteBasePath("/images/steel-lockers.webp"),
-    alt: "Metal geyim dolablarının nümunə görüntüsü",
-    kind: "product",
-    category: "dolablar",
-    badge: { icon: LockKeyhole, title: "FƏRDİ", detail: "BÖLMƏLƏR" },
-    features: [
-      { icon: Ruler, label: "Fərdi ölçü" },
-      { icon: LockKeyhole, label: "Kilid seçimi" },
-      { icon: Layers3, label: "Bölmə sayı" },
-    ],
+    caption: "Nümunə görüntü",
   },
   {
-    title: (
-      <>
-        Açıq məkanlar üçün
-        <br />
-        metal dirəklər.
-      </>
-    ),
-    description:
-      "İşıqlandırma, müşahidə kameraları və yol nişanları üçün layihəyə uyğun dirək istehsalı.",
-    href: "/kataloq/?kateqoriya=direkler",
-    cta: "Dirəklərə bax",
-    image: withSiteBasePath("/images/services/wired-pole-close.webp"),
-    alt: "Naqilli işıqlandırma üçün metal dirək — yaxın nümunə görüntü",
-    kind: "pole",
-    category: "direkler",
-    badge: { icon: Lightbulb, title: "METAL", detail: "DİRƏK İSTEHSALI" },
-    features: [
-      { icon: Lightbulb, label: "Elektrik" },
-      { icon: Sun, label: "Günəş paneli" },
-      { icon: Camera, label: "Müşahidə" },
-    ],
-  },
-  {
-    title: <>Günəş panelli<br />metal dirəklər.</>,
-    description: "Günəş panelləri üçün metal dirəklər və bərkidicilər. Ölçülər layihəyə uyğun seçilir.",
-    href: "/mehsullar/metal-direkler/", cta: "Ətraflı bax",
-    image: withSiteBasePath("/images/services/solar-pole-close.webp"),
-    alt: "Günəş panelli işıqlandırma üçün metal dirək — yaxın nümunə görüntü",
-    kind: "pole", category: "direkler",
-    badge: { icon: Sun, title: "METAL", detail: "DİRƏK İSTEHSALI" },
-    features: [{ icon: Sun, label: "Panel üçün dayaq" }, { icon: Ruler, label: "Fərdi ölçü" }, { icon: Factory, label: "Yerli istehsal" }],
+    title: "Sifarişlə metal mebel",
+    description: "Rəflər, metal karkaslar və məkanınıza uyğun hazırlanan digər mebel nümunələri ilə tanış olun.",
+    href: "/gorulen-isler/",
+    action: "İşlərə bax",
+    image: shelfProject.image,
+    caption: "Legends General işi · " + shelfProject.title,
   },
 ];
+
 export function Hero() {
   const [api, setApi] = useState<CarouselApi>();
   const [index, setIndex] = useState(0);
-  const [playing, setPlaying] = useState(true);
-  const [hover, setHover] = useState(false);
-  const [reduce, setReduce] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setReduce(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
+
   useEffect(() => {
     if (!api) return;
     const select = () => setIndex(api.selectedScrollSnap());
-    api.on("select", select);
+    api.on("select", select).on("reInit", select);
     return () => {
-      api.off("select", select);
+      api.off("select", select).off("reInit", select);
     };
   }, [api]);
-  useEffect(() => {
-    if (!api || !playing || hover || reduce) return;
-    const timer = setInterval(() => {
-      if (!document.hidden) api.scrollNext();
-    }, 6500);
-    return () => clearInterval(timer);
-  }, [api, playing, hover, reduce]);
+
   return (
-    <section
-      className="hero"
+    <Carousel
+      className={styles.hero}
       aria-label="Məhsul slaydları"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      onFocusCapture={(e) => {
-        if (
-          !(e.target instanceof Element) ||
-          !e.target.closest("[data-autoplay]")
-        )
-          setPlaying(false);
-      }}
+      aria-roledescription="slayder"
+      setApi={setApi}
+      opts={{ loop: true, breakpoints: { "(prefers-reduced-motion: reduce)": { duration: 0 } } }}
     >
-      <Carousel setApi={setApi} opts={{ loop: true, duration: reduce ? 0 : 25 }}>
-        <CarouselContent className="ml-0">
-          {slides.map((s, i) => (
-            <CarouselItem key={i} className="pl-0" aria-hidden={index !== i}>
-              <div className={`hero-slide ${s.kind}`}>
-                <div className="hero-media">
-                  <img
-                    src={s.image}
-                    alt={s.alt}
-                    width="1672"
-                    height="941"
-                    loading={i === 0 ? "eager" : "lazy"}
-                    fetchPriority={i === 0 ? "high" : "auto"}
-                  />
-                </div>
-                {s.kind === "scene" && (
-                  <div className="hero-service-note">
-                    <ServiceAnnotation
-                      compact
-                      category={s.category}
-                    />
-                  </div>
-                )}
-                <span className="hero-sample-label">{s.kind === "pole" ? (i === 2 ? "Naqilli işıqlandırma · " : "Günəş panelli işıqlandırma · ") : ""}Nümunə görüntü</span>
-                <div
-                  className="hero-emblem"
-                  aria-label={`${s.badge.title} ${s.badge.detail}`}
-                >
-                  <s.badge.icon aria-hidden="true" strokeWidth={1.5} />
-                  <strong>{s.badge.title}</strong>
-                  <span>{s.badge.detail}</span>
-                </div>
-                <div className="container hero-content">
-                  <div className="hero-local"><Factory size={21} aria-hidden="true" /><span>YERLİ İSTEHSAL</span></div>
-                  {i === 0 ? <h1>{s.title}</h1> : <h2>{s.title}</h2>}
-                  <p>{s.description}</p>
-                  <ul
-                    className="hero-features"
-                    aria-label="Məhsul xüsusiyyətləri"
-                  >
-                    {s.features.map((feature) => (
-                      <li key={feature.label}>
-                        <span className="hero-feature-icon">
-                          <feature.icon
-                            aria-hidden="true"
-                            size={23}
-                            strokeWidth={1.6}
-                          />
-                        </span>
-                        <span>{feature.label}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="hero-ctas">
-                    <Link
-                      tabIndex={index === i ? 0 : -1}
-                      className="button"
-                      href={s.href}
-                    >
-                      {s.cta}
-                      <ArrowUpRight size={19} />
+      <CarouselContent className="ml-0">
+        {slides.map((slide, i) => {
+          const Title = i === 0 ? "h1" : "h2";
+          return (
+            <CarouselItem key={slide.title} className="pl-0" aria-hidden={index !== i} inert={index !== i}>
+              <div className={styles.heroSlide}>
+                <div className={styles.heroCopy}>
+                  <Title>{slide.title}</Title>
+                  <p>{slide.description}</p>
+                  <div className={styles.heroActions}>
+                    <Link className={`${styles.button} ${styles.lightButton}`} href={slide.href}>
+                      {slide.action} <ArrowRight size={18} aria-hidden="true" />
                     </Link>
-                    <Link
-                      tabIndex={index === i ? 0 : -1}
-                      className="button outline"
-                      href="/elaqe/"
-                    >
-                      Bizimlə əlaqə
-                    </Link>
+                    <a className={`${styles.button} ${styles.lightOutline}`} href="#muraciet">
+                      Qiymət təklifi al <ArrowUpRight size={17} aria-hidden="true" />
+                    </a>
                   </div>
                 </div>
+                <figure className={styles.heroMedia} data-slide={i}>
+                  <img src={slide.image} alt="" loading={i === 0 ? "eager" : "lazy"} fetchPriority={i === 0 ? "high" : "auto"} />
+                  <figcaption>{slide.caption}</figcaption>
+                </figure>
               </div>
             </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
-      <div className="container hero-control-wrap">
-        <div className="hero-controls">
-          <span className="slide-index">
-            0{index + 1}
-            <span> / {String(slides.length).padStart(2, "0")}</span>
-          </span>
-          <div className="slide-dots">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                aria-label={`${i + 1}-${i === 2 ? "cü" : "ci"} slayda keç`}
-                aria-current={index === i ? "true" : undefined}
-                onClick={() => {
-                  api?.scrollTo(i);
-                  setPlaying(false);
-                }}
-              />
-            ))}
-          </div>
-          <button
-            data-autoplay
-            hidden={reduce}
-            className="icon-button"
-            aria-label={
-              playing && !reduce
-                ? "Avtomatik keçidi dayandır"
-                : "Avtomatik keçidi başlat"
-            }
-            onClick={() => setPlaying(!playing)}
-          >
-            {playing && !reduce ? <Pause size={16} /> : <Play size={16} />}
-          </button>
-          <div className="hero-arrows">
-            <button
-              className="icon-button"
-              aria-label="Əvvəlki slayd"
-              onClick={() => {
-                api?.scrollPrev();
-                setPlaying(false);
-              }}
-            >
-              <ArrowLeft size={19} />
-            </button>
-            <button
-              className="icon-button"
-              aria-label="Növbəti slayd"
-              onClick={() => {
-                api?.scrollNext();
-                setPlaying(false);
-              }}
-            >
-              <ArrowRight size={19} />
-            </button>
-          </div>
-        </div>
+          );
+        })}
+      </CarouselContent>
+      <div className={styles.heroControls}>
+        <button type="button" aria-label="Əvvəlki slayd" onClick={() => api?.scrollPrev()}>
+          <ArrowLeft size={18} aria-hidden="true" />
+        </button>
+        <span aria-live="polite" aria-atomic="true">
+          <span className="sr-only">Slayd </span>
+          {String(index + 1).padStart(2, "0")} <span>/ {String(slides.length).padStart(2, "0")}</span>
+        </span>
+        <button type="button" aria-label="Növbəti slayd" onClick={() => api?.scrollNext()}>
+          <ArrowRight size={18} aria-hidden="true" />
+        </button>
       </div>
-    </section>
+    </Carousel>
   );
 }
