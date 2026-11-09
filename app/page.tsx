@@ -4,6 +4,7 @@ import { ContactSection } from "@/components/site/contact";
 import { Hero } from "@/components/site/hero";
 import { HomeHeader } from "@/components/site/home-header";
 import { Partners } from "@/components/site/partners";
+import { Certificates } from "@/components/site/certificates";
 import { ReferenceFamilies } from "@/components/site/reference-families";
 import { categories, categoryMedia, divisions, projects, shelfClasses } from "@/lib/content";
 import { withSiteBasePath } from "@/lib/site-path";
@@ -137,6 +138,7 @@ export default function Home() {
             </div>
           </section>
         </div>
+        <Certificates />
         <Partners />
         <ContactSection />
       </main>
