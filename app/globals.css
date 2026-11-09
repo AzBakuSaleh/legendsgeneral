@@ -59,7 +59,10 @@ html {
 }
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  /* Windows Segoe UI includes Azerbaijani Ə/ə; Arial alone can fall back to
+     a serif glyph for U+018F inside a bold Latin headline. Keep script-aware
+     sans-serif fallbacks for Android, iOS, Linux and Cyrillic translations. */
+  font-family: "Segoe UI", "Noto Sans", "DejaVu Sans", system-ui, sans-serif;
   color: var(--navy);
   background: #fff;
   font-size: 16px;
