@@ -477,7 +477,7 @@ export const products: Product[] = [
     media: [{
       src: withSiteBasePath("/images/catalog-preview/road-signs-showcase.jpg"),
       title: "Yol nişanları — təqdimat üçün nümunə vizual (real məhsul fotosu deyil)",
-      fit: "cover",
+      fit: "contain",
     }],
     description: "Legends General yol nişanlarını da istehsal edir. Nişanın növü, görünüşü, ölçüsü, materialı və bərkidilmə tələbləri sifarişin texniki şərtlərinə uyğun dəqiqləşdirilir. Məhsulun real fotoşəkli hələ kataloqa əlavə edilməyib.",
     uses: ["Küçə və yollar", "Müəssisə və obyekt əraziləri", "Dayanacaq və giriş sahələri"],
