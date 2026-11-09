@@ -7,6 +7,7 @@ import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/com
 import { projects } from "@/lib/content";
 import { withSiteBasePath } from "@/lib/site-path";
 import styles from "./home.module.css";
+import { localizedHref, label, tr, type Locale } from "@/lib/i18n";
 
 const AUTO_ADVANCE_MS = 5000;
 const slides = [
@@ -49,7 +50,9 @@ const highlights = [
   { icon: Ruler, label: "Ölçüyə uyğun sifariş" },
 ];
 
-export function Hero() {
+export function Hero({ locale = "az" }: { locale?: Locale }) {
+  const t = (s: string) => tr(locale, s);
+  const url = (s: string) => localizedHref(locale, s);
   const [api, setApi] = useState<CarouselApi>();
   const [index, setIndex] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
@@ -88,7 +91,7 @@ export function Hero() {
   return (
     <Carousel
       className={`${styles.hero} ${styles.showcaseHero}`}
-      aria-label="Legends General — əsas təqdimat slaydları"
+      aria-label={locale === "ru" ? "Legends General — слайды" : locale === "en" ? "Legends General — presentation slides" : "Legends General — əsas təqdimat slaydları"}
       aria-roledescription="slayder"
       setApi={setApi}
       opts={{ loop: true, breakpoints: { "(prefers-reduced-motion: reduce)": { duration: 0 } } }}
@@ -108,26 +111,26 @@ export function Hero() {
                     width={1536}
                     height={1024}
                   />
-                  <figcaption>{slide.caption}</figcaption>
+                  <figcaption>{t(slide.caption)}</figcaption>
                 </figure>
                 <div className={styles.heroCopy}>
-                  <span className={styles.heroIntro}>LEGENDS GENERAL · METAL İSTEHSALATI</span>
-                  <Title>{slide.title}</Title>
+                  <span className={styles.heroIntro}>LEGENDS GENERAL · {locale === "ru" ? "МЕТАЛЛООБРАБОТКА" : locale === "en" ? "METAL FABRICATION" : "METAL İSTEHSALATI"}</span>
+                  <Title>{t(slide.title)}</Title>
                   <span className={styles.heroAccent} aria-hidden="true" />
-                  <p>{slide.description}</p>
+                  <p>{t(slide.description)}</p>
                   <div className={styles.heroActions}>
-                    <Link className={`${styles.button} ${styles.showcasePrimary}`} href={slide.href}>
-                      {slide.action} <ArrowRight size={18} aria-hidden="true" />
+                    <Link className={`${styles.button} ${styles.showcasePrimary}`} href={url(slide.href)}>
+                      {t(slide.action)} <ArrowRight size={18} aria-hidden="true" />
                     </Link>
-                    <Link className={`${styles.button} ${styles.showcaseSecondary}`} href={slide.secondaryHref}>
-                      {slide.secondaryAction}
+                    <Link className={`${styles.button} ${styles.showcaseSecondary}`} href={url(slide.secondaryHref)}>
+                      {t(slide.secondaryAction)}
                     </Link>
                   </div>
                   <ul className={styles.showcaseHeroBenefits} aria-label="Legends General üstünlükləri">
                     {highlights.map(({ icon: Icon, label }) => (
                       <li key={label}>
                         <Icon size={23} strokeWidth={1.75} aria-hidden="true" />
-                        <span>{label}</span>
+                        <span>{t(label)}</span>
                       </li>
                     ))}
                   </ul>
@@ -141,7 +144,7 @@ export function Hero() {
       <button
         type="button"
         className={`${styles.showcaseHeroArrow} ${styles.showcaseHeroArrowPrev}`}
-        aria-label="Əvvəlki slayd"
+        aria-label={label(locale, "previousSlide")}
         onClick={() => api?.scrollPrev()}
       >
         <ArrowLeft size={23} aria-hidden="true" />
@@ -149,7 +152,7 @@ export function Hero() {
       <button
         type="button"
         className={`${styles.showcaseHeroArrow} ${styles.showcaseHeroArrowNext}`}
-        aria-label="Növbəti slayd"
+        aria-label={label(locale, "nextSlide")}
         onClick={() => api?.scrollNext()}
       >
         <ArrowRight size={23} aria-hidden="true" />
@@ -161,7 +164,7 @@ export function Hero() {
             <button
               key={slide.title}
               type="button"
-              aria-label={`${i + 1}-ci slayda keç`}
+              aria-label={locale === "ru" ? `Слайд ${i + 1}` : locale === "en" ? `Go to slide ${i + 1}` : `${i + 1}-ci slayda keç`}
               aria-current={index === i ? "true" : undefined}
               className={index === i ? styles.showcaseActiveDot : undefined}
               onClick={() => api?.scrollTo(i)}
@@ -174,7 +177,7 @@ export function Hero() {
         <button
           type="button"
           className={styles.showcasePause}
-          aria-label={autoplay ? "Avtomatik keçidi dayandır" : "Avtomatik keçidi başlat"}
+          aria-label={autoplay ? label(locale, "stopAutoplay") : label(locale,"startAutoplay")}
           aria-pressed={autoplay}
           onClick={() => setAutoplay((current) => !current)}
         >
