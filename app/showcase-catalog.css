@@ -119,45 +119,83 @@
   font-weight: 790;
   letter-spacing: -.025em;
 }
+/* Keep the entire catalog navigation on a consistent anthracite surface.
+   The legacy global rules defaulted the nav to white and shelving shortcuts to
+   pale gray, making the V2 light-colored labels unreadable. */
 .showcase-catalog-page .catalog-category-nav {
-  gap: 4px;
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid #425664;
+  border-radius: 4px;
+  background: #1b2730;
 }
 .showcase-catalog-page .catalog-category-nav > a,
 .showcase-catalog-page .catalog-category-nav .shelf-overview {
-  color: #e3e9ed;
-  border: 1px solid transparent;
+  background: #263640;
+  color: #edf3f7;
+  border: 1px solid #374b59;
   border-left: 3px solid transparent;
   border-radius: 3px;
   font-size: 12px;
-  font-weight: 620;
+  font-weight: 660;
   min-height: 40px;
   padding: 9px 12px;
+  text-decoration: none;
 }
 .showcase-catalog-page .catalog-category-nav > a:hover,
-.showcase-catalog-page .catalog-category-nav .shelf-overview:hover {
-  border-color: #677986;
-  border-left-color: #d41e29;
-  background: #344752;
+.showcase-catalog-page .catalog-category-nav > a:focus-visible,
+.showcase-catalog-page .catalog-category-nav .shelf-overview:hover,
+.showcase-catalog-page .catalog-category-nav .shelf-overview:focus-visible {
+  border-color: #718693;
+  border-left-color: #dc2936;
+  background: #344a58;
   color: #fff;
 }
 .showcase-catalog-page .catalog-category-nav > a[aria-current="page"] {
-  border-left-color: #df2732;
-  background: #44545f;
+  border-color: #5b707f;
+  border-left-color: #ed3441;
+  background: #435766;
   color: #fff;
+  font-weight: 770;
 }
 .showcase-catalog-page .shelf-menu {
+  min-width: 0;
   border-color: #526574;
-  color: #eaf0f4;
+  color: #edf3f7;
 }
-.showcase-catalog-page .shelf-menu summary {
+.showcase-catalog-page .shelf-menu > summary {
+  background: #122c41;
   color: #fff;
-  font-weight: 710;
+  font-weight: 740;
 }
-.showcase-catalog-page .shelf-menu .shelf-navigation a {
-  color: #eaf0f4;
+.showcase-catalog-page .shelf-menu > summary:hover,
+.showcase-catalog-page .shelf-menu > summary:focus-visible {
+  background: #334b5c;
+  color: #fff;
 }
-.showcase-catalog-page .shelf-menu .shelf-navigation a:hover {
-  background: #364853;
+.showcase-catalog-page .shelf-menu .shelf-navigation > p {
+  color: #cbd8e2;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 5px 7px 0;
+}
+.showcase-catalog-page .shelf-menu .shelf-navigation > a {
+  background: #293c49;
+  border: 1px solid #536876;
+  border-radius: 3px;
+  color: #f1f6f9;
+  min-width: 0;
+}
+.showcase-catalog-page .shelf-menu .shelf-navigation > a strong,
+.showcase-catalog-page .shelf-menu .shelf-navigation > a small,
+.showcase-catalog-page .shelf-menu .shelf-navigation > a span {
+  color: inherit;
+}
+.showcase-catalog-page .shelf-menu .shelf-navigation > a:hover,
+.showcase-catalog-page .shelf-menu .shelf-navigation > a:focus-visible,
+.showcase-catalog-page .shelf-menu .shelf-navigation > a[aria-current="page"] {
+  background: #3c5260;
+  border-color: #e03b47;
   color: #fff;
 }
 .showcase-catalog-page .catalog-help {
