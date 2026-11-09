@@ -2,6 +2,7 @@
 import { Suspense, useEffect, useRef, useState, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowUpRight, Check, ArrowLeft } from "lucide-react";
+import { WhatsAppIcon } from "./whatsapp-icon";
 import {
   whatsappNumber,
   inquiryOptions,
@@ -89,7 +90,7 @@ function InquiryForm({ initialProduct, locale }: { initialProduct: string; local
           target="_blank"
           rel="noopener noreferrer"
         >
-          {label(locale, "openWhatsApp")} <ArrowUpRight size={18} />
+          <WhatsAppIcon size={18} /> {label(locale, "openWhatsApp")}
         </a>
         <button
           type="button"
