@@ -5,6 +5,7 @@ import { ServiceAnnotation } from "./service-annotation";
 import { ShelfNavigation } from "./shelf-navigation";
 import { ProductGallery } from "./product-gallery";
 import { ReferenceFamilies } from "./reference-families";
+import { plannedProductFamilies } from "@/lib/product-families";
 import { useSearchParams } from "next/navigation";
 import { Search, ArrowUpRight, X } from "lucide-react";
 import {
@@ -68,7 +69,7 @@ export function Catalog() {
     window.history.replaceState(null, "", url);
   }
   return (
-    <section className="container section catalog-layout">
+    <section className="container section catalog-layout" id="mehsul-siyahisi">
       <aside className="catalog-sidebar">
         <h2>İstiqamətlər</h2>
         <button type="button" className="mobile-category-toggle" aria-expanded={menuOpen} aria-controls="catalog-categories" onClick={() => setMenuOpen(!menuOpen)}>
@@ -106,6 +107,28 @@ export function Catalog() {
           </div>
         )}
         {category === "all" && !query.trim() && <ReferenceFamilies />}
+        {plannedProductFamilies
+          .filter((group) => group.existingCategory === category)
+          .map((group) => (
+            <section key={group.id} className="showcase-catalog-subgroups" aria-labelledby={`subgroups-${group.id}`}>
+              <div className="showcase-catalog-subgroups-title">
+                <div>
+                  <span>ALT KATEQORİYALAR</span>
+                  <h3 id={`subgroups-${group.id}`}>{group.title}</h3>
+                </div>
+                <span className="showcase-catalog-subgroup-count">{group.subfamilies.length} istiqamət</span>
+              </div>
+              <ol className="showcase-catalog-subgroup-grid">
+                {group.subfamilies.map((label, i) => (
+                  <li key={label}>
+                    <span aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                    <strong>{label}</strong>
+                  </li>
+                ))}
+              </ol>
+              <p>Bu alt kateqoriyalar üzrə ayrıca model və fotolar təsdiqləndikcə kataloqa əlavə olunur. Mövcud məhsullar aşağıda göstərilir.</p>
+            </section>
+          ))}
         {category === "refler" && <div className="mobile-shelf-shortcuts"><ShelfNavigation /></div>}
         {furnitureSelected && (
           <ToggleGroup
